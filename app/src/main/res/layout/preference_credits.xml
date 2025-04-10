@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_height="wrap_content"
+  android:layout_width="match_parent"
+  android:layout_marginHorizontal="8dp"
+  android:paddingBottom="12dp"
+  style="@style/Widget.Material3.CardView.Filled"
+  app:cardCornerRadius="@dimen/cardCornerRadius"
+  android:foreground="?android:attr/selectableItemBackground">
+
+  <LinearLayout
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <ImageView
+      android:layout_height="72dp"
+      android:layout_width="72dp"
+      android:layout_marginVertical="12dp"
+      android:scaleType="centerCrop"
+      android:src="@mipmap/ic_launcher"
+      android:background="@drawable/circle"
+      android:backgroundTint="@color/white" />
+
+    <TextView
+      android:layout_height="wrap_content"
+      android:layout_width="wrap_content"
+      android:layout_marginBottom="4dp"
+      android:gravity="center"
+      android:textAppearance="?android:attr/textAppearanceMedium"
+      android:textColor="?attr/colorOnSurface"
+      android:text="@string/app_name"
+      android:textStyle="bold" />
+
+    <TextView
+      android:layout_height="wrap_content"
+      android:layout_width="wrap_content"
+      android:gravity="center"
+      android:textAppearance="?android:attr/textAppearanceSmall"
+      android:text="@string/tagline" />
+
+    <com.google.android.material.card.MaterialCardView
+      android:layout_height="wrap_content"
+      android:layout_width="wrap_content"
+      app:cardMaxElevation="2dp"
+      android:layout_marginVertical="8dp"
+      android:clickable="true"
+      android:padding="@dimen/parentMargin"
+      style="@style/Widget.Material3.CardView.Filled"
+      app:cardCornerRadius="@dimen/cardCornerRadius">
+
+      <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_marginHorizontal="8dp"
+        android:text="@string/credits_text" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+      android:layout_height="match_parent"
+      android:layout_width="match_parent"
+      android:animateLayoutChanges="true"
+      app:cardMaxElevation="6dp"
+      android:adjustViewBounds="true"
+      android:gravity="center"
+      android:clickable="true"
+      app:cardElevation="4dp"
+      app:cardBackgroundColor="?attr/colorPrimary"
+      style="@style/Widget.Material3.CardView.Filled"
+      app:cardCornerRadius="@dimen/cardCornerRadius"
+      android:foreground="?android:attr/selectableItemBackground">
+
+      <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="24dp"
+        android:orientation="vertical">
+
+        <TextView
+          android:layout_height="wrap_content"
+          android:layout_width="match_parent"
+          android:layout_marginVertical="8dp"
+          android:layout_marginEnd="16dp"
+          android:gravity="center"
+          android:textAppearance="?android:attr/textAppearanceMedium"
+          android:textColor="?attr/colorSurface"
+          android:layout_marginStart="16dp"
+          android:text="@string/contributors_title"
+          android:textStyle="bold" />
+
+        <LinearLayout
+          android:layout_height="wrap_content"
+          android:layout_width="match_parent"
+          android:layout_marginHorizontal="24dp"
+          android:orientation="horizontal"
+          android:paddingBottom="38dp">
+
+          <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <TextView
+              android:layout_height="wrap_content"
+              android:layout_width="match_parent"
+              android:textAppearance="?android:attr/textAppearanceSmall"
+              android:text="@string/contributor_the_sog" />
+
+            <TextView
+              android:layout_height="wrap_content"
+              android:layout_width="match_parent"
+              android:textAppearance="?android:attr/textAppearanceSmall"
+              android:text="@string/contributor_m2k" />
+
+            <TextView
+              android:layout_height="wrap_content"
+              android:layout_width="match_parent"
+              android:textAppearance="?android:attr/textAppearanceSmall"
+              android:text="@string/contributor_marius586" />
+
+            <TextView
+              android:layout_height="wrap_content"
+              android:layout_width="match_parent"
+              android:textAppearance="?android:attr/textAppearanceSmall"
+              android:text="@string/contributor_halal_beef" />
+
+            <TextView
+              android:layout_height="wrap_content"
+              android:layout_width="match_parent"
+              android:textAppearance="?android:attr/textAppearanceSmall"
+              android:text="@string/contributor_misha" />
+
+            <TextView
+              android:layout_height="wrap_content"
+              android:layout_width="match_parent"
+              android:textAppearance="?android:attr/textAppearanceSmall"
+              android:text="@string/contributor_bibarub" />
+
+            <TextView
+              android:layout_height="wrap_content"
+              android:layout_width="match_parent"
+              android:textAppearance="?android:attr/textAppearanceSmall"
+              android:text="@string/contributor_arkt_7" />
+
+          </LinearLayout>
+
+          <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <ImageView
+              android:layout_height="72dp"
+              android:layout_width="72dp"
+              android:scaleType="fitXY"
+              android:src="@drawable/ic_thanks_badge"
+              android:layout_margin="8dp" />
+
+          </LinearLayout>
+
+        </LinearLayout>
+
+      </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+  </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

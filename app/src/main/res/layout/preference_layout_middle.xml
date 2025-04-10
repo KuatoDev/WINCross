@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:clickable="true"
+    android:layout_marginHorizontal="8dp"
+    android:stateListAnimator="@anim/state_list_anim"
+    app:cardBackgroundColor="@color/colorSurface"
+    style="@style/Widget.Material3.CardView.Filled"
+    app:cardCornerRadius="0dp"
+    android:foreground="?android:attr/selectableItemBackground">
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginVertical="8dp"
+        android:layout_marginHorizontal="8dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@android:id/icon"
+            android:padding="@dimen/parentMargin"
+            android:layout_gravity="center" />
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="8dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:fadingEdge="horizontal"
+                android:ellipsize="marquee"
+                android:textSize="14sp"
+                android:singleLine="true"
+                android:id="@android:id/title"
+                android:text="title"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textSize="12sp"
+                android:id="@android:id/summary"
+                android:text="summary"
+                android:textStyle="normal" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

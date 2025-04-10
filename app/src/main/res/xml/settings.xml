@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.preference.Preference
+        android:key="key_credits"
+        android:layout="@layout/preference_credits" />
+
+    <PreferenceCategory
+        android:layout="@layout/preference_layout_top"
+        android:title="@string/key_theme">
+
+        <androidx.preference.Preference
+            android:key="@string/key_theme"
+            android:title="@string/title_choose_theme"
+            android:icon="@drawable/ic_theme"
+            android:layout="@layout/preference_layout_middle" />
+
+        <androidx.preference.Preference
+            android:key="@string/key_theme_color"
+            android:title="@string/title_choose_theme_color"
+            android:icon="@drawable/ic_palette"
+            android:layout="@layout/preference_layout_bottom" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:layout="@layout/preference_layout_top"
+        android:title="@string/misc">
+
+        <androidx.preference.Preference
+            android:key="@string/key_getprefs"
+            android:title="@string/saved_pref"
+            android:summary="@string/saved_pref_summary"
+            android:icon="@drawable/ic_db"
+            android:layout="@layout/preference_layout_middle" />
+            
+        <androidx.preference.Preference
+            android:key="@string/key_github"
+            android:title="@string/title_github"
+            android:summary="@string/github_summary"
+            android:icon="@drawable/ic_github"
+            android:layout="@layout/preference_layout_middle" />
+            
+        <androidx.preference.Preference
+            android:key="@string/key_telegram"
+            android:title="@string/title_telegram"
+            android:summary="@string/telegram_summary"
+            android:icon="@drawable/ic_telegram"
+            android:layout="@layout/preference_layout_bottom" />
+
+    </PreferenceCategory>
+</androidx.preference.PreferenceScreen>

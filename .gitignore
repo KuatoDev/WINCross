@@ -1,0 +1,6 @@
+*.jks
+*.b64
+*.bak
+/local.properties
+/keystore.b64
+/app/build/

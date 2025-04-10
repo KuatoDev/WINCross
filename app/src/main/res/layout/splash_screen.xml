@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_height="match_parent"
+  android:layout_width="match_parent"
+  android:background="?attr/colorSurfaceVariant">
+
+  <ImageView
+    android:layout_height="120dp"
+    android:layout_width="120dp"
+    android:layout_centerInParent="true"
+    android:src="@drawable/ic_toolbar"
+    android:scaleType="centerCrop"
+    android:background="@drawable/circle"
+    android:backgroundTint="@color/white"
+    android:id="@+id/splashlogo" />
+
+  <com.google.android.material.card.MaterialCardView
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    app:cardMaxElevation="2dp"
+    android:layout_marginVertical="8dp"
+    android:clickable="true"
+    android:padding="@dimen/parentMargin"
+    android:layout_centerHorizontal="true"
+    app:cardBackgroundColor="@color/colorOnTertiary"
+    style="@style/Widget.Material3.CardView.Filled"
+    android:layout_alignParentBottom="true"
+    app:cardCornerRadius="@dimen/cardCornerRadius">
+
+    <TextView
+      android:layout_height="wrap_content"
+      android:layout_width="wrap_content"
+      android:gravity="center"
+      android:autoSizePresetSizes="@array/auto_size_text_sizes"
+      android:layout_marginHorizontal="8dp"
+      android:text="@string/credits_text" />
+
+  </com.google.android.material.card.MaterialCardView>
+
+</RelativeLayout>

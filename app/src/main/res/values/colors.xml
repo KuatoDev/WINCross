@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- =================================================== MATERIAL 3 LIGHT THEME COLOR PALETTE =================================================== -->
+  <!-- Primary Color Scheme -->
+  <color name="md_theme_light_primary">#FF8A65</color> <!-- Primary color -->
+  <color name="md_theme_light_onPrimary">#FFFFFF</color>
+  <color name="md_theme_light_primaryContainer">#FFE0B2</color> <!-- Light variant -->
+  <color name="md_theme_light_onPrimaryContainer">#4E342E</color>
+
+  <!-- Secondary Color Scheme -->
+  <color name="md_theme_light_secondary">#FF7043</color> <!-- Secondary color -->
+  <color name="md_theme_light_onSecondary">#FFFFFF</color>
+  <color name="md_theme_light_secondaryContainer">#FFAB91</color>
+  <color name="md_theme_light_onSecondaryContainer">#4E342E</color>
+
+  <!-- Tertiary Color Scheme -->
+  <color name="md_theme_light_tertiary">#FF5722</color> <!-- Tertiary color -->
+  <color name="md_theme_light_onTertiary">#FFFFFF</color>
+  <color name="md_theme_light_tertiaryContainer">#FF8A65</color>
+  <color name="md_theme_light_onTertiaryContainer">#4E342E</color>
+
+  <!-- Error Color Scheme -->
+  <color name="md_theme_light_error">#B3261E</color>
+  <color name="md_theme_light_errorContainer">#F9DEDC</color>
+  <color name="md_theme_light_onError">#FFFFFF</color>
+  <color name="md_theme_light_onErrorContainer">#410E0B</color>
+
+  <!-- Background and Surface Colors -->
+  <color name="md_theme_light_background">#F5F5F5</color>
+  <color name="md_theme_light_onBackground">#1C1B1F</color>
+  <color name="md_theme_light_surface">#FFFFFF</color>
+  <color name="md_theme_light_onSurface">#1C1B1F</color>
+
+  <!-- Surface Variant Colors -->
+  <color name="md_theme_light_surfaceVariant">#FFCCBC</color>
+  <color name="md_theme_light_onSurfaceVariant">#4E342E</color>
+
+  <!-- Additional Theme Colors -->
+  <color name="md_theme_light_outline">#8AACC8</color>
+  <color name="md_theme_light_inverseOnSurface">#E0F7FA</color>
+  <color name="md_theme_light_inverseSurface">#1C3A5A</color>
+  <color name="md_theme_light_inversePrimary">#64B5F6</color>
+
+  <!-- =================================================== CUSTOM COLOR PALETTE =================================================== -->
+  <!-- Themed Color Variations -->
+  <color name="blue">#0288D1</color>
+  <color name="darkblue">#1565C0</color>
+  <color name="softblue">#E3F2FD</color>
+
+  <color name="green">#388E3C</color>
+  <color name="darkgreen">#1B5E20</color>
+  <color name="softgreen">#C8E6C9</color>
+
+  <color name="red">#D32F2F</color>
+  <color name="darkred">#B71C1C</color>
+  <color name="softred">#FFCDD2</color>
+
+  <color name="yellow">#FFCA28</color>
+  <color name="amber">#FFA000</color>
+  <color name="orange">#F57C00</color>
+
+  <!-- =================================================== FIREBASE COLOR PALETTE =================================================== -->
+  <color name="firebase_blue">#1565C0</color>
+  <color name="firebase_navy">#0D47A1</color>
+
+  <color name="firebase_coral">#FF8A65</color>
+  <color name="firebase_grey">#ECEFF1</color>
+
+  <!-- =================================================== PRIMARY THEME COLORS =================================================== -->
+  <color name="colorPrimary">#1976D2</color>
+  <color name="colorPrimaryDark">#1565C0</color>
+  <color name="colorAccent">#29B6F6</color>
+  <color name="colorSurface">#FFFFFF</color>
+  <color name="colorTertiary">#90CAF9</color>
+  <color name="colorOnTertiary">#0D47A1</color>
+  <color name="colorTertiaryContainer">#BBDEFB</color>
+  <color name="colorOnTertiaryContainer">#1E88E5</color>
+
+  <!-- =================================================== ADDITIONAL COLORS =================================================== -->
+  <!-- Basic Colors -->
+  <color name="white">#FFFFFFFF</color>
+  <color name="black">#FF000000</color>
+  <color name="transparent">@android:color/transparent</color>
+
+  <!-- Accent and Utility Colors -->
+  <color name="purple">#42A5F5</color>
+  <color name="layout_background">#E3F2FD</color>
+  <color name="greyout">#5A000000</color>
+  <color name="white_translucent">#3ACDCDCD</color>
+  <color name="translucent">#55EDEDED</color>
+  <color name="semibackground">#FFEDEDED</color>
+
+  <!-- =================================================== SPECIAL USE COLORS =================================================== -->
+  <color name="textColor">@color/md_theme_light_primary</color>
+
+  <color name="icon_bg">@color/firebase_blue</color>
+  <color name="windows_blue">#1E88E5</color>
+  <color name="icons_color">@color/md_theme_light_inverseSurface</color>
+
+  <!-- Widget-specific Colors -->
+  <color name="widgetColorTitleContainer">@color/colorPrimary</color>
+  <color name="widgetColorContainer">@color/colorSurface</color>
+</resources>

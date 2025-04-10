@@ -1,0 +1,60 @@
+name: Build APK
+run-name: Build by @${{ github.actor }} • ${{ github.sha }} • 2025-04-02 13:39:19
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Cache Gradle Dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.gradle/caches
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: gradle-${{ runner.os }}-
+          
+      - name: Decode Keystore
+        run: |
+          echo "${{ secrets.KEYSTORE }}" | base64 --decode > app/KuatoDev.jks
+          if [ ! -s app/KuatoDev.jks ]; then
+            echo "Failed to decode keystore"
+            exit 1
+          fi
+
+      - name: Set up Environment Variables
+        run: |
+          echo "ANDROID_KEYSTORE_PASSWORD=${{ secrets.PASSWORD }}" >> $GITHUB_ENV
+          echo "ANDROID_KEY_ALIAS=${{ secrets.ALIAS }}" >> $GITHUB_ENV
+          echo "BUILD_TIMESTAMP=$(date -u '+%H%M-%d-%m-%Y')" >> $GITHUB_ENV
+
+      - name: Grant Execute Permission
+        run: chmod +x gradlew
+
+      - name: Build Release APK
+        env:
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ALIAS }}
+        run: ./gradlew assembleRelease --stacktrace
+
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: WINCross-${{ github.sha }}-${{ env.BUILD_TIMESTAMP }}
+          path: app/build/outputs/apk/release/app-release.apk
+          compression-level: 0
+          

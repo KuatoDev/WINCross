@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_height="wrap_content"
+  android:layout_width="match_parent"
+  android:background="@color/transparent"
+  android:padding="6dp">
+
+  <CheckBox
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    android:id="@+id/checkboxPartition" />
+
+  <TextView
+    android:layout_height="wrap_content"
+    android:layout_width="0dp"
+    app:layout_constraintTop_toTopOf="parent"
+    android:textSize="14sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toEndOf="@id/checkboxPartition"
+    android:layout_marginStart="12dp"
+    tools:text="boot_a"
+    android:id="@+id/textPartitionName"
+    android:textStyle="bold" />
+
+  <TextView
+    android:layout_height="wrap_content"
+    android:layout_width="0dp"
+    android:textSize="12sp"
+    android:textColor="?android:attr/textColorSecondary"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toEndOf="@id/checkboxPartition"
+    android:layout_marginTop="4dp"
+    android:layout_marginStart="12dp"
+    tools:text="2023-04-15 13:45 • 28.5 MB"
+    app:layout_constraintTop_toBottomOf="@id/textPartitionName"
+    android:id="@+id/textPartitionInfo" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
