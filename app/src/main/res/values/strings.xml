@@ -17,7 +17,7 @@
   <string name="toolbox_title">Toolbox</string>
   <string name="toolbox_summary">Open</string>
   <string name="mount_windows_for_toolbox">Toolbox Closed. Mount Windows to use Toolbox</string>
-  <string name="dbkp_success">Dualboot Kernel Patchee successful</string>
+  <string name="dbkp_success">Dualboot Kernel Patcher successful</string>
   <string name="patch_error">Patch failed</string>
   <!-- Main Actions -->
   <string name="title_backup">Backup</string>
@@ -94,7 +94,7 @@
 
   <string name="key_github">Sourcecode</string>
   <string name="title_github">Github</string>
-  <string name="github_summary">Source code (Currently not available yet)</string>
+  <string name="github_summary">Source code</string>
 
   <string name="key_telegram">Telegram</string>
   <string name="title_telegram">Telegram Channel</string>
