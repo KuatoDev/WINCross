@@ -56,14 +56,15 @@ object MountWindows {
 
     // Create mount point directory and set permissions
     val checkMountCommand = "su -mm -c mkdir -p $mountPoint && chmod 777 $mountPoint"
-    if (!Utils.executeShellCommand(checkMountCommand, "MountWindows", logSuccess = true)) {
+    if (!Utils.executeShellCommand(checkMountCommand, "MountWindows", logSuccess = true).isSuccess) {
       Log.e("MountWindows", "Failed to create or set permissions for mount point: $mountPoint")
       return false
     }
 
     // Execute mount command with library path for NTFS driver
     val mountCommand = "su -mm -c LD_LIBRARY_PATH=$libraryPath $mountNtfsPath $partition $mountPoint"
-    val success = Utils.executeShellCommand(mountCommand, "MountWindows", logSuccess = true, logFailure = true)
+    val result = Utils.executeShellCommand(mountCommand, "MountWindows", logSuccess = true, logFailure = true)
+    val success = result.isSuccess
 
     if (success) {
       Log.d("MountWindows", "Successfully mounted Windows partition at: $mountPoint")
@@ -82,17 +83,17 @@ object MountWindows {
   suspend fun umount(context: Context): Boolean {
     val prefs = context.getSharedPreferences("WinCross_preferences", Context.MODE_PRIVATE)
     val mountPoint = if (prefs.getBoolean("mount_to_mnt", false)) "/mnt/Windows" else kernelInWindows
-
     Log.d("MountWindows", "Attempting to unmount Windows from: $mountPoint")
 
     val command = "su -mm -c umount $mountPoint"
-    val result = Shell.cmd(command).exec()
+    val result = Utils.executeShellCommand(command)
 
+    // Using the updated approach with Shell.Result
     return if (result.isSuccess) {
       Log.d("MountWindows", "Successfully unmounted Windows from $mountPoint.")
       true
     } else {
-      Log.e("MountWindows", "Failed to unmount Windows from $mountPoint. Error: ${result.err}")
+      Log.e("MountWindows", "Failed to unmount Windows from $mountPoint. Error: ${result.out}")
       false
     }
   }

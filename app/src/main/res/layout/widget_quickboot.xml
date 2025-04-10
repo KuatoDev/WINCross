@@ -1,107 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:layout_height="wrap_content"
-  android:layout_width="match_parent"
-  android:orientation="vertical"
-  android:backgroundTint="@color/widgetColorTitleContainer">
-
-  <RelativeLayout
-    android:layout_height="wrap_content"
-    android:layout_width="match_parent"
-    android:background="@drawable/rounded_top_background"
-    android:backgroundTint="@color/widgetColorTitleContainer">
+<RelativeLayout
+     xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_height="wrap_content"
+     android:layout_width="match_parent"
+     android:background="@drawable/circle"
+     android:backgroundTint="@color/widgetColorTitleContainer">
 
     <LinearLayout
-      android:layout_height="wrap_content"
-      android:layout_width="wrap_content"
-      android:background="@drawable/circle"
-      android:gravity="center"
-      android:layout_centerVertical="true"
-      android:layout_margin="4dp"
-      android:orientation="vertical"
-      android:layout_alignParentLeft="true"
-      android:stateListAnimator="@anim/state_list_anim"
-      android:backgroundTint="@color/widgetColorContainer"
-      android:layout_gravity="center"
-      android:id="@+id/btnQuickBoot">
+         android:layout_height="wrap_content"
+         android:layout_width="wrap_content"
+         android:background="@drawable/circle"
+         android:gravity="center"
+         android:layout_centerVertical="true"
+         android:layout_margin="4dp"
+         android:orientation="vertical"
+         android:layout_alignParentLeft="true"
+         android:stateListAnimator="@anim/state_list_anim"
+         android:backgroundTint="@color/widgetColorContainer"
+         android:layout_gravity="center"
+         android:id="@+id/btnQuickBoot">
 
-      <ImageView
-        android:layout_height="72dp"
-        android:layout_width="72dp"
-        android:src="@drawable/ic_launcher_foreground"
-        android:scaleType="fitCenter"
-        android:gravity="center"
-        android:stateListAnimator="@anim/state_list_anim" />
+        <ImageView
+             android:layout_height="72dp"
+             android:layout_width="72dp"
+             android:src="@drawable/ic_launcher_foreground"
+             android:scaleType="fitCenter"
+             android:gravity="center"
+             android:stateListAnimator="@anim/state_list_anim" />
 
     </LinearLayout>
 
     <TextView
-      android:layout_height="wrap_content"
-      android:layout_width="match_parent"
-      android:gravity="center"
-      android:layout_centerVertical="true"
-      android:textAppearance="?android:attr/textAppearanceMedium"
-      android:layout_margin="4dp"
-      android:layout_toRightOf="@id/btnQuickBoot"
-      android:textColor="?android:attr/textColorPrimary"
-      android:layout_alignBottom="@id/btnQuickBoot"
-      android:layout_alignTop="@id/btnQuickBoot"
-      android:text="@string/switch_to_windows"
-      android:textStyle="bold" />
+         android:layout_height="wrap_content"
+         android:layout_width="match_parent"
+         android:gravity="center"
+         android:layout_centerVertical="true"
+         android:textAppearance="?android:attr/textAppearanceMedium"
+         android:layout_margin="4dp"
+         android:layout_toRightOf="@id/btnQuickBoot"
+         android:textColor="?android:attr/textColorPrimary"
+         android:layout_alignBottom="@id/btnQuickBoot"
+         android:layout_alignTop="@id/btnQuickBoot"
+         android:text="@string/switch_to_windows"
+         android:textStyle="bold" />
 
-  </RelativeLayout>
-
-  <RelativeLayout
-    android:layout_height="wrap_content"
-    android:layout_width="match_parent"
-    android:background="@drawable/rounded_bottom_background"
-    android:backgroundTint="@color/widgetColorTitleContainer"
-    android:layout_marginTop="4dp">
-
-    <LinearLayout
-      android:layout_height="wrap_content"
-      android:layout_width="wrap_content"
-      android:background="@drawable/circle"
-      android:gravity="center"
-      android:layout_centerVertical="true"
-      android:layout_margin="4dp"
-      android:orientation="vertical"
-      android:layout_alignParentLeft="true"
-      android:stateListAnimator="@anim/state_list_anim"
-      android:backgroundTint="@color/widgetColorContainer"
-      android:layout_gravity="center"
-      android:id="@+id/btnQuickMount">
-
-      <ImageView
-        android:layout_height="72dp"
-        android:layout_width="72dp"
-        android:src="@drawable/ic_folder"
-        android:scaleType="fitCenter"
-        android:gravity="center"
-        android:padding="18dp"
-        android:stateListAnimator="@anim/state_list_anim"
-        android:tint="@color/yellow" />
-
-    </LinearLayout>
-
-    <TextView
-      android:layout_height="wrap_content"
-      android:layout_width="match_parent"
-      android:layout_centerVertical="true"
-      android:textColor="?android:attr/textColorPrimary"
-      android:layout_alignBottom="@id/btnQuickMount"
-      android:gravity="center"
-      android:textAppearance="?android:attr/textAppearanceMedium"
-      android:layout_margin="4dp"
-      android:layout_toRightOf="@id/btnQuickMount"
-      android:layout_alignTop="@id/btnQuickMount"
-      android:id="@+id/tv_quick_mount"
-      android:text="@string/title_mount_windows"
-      android:textStyle="bold" />
-
-  </RelativeLayout>
-
-</LinearLayout>
+</RelativeLayout>

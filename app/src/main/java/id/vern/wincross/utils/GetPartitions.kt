@@ -33,7 +33,7 @@ object GetPartitions {
   )
 
   fun checkAndSaveActiveSlot(context: Context) {
-    val result = Shell.cmd("getprop ro.boot.slot_suffix").exec()
+    val result = Utils.executeShellCommand("getprop ro.boot.slot_suffix")
     val slotValue = when {
       result.isSuccess && result.out.isNotEmpty() && result.out[0].contains("a", ignoreCase = true) -> "slot_a"
       result.isSuccess && result.out.isNotEmpty() && result.out[0].contains("b", ignoreCase = true) -> "slot_b"
@@ -68,7 +68,7 @@ object GetPartitions {
 
     for (path in searchPaths) {
       val command = "su -mm -c \"find $path -type l -o -type b | grep -E '/${partitionName}\$'\""
-      val result = Shell.cmd(command).exec()
+      val result = Utils.executeShellCommand(command)
 
       if (result.isSuccess && result.out.isNotEmpty()) {
         val filteredPaths = result.out.filter {

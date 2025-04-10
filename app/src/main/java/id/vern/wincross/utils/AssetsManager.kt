@@ -84,19 +84,18 @@ object AssetsManager {
     }
   }
 
-  private fun setFullPermissions(filePath: String): Boolean {
-    val shellSuccess = Utils.executeShellCommand("chmod 777 $filePath")
 
-    if (!shellSuccess) {
+  private fun setFullPermissions(filePath: String): Boolean {
+    val shellResult = Utils.executeShellCommand("chmod 777 $filePath")
+
+    if (!shellResult.isSuccess) {
       Log.e(TAG, "Shell chmod failed, attempting File API")
       val file = File(filePath)
       val fileSuccess = file.setExecutable(true, false) &&
       file.setReadable(true, false) &&
       file.setWritable(true, false)
-
       return fileSuccess
     }
-
     return true
   }
 

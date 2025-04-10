@@ -64,7 +64,14 @@ object RestoreOperation {
         return@withContext false
       }
 
-      val partitionExists = Utils.executeShellCommand("su -mm -c test -e $partitionPath && echo exists || echo not found", "RestoreOperation", logSuccess = true, logFailure = true)
+      val partitionCheckResult = Utils.executeShellCommand(
+        "su -mm -c test -e $partitionPath && echo exists || echo not found",
+        "RestoreOperation",
+        logSuccess = true,
+        logFailure = true
+      )
+      val partitionExists = partitionCheckResult.out.contains("exists")
+
       if (!partitionExists) {
         Log.e("RestoreOperation", "ERROR: Partition not found: $partitionPath")
         mainHandler.post {
@@ -74,7 +81,8 @@ object RestoreOperation {
       }
 
       val command = "su -mm -c dd if=$sourcePath of=$partitionPath bs=4M"
-      val success = Utils.executeShellCommand(command, "RestoreOperation", logSuccess = true, logFailure = true)
+      val result = Utils.executeShellCommand(command, "RestoreOperation", logSuccess = true, logFailure = true)
+      val success = result.isSuccess
 
       val message = if (success) {
         "Restore completed: ${sourcePath.substringAfterLast("/")}"

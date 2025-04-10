@@ -202,7 +202,7 @@ object FlashOperation {
           Utils.executeShellCommand("su -mm -c dd if=$src of=$dest bs=$BLOCK_SIZE conv=fsync")
         }
 
-        if (result.not()) {
+        if (!result.isSuccess) {
           allSuccessful = false
           Log.e(TAG, "Failed to flash from $src to $dest")
 

@@ -16,7 +16,7 @@ object Utils {
       return it
     }
 
-    val result = Shell.cmd("su -mm -c cat /proc/cmdline").exec()
+    val result = executeShellCommand("su -mm -c cat /proc/cmdline")
     val cmdline = result.out.joinToString(" ")
 
     // Determine panel type with more efficient pattern matching
@@ -131,21 +131,24 @@ object Utils {
     return "$roundedSize GB"
   }
 
+  val Shell.Result.isSuccess: Boolean
+  get() = this.code == 0
+
   fun executeShellCommand(
     command: String,
     logTag: String = "ShellUtils",
     logSuccess: Boolean = false,
     logFailure: Boolean = true
-  ): Boolean {
+  ): Shell.Result {
     val result = Shell.cmd(command).exec()
-    val success = result.isSuccess
+    val success = result.code == 0
 
     if (success && logSuccess) {
       Log.d(logTag, "Command executed successfully: $command")
     } else if (!success && logFailure) {
       Log.e(logTag, "Command failed: $command")
     }
-    return success
+    return result
   }
 
   fun getBatteryKernelProfile(): String? {
@@ -175,6 +178,4 @@ object Utils {
       0.0
     }
   }
-
-
 }

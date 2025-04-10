@@ -56,7 +56,15 @@ object BackupOperation {
     return withContext(Dispatchers.IO) {
       Log.d("BackupOperation", "Starting backup: $partitionPath -> $destinationPath")
 
-      val partitionExists = Utils.executeShellCommand("su -mm -c test -e $partitionPath && echo exists || echo not found", "BackupOperation", logSuccess = true, logFailure = true)
+      // Periksa keberadaan partisi
+      val partitionCheckResult = Utils.executeShellCommand(
+        "su -mm -c test -e $partitionPath && echo exists || echo not found",
+        "BackupOperation",
+        logSuccess = true,
+        logFailure = true
+      )
+      val partitionExists = partitionCheckResult.out.contains("exists")
+
       if (!partitionExists) {
         Log.e("BackupOperation", "ERROR: Partition not found: $partitionPath")
         mainHandler.post {
@@ -64,12 +72,14 @@ object BackupOperation {
         }
         return@withContext false
       }
+
       File(backupPath).apply {
         if (!exists()) mkdirs()
       }
 
       val command = "su -mm -c dd if=$partitionPath of=$destinationPath bs=4M"
-      val success = Utils.executeShellCommand(command, "BackupOperation", logSuccess = true, logFailure = true)
+      val result = Utils.executeShellCommand(command, "BackupOperation", logSuccess = true, logFailure = true)
+      val success = result.isSuccess
 
       val message = if (success) {
         "Backup completed: ${destinationPath.substringAfterLast("/")}"

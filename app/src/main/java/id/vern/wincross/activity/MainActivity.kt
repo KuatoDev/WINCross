@@ -333,6 +333,15 @@ class MainActivity : AppCompatActivity() {
   private var isShowingUpdateDialog = false
 
   private fun updateDeviceSpecificUI() {
+    val prefs = getSharedPreferences("WinCross_preferences", Context.MODE_PRIVATE)
+
+    // Check if auto update is enabled
+    val isAutoUpdateEnabled = prefs.getBoolean("uefi_auto_update", false)
+    if (!isAutoUpdateEnabled) {
+      Log.d("UpdateUI", "Auto update is disabled, skipping check")
+      return
+    }
+
     if (isShowingUpdateDialog) {
       Log.d("UpdateUI", "Update dialog is already showing, skipping check")
       return
@@ -502,6 +511,8 @@ class MainActivity : AppCompatActivity() {
       msMountToMnt.isChecked = sharedPreferences.getBoolean("mount_to_mnt", false)
       msFlashLogoWithUefi.isChecked = sharedPreferences.getBoolean("flash_logo_with_uefi", false)
       msAlwaysProvisionModem.isChecked = sharedPreferences.getBoolean("always_provision_modem", false)
+      msUpdateUefi.isChecked = sharedPreferences.getBoolean("uefi_auto_update", false)
+
       val model = getSharedPreferences("WinCross_preferences", Context.MODE_PRIVATE)
       .getString("device_model", null)?.lowercase()
 
@@ -511,6 +522,10 @@ class MainActivity : AppCompatActivity() {
       msFlashLogoWithUefi.setOnCheckedChangeListener {
         _, isChecked ->
         switchHandler.handleFlashLogoWithUefi(isChecked)
+      }
+      msUpdateUefi.setOnCheckedChangeListener {
+        _, isChecked ->
+        switchHandler.handleUEFIAutoUpdate(isChecked)
       }
       msAlwaysProvisionModem.setOnCheckedChangeListener {
         _, isChecked ->

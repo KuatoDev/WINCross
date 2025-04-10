@@ -2,22 +2,22 @@
 <resources>
   <!-- =================================================== MATERIAL 3 LIGHT THEME COLOR PALETTE =================================================== -->
   <!-- Primary Color Scheme -->
-  <color name="md_theme_light_primary">#FF8A65</color> <!-- Primary color -->
+  <color name="md_theme_light_primary">#1976D2</color> <!-- Primary color (blue) -->
   <color name="md_theme_light_onPrimary">#FFFFFF</color>
-  <color name="md_theme_light_primaryContainer">#FFE0B2</color> <!-- Light variant -->
-  <color name="md_theme_light_onPrimaryContainer">#4E342E</color>
+  <color name="md_theme_light_primaryContainer">#E3F2FD</color> <!-- Light blue variant -->
+  <color name="md_theme_light_onPrimaryContainer">#0D47A1</color>
 
   <!-- Secondary Color Scheme -->
-  <color name="md_theme_light_secondary">#FF7043</color> <!-- Secondary color -->
+  <color name="md_theme_light_secondary">#2196F3</color> <!-- Secondary color (blue) -->
   <color name="md_theme_light_onSecondary">#FFFFFF</color>
-  <color name="md_theme_light_secondaryContainer">#FFAB91</color>
-  <color name="md_theme_light_onSecondaryContainer">#4E342E</color>
+  <color name="md_theme_light_secondaryContainer">#BBDEFB</color>
+  <color name="md_theme_light_onSecondaryContainer">#0D47A1</color>
 
   <!-- Tertiary Color Scheme -->
-  <color name="md_theme_light_tertiary">#FF5722</color> <!-- Tertiary color -->
+  <color name="md_theme_light_tertiary">#64B5F6</color> <!-- Tertiary color (lighter blue) -->
   <color name="md_theme_light_onTertiary">#FFFFFF</color>
-  <color name="md_theme_light_tertiaryContainer">#FF8A65</color>
-  <color name="md_theme_light_onTertiaryContainer">#4E342E</color>
+  <color name="md_theme_light_tertiaryContainer">#90CAF9</color>
+  <color name="md_theme_light_onTertiaryContainer">#0D47A1</color>
 
   <!-- Error Color Scheme -->
   <color name="md_theme_light_error">#B3261E</color>
@@ -32,8 +32,8 @@
   <color name="md_theme_light_onSurface">#1C1B1F</color>
 
   <!-- Surface Variant Colors -->
-  <color name="md_theme_light_surfaceVariant">#FFCCBC</color>
-  <color name="md_theme_light_onSurfaceVariant">#4E342E</color>
+  <color name="md_theme_light_surfaceVariant">#E3F2FD</color> <!-- Light blue -->
+  <color name="md_theme_light_onSurfaceVariant">#0D47A1</color>
 
   <!-- Additional Theme Colors -->
   <color name="md_theme_light_outline">#8AACC8</color>
@@ -63,7 +63,7 @@
   <color name="firebase_blue">#1565C0</color>
   <color name="firebase_navy">#0D47A1</color>
 
-  <color name="firebase_coral">#FF8A65</color>
+  <color name="firebase_coral">#42A5F5</color> <!-- Changed to blue -->
   <color name="firebase_grey">#ECEFF1</color>
 
   <!-- =================================================== PRIMARY THEME COLORS =================================================== -->
@@ -83,7 +83,7 @@
   <color name="transparent">@android:color/transparent</color>
 
   <!-- Accent and Utility Colors -->
-  <color name="purple">#42A5F5</color>
+  <color name="purple">#42A5F5</color> <!-- Changed to blue -->
   <color name="layout_background">#E3F2FD</color>
   <color name="greyout">#5A000000</color>
   <color name="white_translucent">#3ACDCDCD</color>

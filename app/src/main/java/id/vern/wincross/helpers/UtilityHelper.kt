@@ -9,6 +9,7 @@ import androidx.browser.customtabs.CustomTabsIntent
 import com.topjohnwu.superuser.Shell
 import id.vern.wincross.R
 import android.os.Environment
+import id.vern.wincross.utils.*
 import java.io.File
 import android.view.View
 
@@ -66,7 +67,7 @@ object UtilityHelper {
   fun isWindowsMounted(context: Context): Boolean {
     for (mountPoint in getWindowsMountPoints(context)) {
       val command = "su -mm -c mount | grep $mountPoint"
-      if (Shell.cmd(command).exec().isSuccess) {
+      if (Utils.executeShellCommand(command).isSuccess) {
         Log.d("UtilityHelper", "Windows is mounted at: $mountPoint")
         return true
       }

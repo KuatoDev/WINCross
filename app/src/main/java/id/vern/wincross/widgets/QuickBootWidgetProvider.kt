@@ -42,7 +42,6 @@ class QuickBootWidgetProvider : AppWidgetProvider() {
 
   companion object {
     private const val ACTION_QUICK_BOOT = "id.vern.wincross.QUICK_BOOT"
-    private const val ACTION_QUICK_MOUNT = "id.vern.wincross.QUICK_MOUNT"
     private const val ACTION_UPDATE_WIDGET = "id.vern.wincross.UPDATE_WIDGET"
     private const val UPDATE_INTERVAL = 30 * 60 * 1000L
 
@@ -68,46 +67,7 @@ class QuickBootWidgetProvider : AppWidgetProvider() {
       )
       views.setOnClickPendingIntent(R.id.btnQuickBoot, bootPendingIntent)
 
-      // Set QuickMount button click listener
-      val mountIntent = Intent(context, QuickBootWidgetProvider::class.java).apply {
-        action = ACTION_QUICK_MOUNT
-        putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
-      }
-
-      val mountPendingIntent = PendingIntent.getBroadcast(
-        context,
-        appWidgetId + 1000, // Menggunakan offset agar berbeda dari pendingIntent sebelumnya
-        mountIntent,
-        pendingFlags
-      )
-      views.setOnClickPendingIntent(R.id.btnQuickMount, mountPendingIntent)
-
-      // Update mount button state
-      updateMountButtonState(context, views)
-
       appWidgetManager.updateAppWidget(appWidgetId, views)
-    }
-
-    private fun updateMountButtonState(context: Context, views: RemoteViews) {
-      // Menggunakan SharedPreferences untuk mendapatkan status
-      val prefs = context.getSharedPreferences("wincross_prefs", Context.MODE_PRIVATE)
-      val isWindowsInstalled = prefs.getBoolean("windows_installed", false)
-      val isWindowsMounted = prefs.getBoolean("windows_mounted", false)
-
-      if (!isWindowsInstalled) {
-        views.setTextViewText(R.id.tv_quick_mount, context.getString(R.string.windows_not_installed))
-        // Menampilkan visual disabled button
-        views.setInt(R.id.btnQuickMount, "setAlpha", 128) // 50% opacity
-        return
-      }
-
-      if (isWindowsMounted) {
-        views.setTextViewText(R.id.tv_quick_mount, context.getString(R.string.umount_windows))
-        views.setInt(R.id.btnQuickMount, "setAlpha", 255) // 100% opacity
-      } else {
-        views.setTextViewText(R.id.tv_quick_mount, context.getString(R.string.mount_windows))
-        views.setInt(R.id.btnQuickMount, "setAlpha", 255) // 100% opacity
-      }
     }
 
     fun updateAllWidgets(context: Context) {
@@ -195,20 +155,6 @@ class QuickBootWidgetProvider : AppWidgetProvider() {
         Log.d(TAG, "Quick boot action received")
         val dialogIntent = Intent(context, QuickBootDialogActivity::class.java).apply {
           flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        }
-        context.startActivity(dialogIntent)
-      }
-      ACTION_QUICK_MOUNT -> {
-        Log.d(TAG, "Quick mount action received")
-        val isWindowsInstalled =UtilityHelper.isWindowsInstalled(context)
-        if (!isWindowsInstalled) {
-          return
-        }
-
-        val isWindowsMounted = UtilityHelper.isWindowsMounted(context)
-        val dialogIntent = Intent(context, QuickMountDialogActivity::class.java).apply {
-          flags = Intent.FLAG_ACTIVITY_NEW_TASK
-          putExtra("is_mounted", isWindowsMounted)
         }
         context.startActivity(dialogIntent)
       }

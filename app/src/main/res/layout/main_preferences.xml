@@ -1,110 +1,190 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:layout_height="wrap_content"
-  android:layout_width="match_parent"
-  android:animateLayoutChanges="true"
-  app:cardMaxElevation="0dp"
-  android:adjustViewBounds="true"
-  android:clickable="true"
-  android:padding="@dimen/parentMargin"
-  android:stateListAnimator="@anim/state_list_anim"
-  app:cardBackgroundColor="?attr/colorPrimary"
-  android:foreground="?android:attr/selectableItemBackground"
-  android:gravity="center"
-  android:minHeight="96dp"
-  android:layout_marginHorizontal="14dp"
-  style="@style/Widget.Material3.CardView.Filled"
-  app:cardCornerRadius="@dimen/cardCornerRadius">
-
-  <LinearLayout
-    android:layout_height="match_parent"
-    android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_gravity="center_vertical">
-
-    <TextView
-      android:layout_height="wrap_content"
-      android:layout_width="match_parent"
-      android:gravity="center"
-      android:textColor="?android:attr/textColorPrimary"
-      android:text="@string/title_configurations"
-      android:textStyle="bold" />
+<LinearLayout
+     xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_height="match_parent"
+     android:layout_width="match_parent"
+     android:orientation="vertical"
+     android:layout_gravity="center_vertical">
 
     <com.google.android.material.card.MaterialCardView
-      android:layout_height="match_parent"
-      android:layout_width="match_parent"
-      android:animateLayoutChanges="true"
-      android:adjustViewBounds="true"
-      android:clickable="true"
-      app:cardElevation="4dp"
-      android:padding="@dimen/parentMargin"
-      android:stateListAnimator="@anim/state_list_anim"
-      app:cardBackgroundColor="@color/colorSurface"
-      android:foreground="?android:attr/selectableItemBackground"
-      android:gravity="center"
-      style="@style/Widget.Material3.CardView.Filled"
-      app:cardCornerRadius="@dimen/cardCornerRadius">
+         android:layout_height="wrap_content"
+         android:layout_width="match_parent"
+         android:animateLayoutChanges="true"
+         app:cardMaxElevation="0dp"
+         android:adjustViewBounds="true"
+         android:clickable="true"
+         android:padding="@dimen/parentMargin"
+         android:stateListAnimator="@anim/state_list_anim"
+         app:cardBackgroundColor="?attr/colorPrimary"
+         android:foreground="?android:attr/selectableItemBackground"
+         android:layout_marginBottom="8dp"
+         android:gravity="center"
+         android:minHeight="96dp"
+         android:layout_marginHorizontal="14dp"
+         style="@style/Widget.Material3.CardView.Filled"
+         app:cardCornerRadius="@dimen/cardCornerRadius">
 
-      <LinearLayout
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_margin="10dp"
-        android:layout_gravity="center_vertical">
-        <com.google.android.material.materialswitch.MaterialSwitch
-          android:layout_height="match_parent"
-          android:layout_width="match_parent"
-          style="@style/Widget.App.Switch"
-          android:checked="false"
-          android:id="@+id/ms_mount_to_mnt"
-          android:text="@string/mount_to_mnt" />
+        <LinearLayout
+             android:layout_height="match_parent"
+             android:layout_width="match_parent"
+             android:orientation="vertical"
+             android:layout_gravity="center_vertical">
 
-        <com.google.android.material.materialswitch.MaterialSwitch
-          android:layout_height="match_parent"
-          android:layout_width="match_parent"
-          style="@style/Widget.App.Switch"
-          android:checked="false"
-          android:id="@+id/ms_flash_logo_with_uefi"
-          android:text="@string/flash_logo_with_uefi" />
+            <TextView
+                 android:layout_height="wrap_content"
+                 android:layout_width="match_parent"
+                 android:gravity="center"
+                 android:textColor="?android:attr/textColorPrimary"
+                 android:text="@string/app_configuration"
+                 android:textStyle="bold" />
 
-        <com.google.android.material.materialswitch.MaterialSwitch
-          android:layout_height="match_parent"
-          android:layout_width="match_parent"
-          style="@style/Widget.App.Switch"
-          android:checked="false"
-          android:id="@+id/ms_automatic_mount_windows"
-          android:text="@string/automatic_mount_windows" />
+            <com.google.android.material.card.MaterialCardView
+                 android:layout_height="match_parent"
+                 android:layout_width="match_parent"
+                 android:animateLayoutChanges="true"
+                 android:adjustViewBounds="true"
+                 android:clickable="true"
+                 android:padding="@dimen/parentMargin"
+                 app:cardElevation="4dp"
+                 android:stateListAnimator="@anim/state_list_anim"
+                 app:cardBackgroundColor="@color/colorSurface"
+                 android:foreground="?android:attr/selectableItemBackground"
+                 android:gravity="center"
+                 style="@style/Widget.Material3.CardView.Filled"
+                 app:cardCornerRadius="@dimen/cardCornerRadius">
 
-        <com.google.android.material.materialswitch.MaterialSwitch
-          android:layout_height="match_parent"
-          android:layout_width="match_parent"
-          style="@style/Widget.App.Switch"
-          android:checked="false"
-          android:id="@+id/ms_force_backup_to_win"
-          android:text="@string/force_backup_to_win" />
+                <LinearLayout
+                     android:layout_height="wrap_content"
+                     android:layout_width="match_parent"
+                     android:layout_margin="10dp"
+                     android:orientation="vertical"
+                     android:layout_gravity="center_vertical">
 
-        <com.google.android.material.materialswitch.MaterialSwitch
-          android:layout_height="match_parent"
-          android:layout_width="match_parent"
-          style="@style/Widget.App.Switch"
-          android:checked="false"
-          android:id="@+id/ms_backup_boot_if_empty"
-          android:text="@string/backup_boot_if_empty" />
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                         android:layout_height="match_parent"
+                         android:layout_width="match_parent"
+                         style="@style/Widget.App.Switch"
+                         android:checked="false"
+                         android:id="@+id/ms_update_uefi"
+                         android:text="@string/update_uefi" />
 
-        <com.google.android.material.materialswitch.MaterialSwitch
-          android:layout_height="match_parent"
-          android:layout_width="match_parent"
-          style="@style/Widget.App.Switch"
-          android:checked="false"
-          android:id="@+id/ms_always_provision_modem"
-          android:text="@string/always_provision_modem" />
-      </LinearLayout>
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                         android:layout_height="match_parent"
+                         android:layout_width="match_parent"
+                         style="@style/Widget.App.Switch"
+                         android:checked="false"
+                         android:id="@+id/ms_mount_to_mnt"
+                         android:text="@string/mount_to_mnt" />
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                         android:layout_height="match_parent"
+                         android:layout_width="match_parent"
+                         style="@style/Widget.App.Switch"
+                         android:checked="false"
+                         android:id="@+id/ms_automatic_mount_windows"
+                         android:text="@string/automatic_mount_windows" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
 
-  </LinearLayout>
+    <com.google.android.material.card.MaterialCardView
+         android:layout_height="wrap_content"
+         android:layout_width="match_parent"
+         android:animateLayoutChanges="true"
+         app:cardMaxElevation="0dp"
+         android:adjustViewBounds="true"
+         android:clickable="true"
+         android:padding="@dimen/parentMargin"
+         android:stateListAnimator="@anim/state_list_anim"
+         app:cardBackgroundColor="?attr/colorPrimary"
+         android:foreground="?android:attr/selectableItemBackground"
+         android:gravity="center"
+         android:minHeight="96dp"
+         android:layout_marginHorizontal="14dp"
+         style="@style/Widget.Material3.CardView.Filled"
+         app:cardCornerRadius="@dimen/cardCornerRadius">
 
-</com.google.android.material.card.MaterialCardView>
+        <LinearLayout
+             android:layout_height="match_parent"
+             android:layout_width="match_parent"
+             android:orientation="vertical"
+             android:layout_gravity="center_vertical">
+
+            <TextView
+                 android:layout_height="wrap_content"
+                 android:layout_width="match_parent"
+                 android:gravity="center"
+                 android:textColor="?android:attr/textColorPrimary"
+                 android:text="@string/title_configurations"
+                 android:textStyle="bold" />
+
+            <com.google.android.material.card.MaterialCardView
+                 android:layout_height="match_parent"
+                 android:layout_width="match_parent"
+                 android:animateLayoutChanges="true"
+                 android:adjustViewBounds="true"
+                 android:clickable="true"
+                 android:padding="@dimen/parentMargin"
+                 app:cardElevation="4dp"
+                 android:stateListAnimator="@anim/state_list_anim"
+                 app:cardBackgroundColor="@color/colorSurface"
+                 android:foreground="?android:attr/selectableItemBackground"
+                 android:gravity="center"
+                 style="@style/Widget.Material3.CardView.Filled"
+                 app:cardCornerRadius="@dimen/cardCornerRadius">
+
+                <LinearLayout
+                     android:layout_height="wrap_content"
+                     android:layout_width="match_parent"
+                     android:layout_margin="10dp"
+                     android:orientation="vertical"
+                     android:layout_gravity="center_vertical">
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                         android:layout_height="match_parent"
+                         android:layout_width="match_parent"
+                         style="@style/Widget.App.Switch"
+                         android:checked="false"
+                         android:id="@+id/ms_flash_logo_with_uefi"
+                         android:text="@string/flash_logo_with_uefi" />
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                         android:layout_height="match_parent"
+                         android:layout_width="match_parent"
+                         style="@style/Widget.App.Switch"
+                         android:checked="false"
+                         android:id="@+id/ms_force_backup_to_win"
+                         android:text="@string/force_backup_to_win" />
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                         android:layout_height="match_parent"
+                         android:layout_width="match_parent"
+                         style="@style/Widget.App.Switch"
+                         android:checked="false"
+                         android:id="@+id/ms_backup_boot_if_empty"
+                         android:text="@string/backup_boot_if_empty" />
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                         android:layout_height="match_parent"
+                         android:layout_width="match_parent"
+                         style="@style/Widget.App.Switch"
+                         android:checked="false"
+                         android:id="@+id/ms_always_provision_modem"
+                         android:text="@string/always_provision_modem" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>

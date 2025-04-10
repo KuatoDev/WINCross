@@ -3,32 +3,46 @@ package id.vern.wincross.operations
 import android.content.Context
 import android.os.Environment
 import android.util.Log
-import id.vern.wincross.helpers.*
-import id.vern.wincross.utils.*
+import id.vern.wincross.helpers.DialogHelper
+import id.vern.wincross.utils.AssetsManager
 import id.vern.wincross.R
 import java.io.File
 import kotlinx.coroutines.*
 
 object ScriptToolbox {
   private const val TAG = "ScriptToolbox"
-  private const val PREFS_NAME = "WinCross_preferences"
-  private const val PREF_MOUNT_TO_MNT = "mount_to_mnt"
-
-  private val toolboxFiles = listOf(
-    "usbhostmode.exe",
-    "display.exe",
-    "Optimized_Taskbar_Control_V3.0.exe"
-  )
-
-  private val desktopFiles = listOf(
-    "USB Host Mode.lnk",
-    "RotationShortcut.lnk",
-    "RotationShortcutReverseLandscape.lnk"
-  )
 
   private data class ExtractPaths(
     val toolboxPath: String,
     val desktopPath: String
+  )
+
+  private data class FileGroup(
+    val files: List<String>,
+    val destinationPath: (ExtractPaths) -> String
+  )
+
+  private val fileGroups = mapOf(
+    "toolbox" to FileGroup(
+      files = listOf(
+        "usbhostmode.exe",
+        "display.exe",
+        "Optimized_Taskbar_Control_V3.0.exe"
+      ),
+      destinationPath = {
+        it.toolboxPath
+      }
+    ),
+    "desktop" to FileGroup(
+      files = listOf(
+        "USB Host Mode.lnk",
+        "RotationShortcut.lnk",
+        "RotationShortcutReverseLandscape.lnk"
+      ),
+      destinationPath = {
+        it.desktopPath
+      }
+    )
   )
 
   fun extractScript(context: Context) {
@@ -38,89 +52,72 @@ object ScriptToolbox {
 
         // Validate directories
         if (!validateDirectories(paths)) {
-          showExtractionResult(context, false, R.string.extract_failed_general)
+          showExtractionResult(context, false)
           return@launch
         }
 
         // Extract files
-        val result = extractFiles(context, paths)
-        handleExtractionResult(context, result)
+        val success = extractFiles(context, paths)
+        showExtractionResult(context, success)
       } catch (e: Exception) {
         Log.e(TAG, "Extraction failed: ${e.message}", e)
-        showExtractionResult(context, false, R.string.extract_failed_general)
+        showExtractionResult(context, false)
       }
     }
   }
 
-  private fun getPaths(context: Context) = ExtractPaths(
-    toolboxPath = if (context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-      .getBoolean(PREF_MOUNT_TO_MNT, false)
-    ) {
-      "/mnt/Windows/Toolbox"
+  private fun getPaths(context: Context): ExtractPaths {
+    val prefs = context.getSharedPreferences("WinCross_preferences", Context.MODE_PRIVATE)
+    val basePath = if (prefs.getBoolean("mount_to_mnt", false)) {
+      "/mnt/Windows"
     } else {
-      "${Environment.getExternalStorageDirectory().path}/WINCross/Windows/Toolbox"
-    },
-    desktopPath = if (context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-      .getBoolean(PREF_MOUNT_TO_MNT, false)
-    ) {
-      "/mnt/Windows/Users/Public/Desktop"
-    } else {
-      "${Environment.getExternalStorageDirectory().path}/WINCross/Windows/Users/Public/Desktop"
+      "${Environment.getExternalStorageDirectory().path}/WINCross/Windows"
     }
-  )
 
-  private fun validateDirectories(paths: ExtractPaths): Boolean {
-    return File(paths.toolboxPath).mkdirs() && File(paths.desktopPath).mkdirs()
+    return ExtractPaths(
+      toolboxPath = "$basePath/Toolbox",
+      desktopPath = "$basePath/Users/Public/Desktop"
+    )
   }
 
-  private suspend fun extractFiles(context: Context, paths: ExtractPaths): Boolean {
-    var success = true
+  private fun validateDirectories(paths: ExtractPaths): Boolean =
+  File(paths.toolboxPath).mkdirs() && File(paths.desktopPath).mkdirs()
 
-    withContext(Dispatchers.IO) {
-      // Extract toolbox files
-      toolboxFiles.forEach {
+  private suspend fun extractFiles(context: Context, paths: ExtractPaths): Boolean =
+  withContext(Dispatchers.IO) {
+    fileGroups.values.all {
+      group ->
+      group.files.all {
         file ->
         try {
-          AssetsManager.copyAssetFile(context, file, paths.toolboxPath)
+          AssetsManager.copyAssetFile(
+            context = context,
+            assetFileName = file,
+            destinationDir = group.destinationPath(paths)
+          )
           Log.d(TAG, "Successfully extracted: $file")
+          true
         } catch (e: Exception) {
           Log.e(TAG, "Failed to extract $file: ${e.message}")
-          success = false
-        }
-      }
-
-      // Extract desktop files
-      desktopFiles.forEach {
-        file ->
-        try {
-          AssetsManager.copyAssetFile(context, file, paths.desktopPath)
-          Log.d(TAG, "Successfully extracted: $file")
-        } catch (e: Exception) {
-          Log.e(TAG, "Failed to extract $file: ${e.message}")
-          success = false
+          false
         }
       }
     }
-
-    return success
   }
 
-  private suspend fun handleExtractionResult(context: Context, success: Boolean) {
-    val messageResId = if (success) {
-      R.string.extract_script_success
-    } else {
-      R.string.extract_failed_general
-    }
-    showExtractionResult(context, success, messageResId)
-  }
-
-  private suspend fun showExtractionResult(
-    context: Context,
-    success: Boolean,
-    messageResId: Int
-  ) {
+  private suspend fun showExtractionResult(context: Context, success: Boolean) {
     withContext(Dispatchers.Main) {
-      DialogHelper.showPopupNotifications(context, context.getString(messageResId))
+      val messageResId = if (success) {
+        R.string.extract_script_success
+      } else {
+        R.string.extract_failed_general
+      }
+
+      DialogHelper.showPopupNotifications(
+        context,
+        context.getString(messageResId)
+      )
+
       if (success) {
         Log.d(TAG, "Extraction completed successfully")
       } else {
