@@ -7,6 +7,10 @@ android {
     namespace = "id.vern.wincross"
     compileSdk = 34
 
+    buildFeatures {
+        buildConfig = true
+    }
+
     defaultConfig {
         applicationId = "id.vern.wincross"
         minSdk = 31
