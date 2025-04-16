@@ -1,28 +1,22 @@
 package id.vern.wincross.operations
 
 import android.content.Context
-import android.os.Environment
 import android.util.Log
 import id.vern.wincross.helpers.DialogHelper
-import id.vern.wincross.utils.AssetsManager
+import id.vern.wincross.managers.*
 import kotlinx.coroutines.*
 import java.io.File
 import id.vern.wincross.R
 
 object CreateSTA {
   private const val TAG = "CreateSTA"
-  private const val PREFS_NAME = "WinCross_preferences"
-  private const val MOUNT_PREFERENCE_KEY = "mount_to_mnt"
-  private const val IRREGULAR_MOUNT_PATH = "/mnt/Windows"
 
-  // Map direktori yang diperlukan
   private fun getRequiredDirectories(windowsPath: String) = mapOf(
     "programDataSta" to "$windowsPath/ProgramData/sta",
     "sta" to "$windowsPath/sta",
     "desktop" to "$windowsPath/Users/Public/Desktop"
   )
 
-  // Map file yang akan diekstrak
   private fun getFileExtractionMap(directories: Map<String, String>) = mapOf(
     "Switch to Android.lnk" to directories["desktop"]!!,
     "sta.exe" to directories["programDataSta"]!!,
@@ -34,20 +28,26 @@ object CreateSTA {
 
   suspend fun RunSTAAsync(context: Context) = withContext(Dispatchers.IO) {
     try {
-      val windowsPath = getWindowsPath(context)
-      val directories = getRequiredDirectories(windowsPath)
+      val prefs = context.getSharedPreferences("WinCross_preferences", Context.MODE_PRIVATE)
+      val windowsPath = prefs.getString("Windows Mount Path", null)
 
-      // Buat direktori yang diperlukan
-      if (!createRequiredDirectories(directories.values.toList())) {
-        Log.e(TAG, "Failed to create required directories")
-        showError(context)
+      if (windowsPath.isNullOrEmpty()) {
+        Log.e(TAG, "Windows path not configured")
+        showError(context, R.string.error_modem_provision_failed)
         return@withContext
       }
 
-      // Ekstrak asset yang diperlukan
+      val directories = getRequiredDirectories(windowsPath)
+
+      if (!createRequiredDirectories(directories.values.toList())) {
+        Log.e(TAG, "Failed to create required directories")
+        showError(context, R.string.sta_creation_failed)
+        return@withContext
+      }
+
       if (!extractRequiredAssets(context, getFileExtractionMap(directories))) {
         Log.e(TAG, "Failed to extract required assets")
-        showError(context)
+        showError(context, R.string.sta_creation_failed)
         return@withContext
       }
 
@@ -56,32 +56,26 @@ object CreateSTA {
       }
       Log.d(TAG, "STA environment created successfully")
     } catch (e: Exception) {
-      Log.e(TAG, "Error creating STA environment: ${e.message}")
-      showError(context)
-    }
-  }
-
-  private fun getWindowsPath(context: Context): String {
-    return context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-    .let {
-      prefs ->
-      if (prefs.getBoolean(MOUNT_PREFERENCE_KEY, false)) {
-        IRREGULAR_MOUNT_PATH
-      } else {
-        "${Environment.getExternalStorageDirectory().path}/WINCross/Windows"
-      }
+      Log.e(TAG, "Error creating STA environment: ${e.message}", e)
+      showError(context, R.string.sta_creation_failed)
     }
   }
 
   private fun createRequiredDirectories(directoryPaths: List<String>): Boolean {
     return directoryPaths.all {
       path ->
-      File(path).let {
-        dir ->
-        dir.exists() || dir.mkdirs().also {
-          created ->
-          if (!created) Log.e(TAG, "Failed to create directory: $path")
+      val dir = File(path)
+      if (dir.exists()) {
+        Log.d(TAG, "Directory already exists: $path")
+        true
+      } else {
+        val created = dir.mkdirs()
+        if (!created) {
+          Log.e(TAG, "Failed to create directory: $path")
+        } else {
+          Log.d(TAG, "Created directory: $path")
         }
+        created
       }
     }
   }
@@ -90,29 +84,38 @@ object CreateSTA {
     context: Context,
     filesToExtract: Map<String, String>
   ): Boolean {
-    return filesToExtract.all {
+    var allSuccessful = true
+
+    filesToExtract.forEach {
       (assetFile, destinationPath) ->
       try {
+        val destFile = File(destinationPath, assetFile)
+
+        if (destFile.exists()) {
+          Log.d(TAG, "File already exists, skipping: ${destFile.absolutePath}")
+          return@forEach
+        }
+
         AssetsManager.copyAssetFile(context, assetFile, destinationPath)
         Log.d(TAG, "Successfully extracted: $assetFile to $destinationPath")
-        true
       } catch (e: Exception) {
-        Log.e(TAG, "Failed to extract $assetFile: ${e.message}")
-        false
+        Log.e(TAG, "Failed to extract $assetFile to $destinationPath: ${e.message}", e)
+        allSuccessful = false
       }
     }
+
+    return allSuccessful
   }
 
-  private suspend fun showError(context: Context) {
+  private suspend fun showError(context: Context, messageResId: Int) {
     withContext(Dispatchers.Main) {
       DialogHelper.showPopupNotifications(
         context,
-        context.getString(R.string.sta_creation_failed)
+        context.getString(messageResId)
       )
     }
   }
 
-  // Deprecated: Use RunSTAAsync instead
   @Deprecated("Use RunSTAAsync for better performance and error handling")
   fun RunSTA(context: Context) {
     CoroutineScope(Dispatchers.IO).launch {

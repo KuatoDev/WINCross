@@ -4,9 +4,8 @@ import android.content.Context
 import android.os.Environment
 import android.util.Log
 import id.vern.wincross.R
-import id.vern.wincross.helpers.DialogHelper
-import id.vern.wincross.utils.DownloadManager
-import id.vern.wincross.helpers.NotificationHelper
+import id.vern.wincross.managers.*
+import id.vern.wincross.helpers.*
 import kotlinx.coroutines.*
 import java.io.File
 
@@ -16,8 +15,7 @@ object ReviAtlas {
   fun downloadReviAtlas(context: Context, fileName: String, osType: String) {
     Log.d("ReviAtlas", "Starting downloadReviAtlas for $fileName ($osType)")
     val prefs = context.getSharedPreferences("WinCross_preferences", Context.MODE_PRIVATE)
-    val windowsPath = if (prefs.getBoolean("mount_to_mnt", false)) "/mnt/Windows"
-    else "${Environment.getExternalStorageDirectory().path}/WINCross/Windows"
+    val windowsPath = prefs.getString("Windows Mount Path", null)
 
     val desktopPath = "$windowsPath/Users/Public/Desktop"
     val playbookUrl = "https://github.com/n00b69/modified-playbooks/releases/download/$osType/$fileName"
@@ -34,8 +32,6 @@ object ReviAtlas {
 
     CoroutineScope(Dispatchers.IO).launch {
       var overallSuccess = true
-
-      // Download playbook
       withContext(Dispatchers.IO) {
         val playbookSuccess = try {
           DownloadManager.downloadFile(
@@ -63,7 +59,6 @@ object ReviAtlas {
         if (!playbookSuccess) overallSuccess = false
       }
 
-      // Download AME Wizard
       withContext(Dispatchers.IO) {
         val ameWizardSuccess = try {
           DownloadManager.downloadFile(

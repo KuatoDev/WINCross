@@ -13,21 +13,12 @@ import id.vern.wincross.R
 import java.util.Locale
 import android.app.Activity
 import org.json.JSONObject
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import java.net.HttpURLConnection
-import java.net.URL
+import java.io.*
+import java.net.*
 import java.io.File
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import org.json.JSONArray
-/**
- * Helper object to manage UEFI file selection and handling in the application
- * Handles file picking, path resolution, and storage operations for UEFI files
- *
- * Created by: KuatoDev
- * Last Updated: 2025-04-06 07:53:25 UTC
- */
+
 object UEFIHelper {
 
   private const val TAG = "UEFIHelper"
@@ -35,35 +26,19 @@ object UEFIHelper {
   const val SELECTED_UEFI_PATH = "UEFI"
   private const val GITHUB_API_BASE = "https://api.github.com/repos/"
 
-  // File picker launcher for handling file selection results
   private var filePickerLauncher: ActivityResultLauncher<String>? = null
-  // Context reference for Toast and ContentResolver operations
   private var currentContext: Context? = null
 
-  /**
-     * SharedPreferences accessor for UEFI data persistence
-     * Uses WinCross_preferences for storing UEFI related settings
-     */
   private val sharedPreferences: SharedPreferences?
   get() = currentContext?.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
-  /**
-     * Initializes the UEFIHelper with required context and optional file picker
-     * Must be called before using any other functions
-     *
-     * @param context Application context for file operations
-     * @param launcher Optional ActivityResultLauncher for file picking
-     */
   fun initialize(context: Context, launcher: ActivityResultLauncher<String>? = null) {
     currentContext = context
     launcher?.let {
       filePickerLauncher = it
     }
   }
-  /**
-     * Launches system file picker for UEFI file selection
-     * Shows error message if file picker is not initialized
-     */
+
   fun selectUEFIFile() {
     if (filePickerLauncher == null) {
       Log.e(TAG, "File picker launcher not initialized")
@@ -77,15 +52,11 @@ object UEFIHelper {
       filePickerLauncher?.launch("*/*")
     } catch (ex: ActivityNotFoundException) {
       currentContext?.let {
-        UtilityHelper.showToast(it, it.getString(R.string.no_file_manager))
+        UtilityHelper.showToast(it, it.getString(R.string.error_no_file_manager))
       }
     }
   }
 
-  /**
-     * Clears previously saved UEFI path from preferences
-     * Shows confirmation toast after clearing
-     */
   fun clearSavedUEFI() {
     sharedPreferences?.edit()?.remove(SELECTED_UEFI_PATH)?.apply()
     currentContext?.let {
@@ -94,20 +65,10 @@ object UEFIHelper {
     }
   }
 
-  /**
-     * Retrieves previously saved UEFI file path
-     * @return String? Path to saved UEFI file or null if not set
-     */
   fun getSavedUEFIPath(): String? {
     return sharedPreferences?.getString(SELECTED_UEFI_PATH, null)
   }
 
-  /**
-     * Processes selected file URI and validates file type
-     * Saves path if file is valid .img file
-     *
-     * @param uri URI of selected file
-     */
   fun handleSelectedFile(uri: Uri) {
     val filePath = getFilePathFromUri(uri)
     val fileName = getFileNameFromUri(uri)
@@ -124,19 +85,12 @@ object UEFIHelper {
         sharedPreferences?.edit()?.putString(SELECTED_UEFI_PATH, filePath)?.apply()
         UtilityHelper.showToast(ctx, "UEFI file selected: $fileName")
       } else {
-        UtilityHelper.showToast(ctx, ctx.getString(R.string.invalid_file_type))
+        UtilityHelper.showToast(ctx, ctx.getString(R.string.error_invalid_file))
         Log.w(TAG, "Invalid file type selected: $fileName")
       }
     }
   }
 
-  /**
-     * Resolves actual file path from URI
-     * Handles different URI types (Document, Media, Downloads)
-     *
-     * @param uri URI to resolve
-     * @return String? Resolved file path or null if unable to resolve
-     */
   private fun getFilePathFromUri(uri: Uri): String? {
     Log.d(TAG, "Getting file path for URI: $uri")
     val context = currentContext ?: return null
@@ -158,10 +112,6 @@ object UEFIHelper {
     }
   }
 
-  /**
-     * Checks if URI is a DocumentsProvider URI
-     * Uses reflection for backward compatibility
-     */
   private fun isDocumentUri(context: Context, uri: Uri): Boolean {
     return try {
       val documentClass = Class.forName("android.provider.DocumentsContract")
@@ -173,10 +123,6 @@ object UEFIHelper {
     }
   }
 
-  /**
-     * Retrieves document ID from URI using reflection
-     * Used for DocumentsProvider URIs
-     */
   private fun getDocumentId(uri: Uri): String? {
     return try {
       val documentClass = Class.forName("android.provider.DocumentsContract")
@@ -188,10 +134,6 @@ object UEFIHelper {
     }
   }
 
-  /**
-     * Resolves file path for DocumentsProvider URIs
-     * Handles External Storage, Downloads, and Media documents
-     */
   private fun getPathForDocumentUri(uri: Uri): String? {
     val docId = getDocumentId(uri) ?: return null
 
@@ -229,18 +171,10 @@ object UEFIHelper {
     return null
   }
 
-  /**
-     * Appends ID to content URI
-     * Used for Downloads document resolution
-     */
   private fun withAppendedId(contentUri: Uri, id: Long): Uri {
     return Uri.withAppendedPath(contentUri, id.toString())
   }
 
-  /**
-     * Queries ContentResolver for file path
-     * Used by various URI resolution methods
-     */
   private fun getDataColumn(uri: Uri, selection: String?, selectionArgs: Array<String>?): String? {
     val projection = arrayOf(MediaStore.Files.FileColumns.DATA)
     val context = currentContext ?: return null
@@ -259,28 +193,15 @@ object UEFIHelper {
     }
   }
 
-  /**
-     * Checks if URI is from External Storage provider
-     */
   private fun isExternalStorageDocument(uri: Uri): Boolean =
   "com.android.externalstorage.documents" == uri.authority
 
-  /**
-     * Checks if URI is from Downloads provider
-     */
   private fun isDownloadsDocument(uri: Uri): Boolean =
   "com.android.providers.downloads.documents" == uri.authority
 
-  /**
-     * Checks if URI is from Media provider
-     */
   private fun isMediaDocument(uri: Uri): Boolean =
   "com.android.providers.media.documents" == uri.authority
 
-  /**
-     * Extracts filename from URI using ContentResolver
-     * Falls back to path parsing if ContentResolver fails
-     */
   private fun getFileNameFromUri(uri: Uri): String? {
     val context = currentContext ?: return null
 
@@ -316,13 +237,6 @@ object UEFIHelper {
     }
   }
 
-  /**
- * Helper object to manage UEFI file selection and handling in the application
- * Handles file picking, path resolution, and storage operations for UEFI files
- *
- * Created by: KuatoDev
- * Last Updated: 2025-04-09 12:12:38 UTC
- */
   suspend fun checkForUpdates(
     owner: String,
     repo: String

@@ -304,7 +304,7 @@ object RestoreOperation {
         return@launch
       }
 
-      val kernelInWindows = if (prefs.getBoolean("mount_to_mnt", false)) "/mnt/Windows"
+      val kernelInWindows = if (prefs.getBoolean("Windows Mount Path", false)) "/mnt/Windows"
       else "${Environment.getExternalStorageDirectory().path}/WINCross/Windows"
 
       val bootBackupFile = "$kernelInWindows/boot.img"

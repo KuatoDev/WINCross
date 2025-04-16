@@ -1,32 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- WIN Cross Strings Resource Created by: KuatoDev Last Updated: 2025-04-13 17:12:49 UTC -->
 <resources>
+
+    <string name="update_available">Update Available</string>
+    <string name="update_check_failed">Failed to Check for Update</string>
+    <string name="download">Download</string>
+    <string name="new_version_info">New Version: %1$s\n\nChangelogs:\n%2$s</string>
+    <string name="already_latest_version">Already a latest version</string>
+
+    <string name="title_usb_hostmode">USB Host Mode</string>
+    <string name="desc_download_usb_hostmode">A tool that allows you to easily enable or disable USB host mode on your WOA device.</string>
+    <string name="title_optimized_taskbar">Optimized Taskbar Control</string>
+    <string name="desc_download_optimized_taskbar">A tool that allows you to easily enable or disable Tablet Optimized Taskbar on Windows 11 devices.</string>
+    <string name="title_boot_autoflasher">Boot IMG Autoflasher</string>
+    <string name="desc_download_boot_autoflasher">Use it to easily set up Android boot.img auto-flashing with a simple, user-friendly interface. supports flashing on Windows boot or when battery is below 15%, and requires StA installed to flash Android boot.img.</string>
+
     <!-- ==================== APP INFORMATION ==================== -->
     <string name="app_name">WIN Cross</string>
     <string name="tagline">Cross-Platform Windows Control</string>
-    <string name="toolbar_title">WIN Cross</string>
+    <string name="toolbar_title">@string/app_name</string>
     <string name="woa">Windows on ARM Devices</string>
     <string name="content_description_icon">Icon description</string>
-    <string name="_credits">Credits</string>
+    <string name="credits">Credits</string>
     <string name="credits_text">Vern Kuato - KuatoDev-Project ©2025</string>
 
+    <!-- ==================== COMMON STRINGS ==================== -->
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="cancel">Cancel</string>
+    <string name="warning">WARNING!</string>
+    <string name="select_all">Select all</string>
+
+    <!-- ==================== DIALOGS ==================== -->
+    <string name="dialog_title_uefi_not_found">UEFI Not Found</string>
+    <string name="select_uefi_message">Please select a UEFI file to continue</string>
+    <string name="error_showing_dialog">Error showing dialog: %1$s</string>
+
+    <!-- Update Dialog -->
+    <string name="update_dialog_title">Update Available</string>
+    <string name="update_dialog_message">A new version of UEFI is available!\nCurrent version: v%1$s\nLatest version: v%2$s\nWould you like to download the update now?</string>
+    <string name="update_dialog_positive">Download</string>
+    <string name="update_dialog_negative">Later</string>
+
     <!-- ==================== NAVIGATION & TITLES ==================== -->
-    <string name="settings_title">SETTINGS</string>
+    <string name="settings_title">Settings</string>
     <string name="toolbox_title">Toolbox</string>
     <string name="toolbox_summary">Open</string>
     <string name="guide">Guide</string>
     <string name="group">Group</string>
     <string name="misc">Misc</string>
+
+    <!-- Section Titles -->
     <string name="title_backup">Backup</string>
     <string name="title_mount_windows">Mount Windows</string>
     <string name="title_umount_windows">Unmount Windows</string>
-    <string name="title_configurations">BOOT CONFIGURATIONS</string>
+    <string name="title_configurations">Boot Configurations</string>
     <string name="title_information">Information</string>
     <string name="title_help_mount">About Windows Mounting</string>
     <string name="title_open_file_manager">Open in File Manager</string>
     <string name="title_script">Insert Scripts</string>
     <string name="title_restore">Restore Partition Backup</string>
-    <string name="app_configuration">APP CONFIGURATIONS</string>
-    <string name="contributors_title">CONTRIBUTORS</string>
+    <string name="app_configuration">App Configurations</string>
+    <string name="contributors_title">Contributors</string>
     <string name="restore_title">Restore Backup Partitions</string>
     <string name="restore_title_header">Select partition to restore:</string>
     <string name="restore_backup_title">!!! WARNING !!!</string>
@@ -37,43 +72,31 @@
     <string name="umount_windows">Mounted</string>
     <string name="restore_button_text">Restore Backup</string>
     <string name="update_uefi">Automatically Check for UEFI Updates</string>
-    
+
     <!-- ==================== TOOLBOX FEATURES ==================== -->
+    <!-- Create STA -->
     <string name="title_create_sta">Create STA</string>
-    <string name="desc_create_sta">
-    Create STA (Switch to Android) is a feature that allows you to seamlessly switch
-    from Windows to Android OS with just one click. This feature ensures a smooth transition
-    without requiring complex configurations, making it easy to boot into Android directly
-    from Windows.
-</string>
+    <string name="desc_create_sta">Create STA (Switch to Android) is a feature that allows you to seamlessly switch from Windows to Android OS with just one click. This feature ensures a smooth transition without requiring complex configurations, making it easy to boot into Android directly from Windows.</string>
 
+    <!-- Windows Path -->
+    <string name="windows_path_not_configured">Windows path is not configured</string>
+    <string name="sta_creation_success">STA created successfully in Windows</string>
+
+    <!-- ARM Software -->
     <string name="title_arm_software">ARM Software</string>
-    <string name="desc_arm_software">
-    This option adds browser shortcuts to Desktop/ARMSoftware, providing quick access to a curated
-    collection of ARM-compatible software. These tools are specifically designed to enhance
-    performance and functionality when running Windows on ARM-based devices.
-</string>
+    <string name="desc_arm_software">This option adds browser shortcuts to Desktop/ARMSoftware, providing quick access to a curated collection of ARM-compatible software. These tools are specifically designed to enhance performance and functionality when running Windows on ARM-based devices.</string>
 
+    <!-- Atlas/Revi OS -->
     <string name="title_atlas_revi_os">Atlas OS / Revi OS</string>
-    <string name="desc_atlas_revi_os">
-    Download and add essential resources for AtlasOS and ReviOS, including playbooks and
-    AME Wizard, to Desktop. These optimized Windows distributions help improve performance
-    and remove unnecessary bloat, making your system faster and more efficient.
-</string>
+    <string name="desc_atlas_revi_os">Download and add essential resources for AtlasOS and ReviOS, including playbooks and AME Wizard, to Desktop. These optimized Windows distributions help improve performance and remove unnecessary bloat, making your system faster and more efficient.</string>
 
+    <!-- Script Toolbox -->
     <string name="title_script_toolbox">Script Toolbox</string>
-    <string name="desc_script_toolbox">
-    The Script Toolbox provides a collection of automation scripts and system tweaks
-    to optimize Windows performance. These scripts help automate repetitive tasks,
-    enhance system stability, and improve overall efficiency.
-</string>
+    <string name="desc_script_toolbox">The Script Toolbox provides a collection of automation scripts and system tweaks to optimize Windows performance. These scripts help automate repetitive tasks, enhance system stability, and improve overall efficiency.</string>
 
+    <!-- Frameworks -->
     <string name="title_download_frameworks">Download Frameworks</string>
-    <string name="desc_download_frameworks">
-    Easily download and install essential frameworks for Windows. These frameworks
-    include necessary dependencies and libraries required for running various applications,
-    improving compatibility, and ensuring smoother software execution.
-</string>
+    <string name="desc_download_frameworks">Easily download and install essential frameworks for Windows. These frameworks include necessary dependencies and libraries required for running various applications, improving compatibility, and ensuring smoother software execution.</string>
 
     <string name="mount_windows_for_toolbox">Toolbox Closed. Mount Windows to use Toolbox</string>
 
@@ -89,7 +112,7 @@
     <!-- ==================== SETTINGS AND PREFERENCES ==================== -->
     <string name="key_getprefs">get preferences</string>
     <string name="key_github">Sourcecode</string>
-    <string name="title_github">Github</string>
+    <string name="title_github">GitHub</string>
     <string name="github_summary">Source code</string>
     <string name="key_telegram">Telegram</string>
     <string name="title_telegram">Telegram Channel</string>
@@ -97,23 +120,48 @@
     <string name="saved_pref">Saved Preferences</string>
     <string name="saved_pref_summary">Check saved preferences and configs</string>
     <string name="select_uefi">Select UEFI</string>
-    <string name="select_uefi_file">Select UEFI File</string>
+    <string name="select_uefi_file">Select UEFI File for your device</string>
+
     <string name="key_select_uefi">UEFI</string>
     <string name="clear_uefi">Clear Saved UEFI</string>
     <string name="key_restore">Restore</string>
     <string name="restore_summary">EXPERIMENTAL! Do With Your Own Risk!</string>
     <string name="restore_backup_summary">MAKE SURE YOUR DEVICE IS CAPABLE OF FLASHING CERTAIN PARTITIONS WHILE BOOTING, OR YOU WILL MESS UP YOUR DEVICE!</string>
 
+    <!-- ==================== WINDOWS STATUS MESSAGES ==================== -->
+    <!-- Mount Status Messages -->
+    <string name="mount_status">Windows %1$s %2$s</string>
+    <string name="action_mount">mount</string>
+    <string name="action_unmount">unmount</string>
+    <string name="status_success">successful</string>
+    <string name="status_failed">failed</string>
+    <string name="status_not_installed">not installed</string>
+    <string name="status_installed">installed</string>
+
     <!-- ==================== THEME SETTINGS ==================== -->
     <string name="title_choose_theme_color">Choose Theme Color</string>
     <string name="title_choose_theme">Choose Theme</string>
     <string name="key_theme">Theme</string>
     <string name="key_theme_color">Color Palette</string>
+
+    <string-array name="theme_colors">
+        <item>@string/blue</item>
+        <item>@string/red</item>
+        <item>@string/green</item>
+        <item>@string/yellow</item>
+        <item>@string/color_default</item>
+    </string-array>
     <string name="blue">Blue</string>
     <string name="red">Red</string>
     <string name="green">Green</string>
     <string name="yellow">Yellow</string>
     <string name="color_default">Default</string>
+
+    <string-array name="theme_modes">
+        <item>@string/current_dark_theme</item>
+        <item>@string/current_light_theme</item>
+        <item>@string/current_follow_system</item>
+    </string-array>
     <string name="current_dark_theme">Dark Theme</string>
     <string name="current_light_theme">Light Theme</string>
     <string name="current_follow_system">System Theme</string>
@@ -129,129 +177,151 @@
     <!-- ==================== STATUS MESSAGES ==================== -->
     <string name="boot_to_windows">UEFI is ready to flash</string>
     <string name="uefi_not_found">UEFI not found, Select UEFI to switch to Windows</string>
-    <string name="windows_installed">Windows is installed</string>
-    <string name="windows_not_installed">Windows is not installed</string>
+    <string name="windows_status">Windows is %s</string> <!-- Use with installed/not installed -->
     <string name="backup_not_found">Backup not found.\nBackup Now!</string>
     <string name="last_backup_label">Last Backup:\n%s</string>
-    
+
     <!-- ==================== DIALOG MESSAGES ==================== -->
-    <string name="warning">WARNING!</string>
-    <string name="msg_backup_kernel">Do you want to back up important partitions?</string>
-    <string name="msg_flash_uefi">Do you want to switch to Windows?</string>
-    <string name="msg_mount_windows">Do you want to mount the Windows partition?</string>
-    <string name="msg_umount_windows">Do you want to unmount the Windows partition?</string>
-    <string name="msg_open_file_manager">Do you want to open the mounted Windows partition in the File Manager?</string>
-    <string name="msg_open_backup">Do you want to open the backup partition in the File Manager?</string>
+    <string name="msg_confirmation">Do you want to %s?</string> <!-- Use with various actions -->
+    <string name="msg_backup_kernel">back up important partitions</string>
+    <string name="msg_flash_uefi">Switch to Windows now?</string>
+    <string name="msg_mount_windows">mount the Windows partition</string>
+    <string name="msg_umount_windows">unmount the Windows partition</string>
+    <string name="msg_open_file_manager">open the mounted Windows partition in the File Manager</string>
+    <string name="msg_open_backup">open the backup partition in the File Manager</string>
     <string name="reboot_message">Flashing completed. Would you like to reboot to Windows?</string>
     <string name="reboot_message_warning">Do you want to reboot to Windows now?</string>
-    <string name="msg_create_sta">Do you want to create Switch to Android now?</string>
-    <string name="msg_arm_software">Would you like to insert browser shortcuts for ARM software to Desktop/ARMSoftware?</string>
-    <string name="msg_script">Would you like to insert USB Host Mode and Rotation Toggle to Windows?</string>
-    <string name="msg_download_frameworks">Would you like to download useful frameworks?</string>
+    <string name="msg_create_sta">create Switch to Android now</string>
+    <string name="msg_arm_software">insert browser shortcuts for ARM software to Desktop/ARMSoftware</string>
+    <string name="msg_script">insert USB Host Mode and Rotation Toggle to Windows</string>
+    <string name="msg_download_frameworks">download useful frameworks</string>
 
     <!-- ==================== HELP MESSAGES ==================== -->
+    <string name="help_message">%s</string> <!-- Use with various help messages -->
     <string name="msg_help_backup">This option allows you to back up important partitions, including the kernel, logo, persist, vbmeta, fsc, fsg, dtbo, and modem.</string>
     <string name="msg_help_boot">This option lets you boot into Windows.</string>
     <string name="msg_help_mount">This option mounts the Windows partition and opens it in the File Manager.</string>
     <string name="msg_help_toolbox">This section contains various useful tools for your Windows device.</string>
 
-    <!-- ==================== BUTTON LABELS ==================== -->
-    <string name="yes">YES</string>
-    <string name="no">NO</string>
-    <string name="cancel">CANCEL</string>
-    <string name="select_all">Select all</string>
-
     <!-- ==================== OPERATION STATUS MESSAGES ==================== -->
     <!-- General Status -->
-    <string name="backup_successful">Backup completed successfully</string>
-    <string name="backup_failed">Backup failed</string>
-    <string name="flash_successful">Flashing completed successfully</string>
-    <string name="dbkp_success">Dualboot Kernel Patcher successful</string>
-    <string name="patch_error">Patch failed</string>
-    
-    <!-- Flash Errors -->
-    <string name="flash_missing_files">Flashing failed: missing files</string>
-    <string name="flash_not_rooted">Flashing failed: device is not rooted</string>
-    <string name="flash_uefi_failed">Flashing failed: UEFI error</string>
-    <string name="flash_logo_failed">Flashing failed: Logo error</string>
-    <string name="flash_corrupted_files">Flash operation failed: corrupted files</string>
-    <string name="flash_partition_not_found">Flash operation failed: partition not found</string>
-    <string name="flash_boot_failed">Flash operation failed: boot process failed</string>
-    
-    <!-- Mount Status -->
-    <string name="windows_mounted_success">Windows has been mounted successfully.</string>
-    <string name="windows_mount_failed">Failed to mount Windows.</string>
-    <string name="windows_umounted_success">Windows has been unmounted successfully.</string>
-    <string name="windows_umount_failed">Failed to unmount Windows.</string>
-    
+    <string name="operation_status">%1$s %2$s</string> <!-- Use with operation name and status -->
+    <string name="status_partial">partially completed</string>
+
+    <!-- Operation Types -->
+    <string name="operation_backup">Backup</string>
+    <string name="operation_flash">Flashing</string>
+    <string name="operation_dbkp">Dualboot Kernel Patcher</string>
+    <string name="operation_patch">Patch</string>
+    <string name="operation_mount">Mount</string>
+    <string name="operation_umount">Unmount</string>
+    <string name="operation_extract">Extract</string>
+
+    <!-- ==================== ERROR MESSAGES ==================== -->
+    <string name="error_missing_files">missing files</string>
+    <string name="error_not_rooted">device is not rooted</string>
+    <string name="error_uefi">UEFI error</string>
+    <string name="error_logo">Logo error</string>
+    <string name="error_corrupted_files">corrupted files</string>
+    <string name="error_partition_not_found">partition not found</string>
+    <string name="error_boot_failed">boot process failed</string>
+    <string name="error_modem_provision_failed">Modem provision failed</string>
+
+    <!-- ==================== FLASH OPERATIONS ==================== -->
+    <!-- Status Messages -->
+    <string name="flash_status">Flash operation %1$s: %2$s</string>
+
+    <!-- Flash Dialog Messages -->
+    <string name="flash_dialog_title">Flash Operation</string>
+    <string name="flash_dialog_message">Do you want to flash this UEFI image?</string>
+    <string name="flash_dialog_ok">Flash</string>
+
+    <!-- Flash Progress Messages -->
+    <string name="flash_progress_title">Flashing...</string>
+    <string name="flash_progress_message">Please wait while the UEFI is being flashed</string>
+
+    <!-- Flash Result Messages -->
+    <string name="flash_success">Flash completed successfully</string>
+    <string name="flash_failed">Flash operation failed</string>
+    <string name="flash_reboot_required">Reboot required to complete flash operation</string>
+
+    <!-- Flash Warning Messages -->
+    <string name="flash_warning_backup">Please backup your data before flashing</string>
+    <string name="flash_warning_battery">Ensure sufficient battery before flashing</string>
+
     <!-- Settings Status -->
-    <string name="toast_backup_to_win_enabled">Kernel backup on every reboot to Windows is enabled</string>
-    <string name="toast_backup_to_win_disabled">Kernel backup on every reboot to Windows is disabled</string>
-    <string name="toast_backup_boot_if_empty_enabled">Kernel backup if boot.img is missing in Windows is enabled</string>
-    <string name="toast_backup_boot_if_empty_disabled">Kernel backup if boot.img is missing in Windows is disabled</string>
-    <string name="toast_automatic_mount_windows_enabled">Automatic Windows mounting is enabled</string>
-    <string name="toast_automatic_mount_windows_disabled">Automatic Windows mounting is disabled</string>
-    <string name="toast_mount_to_mnt_enabled">Mounting Windows partition to /mnt/Windows is enabled</string>
-    <string name="toast_mount_to_mnt_disabled">Mounting Windows partition to /mnt/Windows is disabled</string>
-    <string name="toast_flash_logo_enabled">Flash logo when switching to Windows is enabled</string>
-    <string name="toast_flash_logo_disabled">Flash logo when switching to Windows is disabled</string>
-    
-    <!-- Modem Status -->
-    <string name="modem_provision_success">Modem provisioning completed successfully</string>
-    <string name="modem_provision_partial">Modem provisioning partially completed</string>
-    <string name="modem_provision_failed">Modem provisioning failed</string>
-    
+    <string name="toast_status">%1$s is %2$s</string> <!-- Use with feature name and status -->
+    <string name="status_enabled">enabled</string>
+    <string name="status_disabled">disabled</string>
+
+    <!-- Feature Names -->
+    <string name="feature_backup_to_win">Kernel backup on every reboot to Windows</string>
+    <string name="feature_backup_boot_if_empty">Kernel backup if boot.img is missing in Windows</string>
+    <string name="feature_automatic_mount">Automatic Windows mounting</string>
+    <string name="feature_mount_to_mnt">Mounting Windows partition to /mnt/Windows</string>
+    <string name="feature_flash_logo">Flash logo when switching to Windows</string>
+    <string name="feature_provision_modem">Always provision modem</string>
+
     <!-- Install Status -->
     <string name="sta_creation_failed">Failed to create STA environment</string>
     <string name="reviatlas_success">ReviOS / AtlasOS has been successfully inserted to Windows</string>
     <string name="arm_software_added">ARM Software has been inserted to Windows</string>
-    <string name="created_directory">Directory created: %s</string>
-    <string name="extract_success">Extracted %1$s to %2$s</string>
-    <string name="extract_failed">Failed to extract %1$s: %2$s</string>
+    <string name="directory_status">Directory %1$s: %2$s</string>
+    <string name="extract_status">%1$s %2$s to %3$s</string>
     <string name="extract_completed">All URL files have been extracted to Windows/toolbox</string>
     <string name="extract_partially_completed">Some ARM Software URL files failed to extract. Please check the logs for more details</string>
     <string name="extract_failed_general">Extraction process failed. Please check storage permissions and try again</string>
-    <string name="failed_creating_directory">Failed to create directory: %1$s</string>
     <string name="extract_script_success">Script inserted to Windows</string>
-
-    <!-- ==================== ERROR MESSAGES ==================== -->
-    <string name="no_file_manager">No file manager found</string>
-    <string name="invalid_file_type">Please select a .img file</string>
-    <string name="device_not_rooted">The device is not rooted.</string>
-
-    <!-- ==================== DOWNLOAD RELATED MESSAGES ==================== -->
-    <string name="download_successful">Download completed and saved in %s</string>
-    <string name="download_failed">Failed to download file.</string>
+    <!-- ==================== DOWNLOAD MESSAGES ==================== -->
+    <string name="download_status">Download %1$s and saved in %2$s</string>
     <string name="download_error">Download failed. Please check your internet connection.</string>
+    <!-- Download Status -->
+    <string name="download_successful">download completed successfully</string>
+    <string name="download_failed">download failed</string>
+    <!-- ==================== ERROR MESSAGES ==================== -->
+    <string name="error_no_file_manager">No file manager found</string>
+    <string name="error_invalid_file">Please select a .img file</string>
+    <string name="error_device_not_rooted">The device is not rooted.</string>
+    <!-- ==================== FLASH OPERATIONS ==================== -->
+    <!-- Flash Operation Reasons -->
+    <string name="reason_not_rooted">device not rooted</string>
+    <string name="reason_missing_files">required files are missing</string>
+    <string name="reason_partition_not_found">partition not found</string>
+    <string name="reason_boot_failed">boot process failed</string>
+    <!-- ==================== MODEM MESSAGES ==================== -->
+    <!-- Modem Operation Status -->
+    <string name="modem_provision_success">provisioning completed successfully</string>
+    <string name="modem_provision_partial">provisioning partially completed</string>
+    <string name="modem_provision_failed">provisioning failed</string>
 
+    <!-- Modem Operation Details -->
+    <string name="modem_provision_status">Modem %s</string>
+    <string name="modem_operation_progress">Provisioning modem...</string>
+    <string name="modem_backup_required">Modem backup required before provisioning</string>
     <!-- ==================== DEVICE INFORMATION ==================== -->
-    <string name="total_ram">Total RAM: %1$s</string>
-    <string name="total_storage">Storage: %1$s</string>
-    <string name="panel_type">Panel Type: %1$s</string>
-    <string name="device_model">Device Model: %1$s</string>
-    <string name="battery_capacity">System Battery: %1$s mAh</string>
-    <string name="power_profile">Power Profile: %1$s mAh</string>
-    <string name="label_active_slot">Current Slot: %1$s</string>
-    <string name="info_device">device</string>
+    <string name="device_info">%1$s: %2$s</string>
+    <string name="info_total_ram">Total RAM</string>
+    <string name="info_total_storage">Storage</string>
+    <string name="info_panel_type">Panel Type</string>
+    <string name="info_device_model">Device Model</string>
+    <string name="info_battery_capacity">System Battery</string>
+    <string name="info_power_profile">Power Profile</string>
+    <string name="info_active_slot">Current Slot</string>
     <string name="info_windows">windows</string>
-    <string name="label_total_ram">Total RAM:</string>
-    <string name="label_panel">panel</string>
-    <string name="label_total_storage">Storage:</string>
 
     <!-- ==================== LOGGING MESSAGES ==================== -->
-    <string name="log_theme_clicked">Theme preference selected.</string>
-    <string name="log_theme_color">Theme color selected: %1$s</string>
-    <string name="log_theme_color_updated">Theme color updated to: %1$s</string>
-    <string name="log_theme_mode_applied">Theme mode applied: %1$d</string>
-    <string name="log_theme_summary">Theme summary updated: %1$s</string>
-    <string name="log_toast_shown">Toast message displayed: %1$s</string>
-    <string name="log_guide_opened">Installation guide link opened: %1$s</string>
-    <string name="log_blur_applied">Blur effect applied to the background.</string>
-    <string name="log_blur_removed">Blur effect removed from the background.</string>
-    <string name="log_folder_created">Folder checked or created: %1$s</string>
-    <string name="log_folder_creation_failed">Failed to create folder %1$s. Error: %2$s</string>
-    <string name="log_windows_detected">Windows detected in the boot device.</string>
-    <string name="log_windows_not_found">Windows not found in the boot device.</string>
-    <string name="log_backup_found">Backup files located in: %1$s</string>
-    <string name="log_mount_failed">Mount failed. Error: %1$s</string>
+    <string name="log_message">%1$s: %2$s</string>
+    <string name="log_theme_selected">Theme preference selected</string>
+    <string name="log_theme_color">Theme color selected</string>
+    <string name="log_theme_color_updated">Theme color updated to</string>
+    <string name="log_theme_mode">Theme mode applied</string>
+    <string name="log_theme_summary">Theme summary updated</string>
+    <string name="log_toast">Toast message displayed</string>
+    <string name="log_guide">Installation guide link opened</string>
+    <string name="log_blur_applied">Blur effect applied to the background</string>
+    <string name="log_blur_removed">Blur effect removed from the background</string>
+    <string name="log_folder">Folder operation</string>
+    <string name="log_windows_status">Windows status</string>
+    <string name="log_backup">Backup status</string>
+    <string name="log_mount">Mount operation</string>
 </resources>

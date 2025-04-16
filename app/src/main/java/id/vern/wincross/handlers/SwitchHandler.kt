@@ -1,6 +1,7 @@
 package id.vern.wincross.handlers
 
 import android.content.*
+import android.os.Environment
 import android.util.Log
 import id.vern.wincross.helpers.UtilityHelper
 import id.vern.wincross.R
@@ -11,78 +12,77 @@ class SwitchHandler(
 ) {
   companion object {
     private const val TAG = "SwitchHandler"
+    private const val MOUNT_TO_MNT_KEY = "Windows Mount Path"
   }
 
-  // Define switch configurations
   private val switchConfigs = mapOf(
     "force_backup_to_win" to SwitchConfig(
       key = "force_backup_to_win",
-      enabledMessageId = R.string.toast_backup_to_win_enabled,
-      disabledMessageId = R.string.toast_backup_to_win_disabled
+      featureNameId = R.string.feature_backup_to_win
     ),
     "backup_boot_if_empty" to SwitchConfig(
       key = "backup_boot_if_empty",
-      enabledMessageId = R.string.toast_backup_boot_if_empty_enabled,
-      disabledMessageId = R.string.toast_backup_boot_if_empty_disabled
+      featureNameId = R.string.feature_backup_boot_if_empty
     ),
     "uefi_auto_update" to SwitchConfig(
       key = "uefi_auto_update",
-      enabledMessageId = R.string.toast_backup_boot_if_empty_enabled,
-      disabledMessageId = R.string.toast_backup_boot_if_empty_disabled
+      featureNameId = R.string.feature_backup_boot_if_empty
     ),
     "flash_logo_with_uefi" to SwitchConfig(
       key = "flash_logo_with_uefi",
-      enabledMessageId = R.string.toast_flash_logo_enabled,
-      disabledMessageId = R.string.toast_flash_logo_disabled
+      featureNameId = R.string.feature_flash_logo
     ),
     "automatic_mount_windows" to SwitchConfig(
       key = "automatic_mount_windows",
-      enabledMessageId = R.string.toast_automatic_mount_windows_enabled,
-      disabledMessageId = R.string.toast_automatic_mount_windows_disabled
+      featureNameId = R.string.feature_automatic_mount
     ),
-    "mount_to_mnt" to SwitchConfig(
-      key = "mount_to_mnt",
-      enabledMessage = "Mount Windows to mnt/Windows enabled",
-      disabledMessage = "Mount Windows to mnt/Windows disabled"
+    MOUNT_TO_MNT_KEY to SwitchConfig(
+      key = MOUNT_TO_MNT_KEY,
+      featureNameId = R.string.feature_mount_to_mnt
     ),
     "always_provision_modem" to SwitchConfig(
       key = "always_provision_modem",
-      enabledMessage = "Always provision modem enabled",
-      disabledMessage = "Always provision modem disabled"
+      featureNameId = R.string.feature_provision_modem
     )
   )
 
   private data class SwitchConfig(
     val key: String,
-    val enabledMessageId: Int? = null,
-    val disabledMessageId: Int? = null,
-    val enabledMessage: String? = null,
-    val disabledMessage: String? = null
+    val featureNameId: Int? = null
   )
 
   private fun handleSwitch(key: String, isChecked: Boolean) {
     val config = switchConfigs[key] ?: return
+    if (key == MOUNT_TO_MNT_KEY) {
+      val windowsPath = if (isChecked) {
+        "/mnt/Windows"
+      } else {
+        "${Environment.getExternalStorageDirectory().path}/WINCross/Windows"
+      }
 
-    // Update preference
-    sharedPreferences.edit()
-    .putBoolean(config.key, isChecked)
-    .apply()
+      sharedPreferences.edit()
+      .putString(MOUNT_TO_MNT_KEY, windowsPath)
+      .apply()
 
-    // Log change
+      Log.d(TAG, "Updated Windows Mount Path path to: $windowsPath")
+    } else {
+      sharedPreferences.edit()
+      .putBoolean(config.key, isChecked)
+      .apply()
+    }
     Log.d(TAG, "handleSwitch: ${config.key} updated to $isChecked")
 
-    // Show toast
-    val message = when {
-      isChecked && config.enabledMessageId != null -> context.getString(config.enabledMessageId)
-      !isChecked && config.disabledMessageId != null -> context.getString(config.disabledMessageId)
-      isChecked && config.enabledMessage != null -> config.enabledMessage
-      !isChecked && config.disabledMessage != null -> config.disabledMessage
-      else -> return
+    config.featureNameId?.let {
+      featureId ->
+      val message = context.getString(
+        R.string.toast_status,
+        context.getString(featureId),
+        context.getString(if (isChecked) R.string.status_enabled else R.string.status_disabled)
+      )
+      UtilityHelper.showToast(context, message)
     }
-    UtilityHelper.showToast(context, message)
   }
 
-  // Public methods using the generic handler
   fun handleBackupToWin(isChecked: Boolean) =
   handleSwitch("force_backup_to_win", isChecked)
 
@@ -96,7 +96,7 @@ class SwitchHandler(
   handleSwitch("automatic_mount_windows", isChecked)
 
   fun handleMountToMnt(isChecked: Boolean) =
-  handleSwitch("mount_to_mnt", isChecked)
+  handleSwitch(MOUNT_TO_MNT_KEY, isChecked)
 
   fun handleUEFIAutoUpdate(isChecked: Boolean) =
   handleSwitch("uefi_auto_update", isChecked)

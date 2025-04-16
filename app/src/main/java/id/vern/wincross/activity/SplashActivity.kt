@@ -12,6 +12,7 @@ import id.vern.wincross.R
 import id.vern.wincross.helpers.*
 import id.vern.wincross.utils.*
 import java.io.File
+import id.vern.wincross.managers.*
 import kotlinx.coroutines.*
 
 class SplashActivity : AppCompatActivity() {
@@ -19,10 +20,12 @@ class SplashActivity : AppCompatActivity() {
     private const val REQUEST_CODE = 1001
     private const val TAG = "SplashActivity"
   }
+  private lateinit var sharedPreferences: SharedPreferences
 
   override fun onCreate(savedInstanceState: Bundle?) {
-    applyTheme()
     super.onCreate(savedInstanceState)
+    sharedPreferences = getSharedPreferences(ThemeManager.PREFS_NAME, Context.MODE_PRIVATE)
+    ThemeManager(this).initializeTheme(this)
     setContentView(R.layout.splash_screen)
     Shell.getShell()
     if (Shell.isAppGrantedRoot()!= true) {
@@ -34,36 +37,11 @@ class SplashActivity : AppCompatActivity() {
     requestPermissionsIfNeeded()
     lifecycleScope.launch(Dispatchers.IO) {
       initializeApp()
-
       withContext(Dispatchers.Main) {
         startActivity(Intent(this@SplashActivity, MainActivity::class.java))
         finish()
       }
     }
-  }
-
-  private fun applyTheme() {
-    val prefs = getSharedPreferences("WinCross_preferences", Context.MODE_PRIVATE)
-    val themeColor = prefs.getString(getString(R.string.key_theme_color), "default")
-    val theme = prefs.getString(getString(R.string.key_theme), "default")
-
-    val mode =
-    when (theme) {
-      "dark" -> AppCompatDelegate.MODE_NIGHT_YES
-      "light" -> AppCompatDelegate.MODE_NIGHT_NO
-      else -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
-    }
-    AppCompatDelegate.setDefaultNightMode(mode)
-
-    val themeId =
-    when (themeColor) {
-      "blue" -> R.style.Theme_MyApp_Blue
-      "red" -> R.style.Theme_MyApp_Red
-      "green" -> R.style.Theme_MyApp_Green
-      "yellow" -> R.style.Theme_MyApp_Yellow
-      else -> R.style.Theme_MyApp_Default
-    }
-    setTheme(themeId)
   }
 
   private fun requestPermissionsIfNeeded() {
@@ -75,16 +53,44 @@ class SplashActivity : AppCompatActivity() {
 
   private suspend fun initializeApp() {
     checkAndGetDeviceModel(this)
+    val prefs = getSharedPreferences("WinCross_preferences", Context.MODE_PRIVATE)
+    // Get or set default Windows path
+    val mountPath = prefs.getString("Windows Mount Path", null)
+    val windowsPath = when {
+      // If Windows Mount Path has a value, use it
+      !mountPath.isNullOrEmpty() -> mountPath
+      // If null or empty, set default path and save it
+      else -> "${Environment.getExternalStorageDirectory().path}/WINCross/Windows".also {
+        defaultPath ->
+        prefs.edit()
+        .putString("Windows Mount Path", defaultPath)
+        .apply()
+        Log.d(TAG, "Setting default Windows path: $defaultPath")
+      }
+    }
+
+    // Setup backup path
     val backupPath = "${Environment.getExternalStorageDirectory().path}/WINCross/Backup"
-    val windowsFolderPath = "${Environment.getExternalStorageDirectory().path}/WINCross/Windows"
 
     Log.d(TAG, "Backup folder path: $backupPath")
-    Log.d(TAG, "Windows folder path: $windowsFolderPath")
+    Log.d(TAG, "Windows folder path: $windowsPath")
 
-    UtilityHelper.createFolderIfNotExists(listOf(backupPath, windowsFolderPath))
-    AssetsManager.copyAssetsToExecutableDir(this)
-    GetPartitions.checkAndSaveActiveSlot(this)
-    GetPartitions.checkAndSaveAllPartitionsIfNeeded(this)
+    // Initialize required directories and configurations
+    withContext(Dispatchers.IO) {
+      // Create required directories
+      UtilityHelper.createFolderIfNotExists(listOf(backupPath, windowsPath))
+
+      // Copy assets and check partitions
+      launch {
+        AssetsManager.copyAssetsToExecutableDir(this@SplashActivity)
+      }
+      launch {
+        GetPartitions.checkAndSaveActiveSlot(this@SplashActivity)
+      }
+      launch {
+        GetPartitions.checkAndSaveAllPartitionsIfNeeded(this@SplashActivity)
+      }
+    }
   }
 
   fun checkAndGetDeviceModel(context: Context) {

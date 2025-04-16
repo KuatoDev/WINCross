@@ -64,7 +64,6 @@ object Utils {
     Log.d("Utils", "Panel type detected: $panelType")
     // Cache result for future calls
     cachedPanelType = panelType
-
     return panelType
   }
 

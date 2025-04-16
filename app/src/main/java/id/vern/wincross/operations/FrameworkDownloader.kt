@@ -5,9 +5,8 @@ import android.os.Build
 import android.util.Log
 import android.app.*
 import id.vern.wincross.helpers.*
-import id.vern.wincross.utils.AssetsManager
-import id.vern.wincross.utils.DownloadManager
-import id.vern.wincross.helpers.NotificationHelper
+import id.vern.wincross.managers.DownloadManager
+import id.vern.wincross.managers.AssetsManager
 import kotlinx.coroutines.*
 import java.io.*
 import id.vern.wincross.R
@@ -44,9 +43,7 @@ object FrameworkDownloader {
     Log.d(TAG, "Starting downloadFrameworks")
 
     val prefs = context.getSharedPreferences("WinCross_preferences", Context.MODE_PRIVATE)
-    val windowsPath = if (prefs.getBoolean("mount_to_mnt", false)) "/mnt/Windows"
-    else "${context.getExternalFilesDir(null)?.path}/WINCross/Windows"
-
+    val windowsPath = prefs.getString("Windows Mount Path", "")
     val frameworkPath = "$windowsPath/Users/Public/Desktop/Frameworks"
 
     val directory = File(frameworkPath)
@@ -55,7 +52,6 @@ object FrameworkDownloader {
       Log.d(TAG, "Created directory $frameworkPath: $created")
     }
 
-    // Copy installer file
     val installer = listOf("install.bat")
     installer.forEach {
       installerFile ->

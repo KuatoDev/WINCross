@@ -1,99 +1,81 @@
 package id.vern.wincross.operations
 
 import android.content.Context
-import android.os.Environment
 import android.util.Log
 import com.topjohnwu.superuser.Shell
 import java.io.File
-import id.vern.wincross.R
 import id.vern.wincross.utils.*
 
-/**
- * Object responsible for mounting and unmounting Windows partition
- * Handles NTFS mounting operations with root access
- */
 object MountWindows {
+  private const val TAG = "MountWindows"
+  private const val PREFS_NAME = "WinCross_preferences"
+  private const val PREF_WINDOWS = "Windows"
+  private const val PREF_MOUNT_TO_MNT = "Windows Mount Path"
 
-  /**
-   * Default path for Windows mount point in external storage
-   */
-  private val kernelInWindows = "${Environment.getExternalStorageDirectory().path}/WINCross/Windows"
-
-  /**
-   * Retrieves the Windows partition path from shared preferences
-   * @param context The context to access shared preferences
-   * @return Path to the Windows partition or null if not set
-   */
   fun getWindowsPartitionPath(context: Context): String? {
-    val prefs = context.getSharedPreferences("WinCross_preferences", Context.MODE_PRIVATE)
-    return prefs.getString("Windows", null)
+    return context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+    .getString(PREF_WINDOWS, null)
   }
 
-  /**
-   * Mounts the Windows partition at the specified mount point
-   * Uses mount.ntfs executable to mount NTFS partition
-   * @param context The context to access shared preferences and files
-   * @return true if mounting was successful, false otherwise
-   */
   fun mount(context: Context): Boolean {
     val mountNtfsPath = File(context.filesDir, "mount.ntfs").absolutePath
-    val prefs = context.getSharedPreferences("WinCross_preferences", Context.MODE_PRIVATE)
-    val mountPoint = if (prefs.getBoolean("mount_to_mnt", false)) "/mnt/Windows" else kernelInWindows
+    val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+    val mountPoint = prefs.getString(PREF_MOUNT_TO_MNT, null)
     val partition = getWindowsPartitionPath(context)
     val libraryPath = context.filesDir.absolutePath
 
-    Log.d("MountWindows", "Mounting Windows partition at: $mountPoint")
+    Log.d(TAG, "Mounting Windows partition at: $mountPoint")
 
     if (!File(mountNtfsPath).exists()) {
-      Log.e("MountWindows", "ERROR: mount.ntfs file not found.")
+      Log.e(TAG, "ERROR: mount.ntfs file not found.")
       return false
     }
 
     if (partition == null) {
-      Log.e("MountWindows", "ERROR: Windows partition path not found in preferences.")
+      Log.e(TAG, "ERROR: Windows partition path not found in preferences.")
       return false
     }
 
     // Create mount point directory and set permissions
     val checkMountCommand = "su -mm -c mkdir -p $mountPoint && chmod 777 $mountPoint"
-    if (!Utils.executeShellCommand(checkMountCommand, "MountWindows", logSuccess = true).isSuccess) {
-      Log.e("MountWindows", "Failed to create or set permissions for mount point: $mountPoint")
+    if (!Utils.executeShellCommand(checkMountCommand, TAG, logSuccess = true).isSuccess) {
+      Log.e(TAG, "Failed to create or set permissions for mount point: $mountPoint")
       return false
     }
 
     // Execute mount command with library path for NTFS driver
     val mountCommand = "su -mm -c LD_LIBRARY_PATH=$libraryPath $mountNtfsPath $partition $mountPoint"
-    val result = Utils.executeShellCommand(mountCommand, "MountWindows", logSuccess = true, logFailure = true)
-    val success = result.isSuccess
+    val result = Utils.executeShellCommand(
+      mountCommand,
+      TAG,
+      logSuccess = true,
+      logFailure = true
+    )
 
-    if (success) {
-      Log.d("MountWindows", "Successfully mounted Windows partition at: $mountPoint")
-    } else {
-      Log.e("MountWindows", "Failed to mount Windows partition at: $mountPoint")
+    return result.isSuccess.also {
+      success ->
+      if (success) {
+        Log.d(TAG, "Successfully mounted Windows partition at: $mountPoint")
+      } else {
+        Log.e(TAG, "Failed to mount Windows partition at: $mountPoint")
+      }
     }
-    return success
   }
 
-  /**
-   * Unmounts the Windows partition from the specified mount point
-   * Uses the umount command with root privileges
-   * @param context The context to access shared preferences
-   * @return true if unmounting was successful, false otherwise
-   */
   suspend fun umount(context: Context): Boolean {
-    val prefs = context.getSharedPreferences("WinCross_preferences", Context.MODE_PRIVATE)
-    val mountPoint = if (prefs.getBoolean("mount_to_mnt", false)) "/mnt/Windows" else kernelInWindows
-    Log.d("MountWindows", "Attempting to unmount Windows from: $mountPoint")
+    val mountPoint = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+    .getString(PREF_MOUNT_TO_MNT, null)
+
+    Log.d(TAG, "Attempting to unmount Windows from: $mountPoint")
 
     val command = "su -mm -c umount $mountPoint"
     val result = Utils.executeShellCommand(command)
 
-    // Using the updated approach with Shell.Result
     return if (result.isSuccess) {
-      Log.d("MountWindows", "Successfully unmounted Windows from $mountPoint.")
+      Log.d(TAG, "Successfully unmounted Windows from $mountPoint.")
       true
     } else {
-      Log.e("MountWindows", "Failed to unmount Windows from $mountPoint. Error: ${result.out}")
+      Log.e(TAG, "Failed to unmount Windows from $mountPoint. Error: ${result.out}")
       false
     }
   }

@@ -268,7 +268,7 @@ object BackupOperation {
         return false
       }
 
-      val kernelInWindows = if (prefs.getBoolean("mount_to_mnt", false)) "/mnt/Windows"
+      val kernelInWindows = if (prefs.getBoolean("Windows Mount Path", false)) "/mnt/Windows"
       else "${Environment.getExternalStorageDirectory().path}/WINCross/Windows"
 
       if (!UtilityHelper.isWindowsMounted(context) && !MountWindows.mount(context)) {

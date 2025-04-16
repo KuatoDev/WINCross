@@ -13,9 +13,6 @@ import id.vern.wincross.R
 import id.vern.wincross.activity.*
 import id.vern.wincross.helpers.UtilityHelper
 
-/**
- * Fragment for handling application settings and preferences
- */
 class SettingsFragment : PreferenceFragmentCompat() {
 
   companion object {
@@ -31,9 +28,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
     setupPreferences()
   }
 
-  /**
-     * Initialize all preferences with their listeners and default values
-     */
   private fun setupPreferences() {
     setupThemePreference()
     setupThemeColorPreference()
@@ -42,9 +36,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
     setupTelegramPreference()
   }
 
-  /**
-     * Set up theme selector preference with current value and click listener
-     */
   private fun setupThemePreference() {
     findPreference<Preference>(getString(R.string.key_theme))?.apply {
       summary = getCurrentThemeSummary()
@@ -55,9 +46,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
     }
   }
 
-  /**
-     * Set up theme color preference with current value and click listener
-     */
   private fun setupThemeColorPreference() {
     findPreference<Preference>(getString(R.string.key_theme_color))?.apply {
       summary = getCurrentThemeColorSummary()
@@ -68,9 +56,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
     }
   }
 
-  /**
-     * Set up preference to display all saved preferences data
-     */
   private fun setupGetSavedPreferencesPreference() {
     findPreference<Preference>(getString(R.string.key_getprefs))?.setOnPreferenceClickListener {
       showSavedPreferencesDialog()
@@ -78,9 +63,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
     }
   }
 
-  /**
-     * Set up GitHub link preference
-     */
   private fun setupGithubPreference() {
     findPreference<Preference>(getString(R.string.key_github))?.setOnPreferenceClickListener {
       openUrl("https://github.com/KuatoDev/WINCross")
@@ -88,9 +70,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
     }
   }
 
-  /**
-     * Set up Telegram link preference
-     */
   private fun setupTelegramPreference() {
     findPreference<Preference>(getString(R.string.key_telegram))?.setOnPreferenceClickListener {
       openUrl("https://t.me/vernkuato")
@@ -98,10 +77,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
     }
   }
 
-  /**
-     * Open URL in browser
-     * @param url The URL to open
-     */
   private fun openUrl(url: String) {
     val intent = Intent(Intent.ACTION_VIEW).apply {
       data = android.net.Uri.parse(url)
@@ -109,10 +84,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
     startActivity(intent)
   }
 
-  /**
-     * Display theme selection dialog
-     * @param preference The preference to update after selection
-     */
   private fun showThemeSelectionDialog(preference: Preference) {
     val safeContext = context ?: return
     val themes = arrayOf("System Default", "Dark Mode", "Light Mode")
@@ -130,10 +101,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
     }
   }
 
-  /**
-     * Display theme color selection dialog
-     * @param preference The preference to update after selection
-     */
   private fun showThemeColorSelectionDialog(preference: Preference) {
     val safeContext = context ?: return
     val colors = arrayOf("Default", "Blue", "Red", "Green", "Yellow")
@@ -151,14 +118,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
     }
   }
 
-  /**
-     * Generic dialog display helper with blurred background
-     * @param context Context to create dialog
-     * @param title Dialog title
-     * @param items List of items to display
-     * @param selectedIndex Currently selected item index
-     * @param onItemSelected Callback when user selects an item
-     */
   private fun showDialog(
     context: Context,
     title: String,
@@ -183,10 +142,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
     .show()
   }
 
-  /**
-     * Apply selected theme mode
-     * @param selectedTheme Theme value to apply
-     */
   private fun applyTheme(selectedTheme: String) {
     val mode = when (selectedTheme) {
       "dark" -> AppCompatDelegate.MODE_NIGHT_YES
@@ -197,10 +152,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
     restartMainActivity()
   }
 
-  /**
-     * Apply selected theme color
-     * @param selectedThemeColor Color value to apply
-     */
   private fun applyThemeColor(selectedThemeColor: String) {
     val themeId = when (selectedThemeColor) {
       "blue" -> R.style.Theme_MyApp_Blue
@@ -213,9 +164,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
     restartMainActivity()
   }
 
-  /**
-     * Restart the main activity to apply theme changes
-     */
   private fun restartMainActivity() {
     Handler(Looper.getMainLooper()).postDelayed({
       activity?.let {
@@ -229,10 +177,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
     }, 100)
   }
 
-  /**
-     * Get user-friendly description of current theme setting
-     * @return String representation of current theme
-     */
   private fun getCurrentThemeSummary(): String {
     return when (sharedPreferences.getString(getString(R.string.key_theme), "system")) {
       "dark" -> "Dark Theme"
@@ -241,10 +185,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
     }
   }
 
-  /**
-     * Get user-friendly description of current theme color setting
-     * @return String representation of current theme color
-     */
   private fun getCurrentThemeColorSummary(): String {
     return when (sharedPreferences.getString(getString(R.string.key_theme_color), "default")) {
       "blue" -> "Blue"
@@ -255,11 +195,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
     }
   }
 
-  /**
-     * Create a styled TextView for dialog titles
-     * @param title The title text
-     * @return A styled TextView
-     */
   private fun createDialogTitle(title: String): TextView {
     val ctx = context ?: return TextView(requireContext()).apply {
       text = title
@@ -285,11 +220,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
     }
   }
 
-  /**
-     * Check if a layout resource exists
-     * @param resourceId Resource ID to check
-     * @return True if resource exists
-     */
   private fun layoutResourceExists(resourceId: Int): Boolean {
     return try {
       context?.resources?.getResourceName(resourceId) != null
@@ -298,34 +228,22 @@ class SettingsFragment : PreferenceFragmentCompat() {
     }
   }
 
-  /**
-     * Remove blur effect from background
-     */
   private fun removeBlur() {
     activity?.window?.decorView?.rootView?.let {
       UtilityHelper.removeBlurBackground(it)
     }
   }
 
-  /**
-     * Show blur effect on background
-     */
   private fun showBlur() {
     activity?.window?.decorView?.rootView?.let {
       UtilityHelper.showBlurBackground(it)
     }
   }
 
-  /**
-     * Get all stored preferences as formatted strings
-     * @return List of preference key-value pairs as strings
-     */
   private fun getAllPreferencesData(): List<String> {
     val allEntries = mutableListOf<String>()
     val allPrefs = sharedPreferences.all
-
     if (allPrefs.isEmpty()) return listOf("No data stored")
-
     for ((key, value) in allPrefs) {
       val entryString = when (value) {
         is Boolean -> "$key: ${if (value) "Yes" else "No"}"
@@ -343,9 +261,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
     return allEntries.sorted()
   }
 
-  /**
-     * Display a dialog showing all saved preferences
-     */
   private fun showSavedPreferencesDialog() {
     val safeContext = context ?: return
     val preferencesData = getAllPreferencesData()

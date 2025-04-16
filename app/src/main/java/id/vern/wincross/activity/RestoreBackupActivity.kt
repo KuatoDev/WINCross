@@ -15,10 +15,15 @@ import id.vern.wincross.operations.RestoreOperation
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
+import id.vern.wincross.managers.*
+import id.vern.wincross.utils.*
+import android.content.SharedPreferences
+import android.content.Context
 
 class RestoreBackupActivity : AppCompatActivity() {
   private lateinit var binding: ActivityRestoreBackupBinding
   private lateinit var adapter: PartitionAdapter
+  private lateinit var sharedPreferences: SharedPreferences
 
   // Replace ProgressDialog with AlertDialog and custom progress view
   private lateinit var progressDialog: AlertDialog
@@ -34,6 +39,9 @@ class RestoreBackupActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+    sharedPreferences = getSharedPreferences(ThemeManager.PREFS_NAME, Context.MODE_PRIVATE)
+    ThemeManager(this).initializeTheme(this)
+
     binding = ActivityRestoreBackupBinding.inflate(layoutInflater)
     setContentView(binding.root)
     setupToolbar()

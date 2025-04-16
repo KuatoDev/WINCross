@@ -9,27 +9,21 @@ import android.content.*
 import id.vern.wincross.R
 import id.vern.wincross.fragments.*
 import android.view.MenuItem
+import id.vern.wincross.managers.*
+import id.vern.wincross.utils.*
 
 class SettingsActivity : AppCompatActivity() {
   private lateinit var binding: ActivitySettingsBinding
-  private lateinit var prefs: SharedPreferences
+  private lateinit var sharedPreferences: SharedPreferences
+
   companion object {
     private const val TAG = "SettingsActivity"
   }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    prefs = getSharedPreferences("WinCross_preferences", Context.MODE_PRIVATE)
-
-    val themeColor = prefs.getString(getString(R.string.key_theme_color), "default")
-    val themeId = when (themeColor) {
-      "blue" -> R.style.Theme_MyApp_Blue
-      "red" -> R.style.Theme_MyApp_Red
-      "green" -> R.style.Theme_MyApp_Green
-      "yellow" -> R.style.Theme_MyApp_Yellow
-      else -> R.style.Theme_MyApp_Default
-    }
-    setTheme(themeId)
+    sharedPreferences = getSharedPreferences(ThemeManager.PREFS_NAME, Context.MODE_PRIVATE)
+    ThemeManager(this).initializeTheme(this)
     binding = ActivitySettingsBinding.inflate(layoutInflater)
     setContentView(binding.root)
 
@@ -42,6 +36,7 @@ class SettingsActivity : AppCompatActivity() {
       .commit()
     }
   }
+
   private fun setupToolbar() {
     binding.toolbarlayout.toolbar.apply {
       title = getString(R.string.settings_title)
@@ -49,6 +44,7 @@ class SettingsActivity : AppCompatActivity() {
       setNavigationIcon(R.drawable.ic_cog)
     }
   }
+
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     if (item.itemId == android.R.id.home) {
       finish()

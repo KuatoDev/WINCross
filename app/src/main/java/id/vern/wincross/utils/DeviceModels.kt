@@ -141,22 +141,34 @@ object DeviceModels {
       crossfade(true)
     }
 
-    tvDevice.text = context.getString(R.string.device_model, deviceModel.uppercase())
-    tvKernelPowerProfile.text = context.getString(
-      R.string.power_profile,
-      Utils.getBatteryKernelProfile() ?: "N/A"
-    )
-
-    tvBatteryCapacity.text = context.getString(
-      R.string.battery_capacity,
-      Utils.getBatteryCapacity(context).toInt()
-    )
-
-    tvTotalRam.text = context.getString(R.string.total_ram, Utils.getTotalRam(context))
-    tvTotalStorage.text = context.getString(R.string.total_storage, Utils.getTotalStorage())
-    tvPanel.text = context.getString(R.string.panel_type, Utils.getPanelType())
-    tvActiveSlot.text = context.getString(R.string.label_active_slot, Utils.getActiveSlot(context))
-
+    tvDevice.text = context.getString(R.string.device_info, 
+    context.getString(R.string.info_device_model), 
+    deviceModel.uppercase()
+)
+tvKernelPowerProfile.text = context.getString(R.string.device_info,
+    context.getString(R.string.info_power_profile),
+    Utils.getBatteryKernelProfile() ?: "N/A"
+)
+tvBatteryCapacity.text = context.getString(R.string.device_info,
+    context.getString(R.string.info_battery_capacity),
+    Utils.getBatteryCapacity(context).toInt().toString()
+)
+tvTotalRam.text = context.getString(R.string.device_info,
+    context.getString(R.string.info_total_ram),
+    Utils.getTotalRam(context)
+)
+tvTotalStorage.text = context.getString(R.string.device_info,
+    context.getString(R.string.info_total_storage),
+    Utils.getTotalStorage()
+)
+tvPanel.text = context.getString(R.string.device_info,
+    context.getString(R.string.info_panel_type),
+    Utils.getPanelType()
+)
+tvActiveSlot.text = context.getString(R.string.device_info,
+    context.getString(R.string.info_active_slot),
+    Utils.getActiveSlot(context)
+)
     guide.setOnClickListener {
       Log.d("DeviceModels", "Opening Guide Link: $guideLinks")
       val intent = Intent(Intent.ACTION_VIEW, Uri.parse(guideLinks))

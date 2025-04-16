@@ -1,280 +1,279 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-  <!-- Base application theme. -->
-  <style
-    name="Theme.MyApplication"
-    parent="Theme.Material3.DayNight.NoActionBar">
-    <!-- Setting existing items (JANGAN DIHAPUS) -->
-    <item name="windowActionBar">false</item>
-    <item name="windowNoTitle">true</item>
-    <item name="colorPrimary">@color/colorPrimary</item>
-    <item name="colorOnPrimary">@color/colorOnPrimary</item>
-    <item name="colorPrimaryContainer">@color/colorPrimaryContainer</item>
-    <item name="colorOnPrimaryContainer">@color/colorOnPrimaryContainer</item>
-    <item name="colorPrimaryInverse">@color/colorPrimaryInverse</item>
-    <item name="colorSecondary">@color/colorSecondary</item>
-    <item name="colorOnSecondary">@color/colorOnSecondary</item>
-    <item name="colorSecondaryContainer">@color/colorSecondaryContainer</item>
-    <item name="colorOnSecondaryContainer">@color/colorOnSecondaryContainer</item>
-    <item name="colorTertiary">@color/colorTertiary</item>
-    <item name="colorOnTertiary">@color/colorOnTertiary</item>
-    <item name="colorTertiaryContainer">@color/colorTertiaryContainer</item>
-    <item name="colorOnTertiaryContainer">@color/colorOnTertiaryContainer</item>
-    <item name="colorSurface">@color/colorSurface</item>
-    <item name="colorOnSurface">@color/colorOnSurface</item>
-    <item name="colorSurfaceVariant">@color/colorSurfaceVariant</item>
-    <item name="colorOnSurfaceVariant">@color/colorOnSurfaceVariant</item>
-    <item name="colorSurfaceInverse">@color/colorSurfaceInverse</item>
-    <item name="colorOnSurfaceInverse">@color/colorOnSurfaceInverse</item>
-    <item name="preferenceTheme">@style/PreferenceFragment.Material3</item>
-    <item name="android:windowTranslucentStatus">false</item>
-    <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-    <item name="android:statusBarColor">?attr/colorSurfaceVariant</item>
-    <item name="android:navigationBarColor">?attr/colorSurfaceVariant</item>
-    <item name="android:windowActivityTransitions">true</item>
-    <item name="android:windowContentTransitions">true</item>
-    <item name="materialSwitchStyle">@style/Widget.App.Switch</item>
-    <item name="alertDialogTheme">@style/MaterialAlertDialogTheme</item>
-    <item name="android:alertDialogTheme">@style/MaterialAlertDialogTheme</item>
-  </style>
+    <!-- Base application theme. -->
+    <style
+        name="Theme.MyApplication"
+        parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Setting existing items (JANGAN DIHAPUS) -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+        <item name="colorPrimaryContainer">@color/colorPrimaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/colorOnPrimaryContainer</item>
+        <item name="colorPrimaryInverse">@color/colorPrimaryInverse</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorOnSecondary">@color/colorOnSecondary</item>
+        <item name="colorSecondaryContainer">@color/colorSecondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/colorOnSecondaryContainer</item>
+        <item name="colorTertiary">@color/colorTertiary</item>
+        <item name="colorOnTertiary">@color/colorOnTertiary</item>
+        <item name="colorTertiaryContainer">@color/colorTertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/colorOnTertiaryContainer</item>
+        <item name="colorSurface">@color/colorSurface</item>
+        <item name="colorOnSurface">@color/colorOnSurface</item>
+        <item name="colorSurfaceVariant">@color/colorSurfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/colorOnSurfaceVariant</item>
+        <item name="colorSurfaceInverse">@color/colorSurfaceInverse</item>
+        <item name="colorOnSurfaceInverse">@color/colorOnSurfaceInverse</item>
+        <item name="preferenceTheme">@style/PreferenceFragment.Material3</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">?attr/colorSurfaceVariant</item>
+        <item name="android:navigationBarColor">?attr/colorSurfaceVariant</item>
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="materialSwitchStyle">@style/Widget.App.Switch</item>
+        <item name="alertDialogTheme">@style/MaterialAlertDialogTheme</item>
+        <item name="android:alertDialogTheme">@style/MaterialAlertDialogTheme</item>
+    </style>
 
-  <style
-    name="MaterialAlertDialogTheme"
-    parent="ThemeOverlay.Material3.MaterialAlertDialog">
-    <item name="android:background">@color/colorSurface</item>
-    <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MyApp.Dialog.Rounded</item>
-    <item name="android:textColorPrimary">@color/colorOnSurface</item>
-    <item name="android:textColorSecondary">@color/colorOnSurfaceVariant</item>
-    <item name="android:buttonStyle">@style/MyAlertDialogButtonStyle</item>
-  </style>
+    <style
+        name="MaterialAlertDialogTheme"
+        parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="android:background">@color/colorSurface</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MyApp.Dialog.Rounded</item>
+        <item name="android:textColorPrimary">@color/colorOnSurface</item>
+        <item name="android:textColorSecondary">@color/colorOnSurfaceVariant</item>
+        <item name="android:buttonStyle">@style/MyAlertDialogButtonStyle</item>
+    </style>
 
-  <style
-    name="MyAlertDialogButtonStyle"
-    parent="Widget.Material3.Button.TextButton">
-    <item name="android:textColor">@color/colorPrimary</item>
-  </style>
+    <style
+        name="MyAlertDialogButtonStyle"
+        parent="Widget.Material3.Button.TextButton">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
 
-  <style
-    name="Theme.MyApp.Default"
-    parent="Theme.Material3.DayNight.NoActionBar">
-    <item name="colorPrimary">@color/md_theme_light_primary</item>
-    <item name="colorSecondary">@color/md_theme_light_secondary</item>
-    <item name="colorTertiary">@color/md_theme_light_tertiary</item>
-    <item name="android:statusBarColor">?attr/colorSurfaceVariant</item>
-    <item name="android:navigationBarColor">?attr/colorSurfaceVariant</item>
-    <item name="materialAlertDialogTheme">@style/MaterialAlertDialogTheme</item>
-  </style>
+    <style
+        name="Theme.MyApp.Default"
+        parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/md_theme_light_primary</item>
+        <item name="colorSecondary">@color/md_theme_light_secondary</item>
+        <item name="colorTertiary">@color/md_theme_light_tertiary</item>
+        <item name="android:statusBarColor">?attr/colorSurfaceVariant</item>
+        <item name="android:navigationBarColor">?attr/colorSurfaceVariant</item>
+        <item name="materialAlertDialogTheme">@style/MaterialAlertDialogTheme</item>
+    </style>
 
-  <style
-    name="Theme.MyApp.Blue"
-    parent="Theme.Material3.DayNight.NoActionBar">
-    <item name="colorPrimary">@color/blue</item>
-    <item name="colorSecondary">@color/darkblue</item>
-    <item name="colorTertiary">@color/softblue</item>
-    <item name="android:statusBarColor">?attr/colorSurfaceVariant</item>
-    <item name="android:navigationBarColor">?attr/colorSurfaceVariant</item>
-    <item name="materialSwitchStyle">@style/ThemeOverlay.App.Switch.Blue</item>
-    <item name="materialAlertDialogTheme">@style/MaterialAlertDialogTheme</item>
-  </style>
+    <style
+        name="Theme.MyApp.Blue"
+        parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorSecondary">@color/darkblue</item>
+        <item name="colorTertiary">@color/softblue</item>
+        <item name="android:statusBarColor">?attr/colorSurfaceVariant</item>
+        <item name="android:navigationBarColor">?attr/colorSurfaceVariant</item>
+        <item name="materialSwitchStyle">@style/ThemeOverlay.App.Switch.Blue</item>
+        <item name="materialAlertDialogTheme">@style/MaterialAlertDialogTheme</item>
+    </style>
 
-  <style
-    name="Theme.MyApp.Red"
-    parent="Theme.Material3.DayNight.NoActionBar">
-    <item name="colorPrimary">@color/red</item>
-    <item name="colorSecondary">@color/darkred</item>
-    <item name="colorTertiary">@color/softred</item>
-    <item name="android:statusBarColor">?attr/colorSurfaceVariant</item>
-    <item name="android:navigationBarColor">?attr/colorSurfaceVariant</item>
-    <item name="materialSwitchStyle">@style/ThemeOverlay.App.Switch.Red</item>
-    <item name="materialAlertDialogTheme">@style/MaterialAlertDialogTheme</item>
-  </style>
+    <style
+        name="Theme.MyApp.Red"
+        parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/red</item>
+        <item name="colorSecondary">@color/darkred</item>
+        <item name="colorTertiary">@color/softred</item>
+        <item name="android:statusBarColor">?attr/colorSurfaceVariant</item>
+        <item name="android:navigationBarColor">?attr/colorSurfaceVariant</item>
+        <item name="materialSwitchStyle">@style/ThemeOverlay.App.Switch.Red</item>
+        <item name="materialAlertDialogTheme">@style/MaterialAlertDialogTheme</item>
+    </style>
 
-  <style
-    name="Theme.MyApp.Green"
-    parent="Theme.Material3.DayNight.NoActionBar">
-    <item name="colorPrimary">@color/green</item>
-    <item name="colorSecondary">@color/darkgreen</item>
-    <item name="colorTertiary">@color/softgreen</item>
-    <item name="android:statusBarColor">?attr/colorSurfaceVariant</item>
-    <item name="android:navigationBarColor">?attr/colorSurfaceVariant</item>
-    <item name="materialSwitchStyle">@style/ThemeOverlay.App.Switch.Green</item>
-    <item name="materialAlertDialogTheme">@style/MaterialAlertDialogTheme</item>
-  </style>
+    <style
+        name="Theme.MyApp.Green"
+        parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/green</item>
+        <item name="colorSecondary">@color/darkgreen</item>
+        <item name="colorTertiary">@color/softgreen</item>
+        <item name="android:statusBarColor">?attr/colorSurfaceVariant</item>
+        <item name="android:navigationBarColor">?attr/colorSurfaceVariant</item>
+        <item name="materialSwitchStyle">@style/ThemeOverlay.App.Switch.Green</item>
+        <item name="materialAlertDialogTheme">@style/MaterialAlertDialogTheme</item>
+    </style>
 
-  <style
-    name="Theme.MyApp.Yellow"
-    parent="Theme.Material3.DayNight.NoActionBar">
-    <item name="colorPrimary">@color/yellow</item>
-    <item name="colorSecondary">@color/amber</item>
-    <item name="colorTertiary">@color/orange</item>
-    <item name="android:statusBarColor">?attr/colorSurfaceVariant</item>
-    <item name="android:navigationBarColor">?attr/colorSurfaceVariant</item>
-    <item name="materialSwitchStyle">@style/ThemeOverlay.App.Switch.Yellow</item>
-    <item name="materialAlertDialogTheme">@style/MaterialAlertDialogTheme</item>
-  </style>
+    <style
+        name="Theme.MyApp.Yellow"
+        parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/yellow</item>
+        <item name="colorSecondary">@color/amber</item>
+        <item name="colorTertiary">@color/orange</item>
+        <item name="android:statusBarColor">?attr/colorSurfaceVariant</item>
+        <item name="android:navigationBarColor">?attr/colorSurfaceVariant</item>
+        <item name="materialSwitchStyle">@style/ThemeOverlay.App.Switch.Yellow</item>
+        <item name="materialAlertDialogTheme">@style/MaterialAlertDialogTheme</item>
+    </style>
 
-  <style
-    name="ThemeOverlay.App.Switch"
-    parent="">
-    <item name="colorPrimary">@color/md_theme_light_primary</item>
-    <item name="colorSecondary">@color/md_theme_light_secondary</item>
-    <item name="colorTertiary">@color/md_theme_light_tertiary</item>
-    <item name="colorSurfaceVariant">@color/md_theme_light_surfaceVariant</item>
-    <item name="android:thumbTint">@color/md_theme_light_primary</item>
-    <item name="thumbTint">@color/md_theme_light_primary</item>
-    <item name="android:trackTint">@color/md_theme_light_secondary</item>
-    <item name="trackTint">@color/md_theme_light_secondary</item>
-    <item name="switchStyle">@style/Widget.App.Switch</item>
-    <item name="materialSwitchStyle">@style/Widget.App.Switch</item>
+    <style
+        name="ThemeOverlay.App.Switch"
+        parent="">
+        <item name="colorPrimary">@color/md_theme_light_primary</item>
+        <item name="colorSecondary">@color/md_theme_light_secondary</item>
+        <item name="colorTertiary">@color/md_theme_light_tertiary</item>
+        <item name="colorSurfaceVariant">@color/md_theme_light_surfaceVariant</item>
+        <item name="android:thumbTint">@color/md_theme_light_primary</item>
+        <item name="thumbTint">@color/md_theme_light_primary</item>
+        <item name="android:trackTint">@color/md_theme_light_secondary</item>
+        <item name="trackTint">@color/md_theme_light_secondary</item>
+        <item name="switchStyle">@style/Widget.App.Switch</item>
+        <item name="materialSwitchStyle">@style/Widget.App.Switch</item>
 
-  </style>
+    </style>
 
-  <style
-    name="ThemeOverlay.App.Switch.Blue"
-    parent="ThemeOverlay.App.Switch">
-    <item name="colorPrimary">@color/blue</item>
-    <item name="colorSecondary">@color/darkblue</item>
-    <item name="colorTertiary">@color/softblue</item>
-    <item name="android:thumbTint">@color/blue</item>
-    <item name="thumbTint">@color/blue</item>
-    <item name="android:trackTint">@color/darkblue</item>
-    <item name="trackTint">@color/softblue</item>
-    <item name="switchStyle">@style/Widget.App.Switch</item>
-    <item name="materialSwitchStyle">@style/Widget.App.Switch</item>
+    <style
+        name="ThemeOverlay.App.Switch.Blue"
+        parent="ThemeOverlay.App.Switch">
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorSecondary">@color/darkblue</item>
+        <item name="colorTertiary">@color/softblue</item>
+        <item name="android:thumbTint">@color/blue</item>
+        <item name="thumbTint">@color/blue</item>
+        <item name="android:trackTint">@color/darkblue</item>
+        <item name="trackTint">@color/softblue</item>
+        <item name="switchStyle">@style/Widget.App.Switch</item>
+        <item name="materialSwitchStyle">@style/Widget.App.Switch</item>
 
-  </style>
+    </style>
 
-  <style
-    name="Widget.App.Switch"
-    parent="Widget.Material3.CompoundButton.MaterialSwitch">
-    <item name="thumbTint">?attr/colorTertiary</item>
-    <item name="trackTint">?attr/colorPrimary</item>
-    <item name="trackDecorationTint">@color/md_theme_light_onPrimary</item>
-    <item name="android:background">@null</item>
-  </style>
+    <style
+        name="Widget.App.Switch"
+        parent="Widget.Material3.CompoundButton.MaterialSwitch">
+        <item name="thumbTint">@color/switch_thumb_color_selector</item>
+        <item name="trackTint">@color/switch_track_color_selector</item>
+        <item name="trackDecorationTint">@color/md_theme_light_onPrimary</item>
+        <item name="android:background">@null</item>
+    </style>
 
-  <style
-    name="ThemeOverlay.App.Switch.Red"
-    parent="ThemeOverlay.App.Switch">
-    <item name="colorPrimary">@color/red</item>
-    <item name="colorSecondary">@color/darkred</item>
-    <item name="colorTertiary">@color/softred</item>
-    <item name="android:thumbTint">@color/red</item>
-    <item name="thumbTint">@color/red</item>
-    <item name="android:trackTint">@color/darkred</item>
-    <item name="trackTint">@color/softred</item>
-    <item name="switchStyle">@style/Widget.App.Switch</item>
-    <item name="materialSwitchStyle">@style/Widget.App.Switch</item>
+    <style
+        name="ThemeOverlay.App.Switch.Red"
+        parent="ThemeOverlay.App.Switch">
+        <item name="colorPrimary">@color/red</item>
+        <item name="colorSecondary">@color/darkred</item>
+        <item name="colorTertiary">@color/softred</item>
+        <item name="android:thumbTint">@color/red</item>
+        <item name="thumbTint">@color/red</item>
+        <item name="android:trackTint">@color/darkred</item>
+        <item name="trackTint">@color/softred</item>
+        <item name="switchStyle">@style/Widget.App.Switch</item>
+        <item name="materialSwitchStyle">@style/Widget.App.Switch</item>
 
-  </style>
+    </style>
 
-  <style
-    name="ThemeOverlay.App.Switch.Green"
-    parent="ThemeOverlay.App.Switch">
-    <item name="colorPrimary">@color/green</item>
-    <item name="colorSecondary">@color/darkgreen</item>
-    <item name="colorTertiary">@color/softgreen</item>
-    <item name="android:thumbTint">@color/green</item>
-    <item name="thumbTint">@color/green</item>
-    <item name="android:trackTint">@color/darkgreen</item>
-    <item name="trackTint">@color/softgreen</item>
-    <item name="switchStyle">@style/Widget.App.Switch</item>
-    <item name="materialSwitchStyle">@style/Widget.App.Switch</item>
+    <style
+        name="ThemeOverlay.App.Switch.Green"
+        parent="ThemeOverlay.App.Switch">
+        <item name="colorPrimary">@color/green</item>
+        <item name="colorSecondary">@color/darkgreen</item>
+        <item name="colorTertiary">@color/softgreen</item>
+        <item name="android:thumbTint">@color/green</item>
+        <item name="thumbTint">@color/green</item>
+        <item name="android:trackTint">@color/darkgreen</item>
+        <item name="trackTint">@color/softgreen</item>
+        <item name="switchStyle">@style/Widget.App.Switch</item>
+        <item name="materialSwitchStyle">@style/Widget.App.Switch</item>
+    </style>
+    <style
+        name="ThemeOverlay.App.Switch.Yellow"
+        parent="ThemeOverlay.App.Switch">
+        <item name="colorPrimary">@color/yellow</item>
+        <item name="colorSecondary">@color/amber</item>
+        <item name="colorTertiary">@color/orange</item>
+        <item name="android:thumbTint">@color/yellow</item>
+        <item name="thumbTint">@color/yellow</item>
+        <item name="android:trackTint">@color/amber</item>
+        <item name="trackTint">@color/orange</item>
+        <item name="switchStyle">@style/Widget.App.Switch</item>
+        <item name="materialSwitchStyle">@style/Widget.App.Switch</item>
 
-  </style>
-  <style
-    name="ThemeOverlay.App.Switch.Yellow"
-    parent="ThemeOverlay.App.Switch">
-    <item name="colorPrimary">@color/yellow</item>
-    <item name="colorSecondary">@color/amber</item>
-    <item name="colorTertiary">@color/orange</item>
-    <item name="android:thumbTint">@color/yellow</item>
-    <item name="thumbTint">@color/yellow</item>
-    <item name="android:trackTint">@color/amber</item>
-    <item name="trackTint">@color/orange</item>
-    <item name="switchStyle">@style/Widget.App.Switch</item>
-    <item name="materialSwitchStyle">@style/Widget.App.Switch</item>
+    </style>
+    <!-- Toolbar and additional widget styles (JANGAN DIHAPUS) -->
+    <style
+        name="Toolbar.TitleText"
+        parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 
-  </style>
-  <!-- Toolbar and additional widget styles (JANGAN DIHAPUS) -->
-  <style
-    name="Toolbar.TitleText"
-    parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-    <item name="android:textSize">22sp</item>
-    <item name="android:textStyle">bold</item>
-  </style>
+    <style
+        name="TopCutCardView"
+        parent="@style/Widget.Material3.CardView.Filled">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MaterialCardView.CutTop</item>
+        <item name="android:clipToOutline">true</item>
+    </style>
 
-  <style
-    name="TopCutCardView"
-    parent="@style/Widget.Material3.CardView.Filled">
-    <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MaterialCardView.CutTop</item>
-    <item name="android:clipToOutline">true</item>
-  </style>
+    <style
+        name="BottomCutCardView"
+        parent="@style/Widget.Material3.CardView.Filled">
+        <item name="android:clipToOutline">true</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MaterialCardView.CutBottom</item>
+    </style>
 
-  <style
-    name="BottomCutCardView"
-    parent="@style/Widget.Material3.CardView.Filled">
-    <item name="android:clipToOutline">true</item>
-    <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MaterialCardView.CutBottom</item>
-  </style>
+    <style
+        name="ShapeAppearanceOverlay.MaterialCardView.CutTop"
+        parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">@dimen/cardCornerRadius</item>
+        <item name="cornerSizeTopLeft">@dimen/cardCornerRadius</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+    </style>
 
-  <style
-    name="ShapeAppearanceOverlay.MaterialCardView.CutTop"
-    parent="">
-    <item name="cornerFamily">rounded</item>
-    <item name="cornerSizeTopRight">@dimen/cardCornerRadius</item>
-    <item name="cornerSizeTopLeft">@dimen/cardCornerRadius</item>
-    <item name="cornerSizeBottomRight">0dp</item>
-    <item name="cornerSizeBottomLeft">0dp</item>
-  </style>
+    <style
+        name="ShapeAppearanceOverlay.MaterialCardView.CutBottom"
+        parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeBottomRight">@dimen/cardCornerRadius</item>
+        <item name="cornerSizeBottomLeft">@dimen/cardCornerRadius</item>
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerSizeTopLeft">0dp</item>
+    </style>
 
-  <style
-    name="ShapeAppearanceOverlay.MaterialCardView.CutBottom"
-    parent="">
-    <item name="cornerFamily">rounded</item>
-    <item name="cornerSizeBottomRight">@dimen/cardCornerRadius</item>
-    <item name="cornerSizeBottomLeft">@dimen/cardCornerRadius</item>
-    <item name="cornerSizeTopRight">0dp</item>
-    <item name="cornerSizeTopLeft">0dp</item>
-  </style>
+    <style name="PreferenceFragment.Material">
+        <item name="android:divider">@color/transparent</item>
+    </style>
 
-  <style name="PreferenceFragment.Material">
-    <item name="android:divider">@color/transparent</item>
-  </style>
+    <!-- Dialog styles (JANGAN DIHAPUS) -->
+    <style
+        name="MyThemeOverlay.MaterialComponents.MaterialAlertDialog"
+        parent="@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="android:backgroundDimAmount">0.5</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MyApp.Dialog.Rounded</item>
+    </style>
 
-  <!-- Dialog styles (JANGAN DIHAPUS) -->
-  <style
-    name="MyThemeOverlay.MaterialComponents.MaterialAlertDialog"
-    parent="@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog">
-    <item name="android:backgroundDimAmount">0.5</item>
-    <item name="android:gravity">center_horizontal</item>
-    <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MyApp.Dialog.Rounded</item>
-  </style>
+    <style
+        name="ShapeAppearanceOverlay.MyApp.Dialog.Rounded"
+        parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="cornerSize">12dp</item>
+    </style>
 
-  <style
-    name="ShapeAppearanceOverlay.MyApp.Dialog.Rounded"
-    parent="">
-    <item name="cornerFamily">rounded</item>
-    <item name="android:gravity">center_horizontal</item>
-    <item name="cornerSize">12dp</item>
-  </style>
-
-  <style
-    name="ThemeOverlay.MyApp.Material3.PreferenceDialog"
-    parent="ThemeOverlay.Material3.MaterialAlertDialog">
-    <item name="android:background">@color/colorSurface</item>
-    <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MyApp.Dialog.Rounded</item>
-  </style>
-  <style name="PreferenceFragment.Material3">
-    <item name="android:divider">@color/transparent</item>
-    <item name="android:alertDialogTheme">@style/ThemeOverlay.MyApp.Material3.PreferenceDialog</item>
-  </style>
-  <style
-    name="WidgetDialogTheme"
-    parent="Theme.Material3.Light.Dialog">
-    <item name="android:windowNoTitle">true</item>
-    <item name="android:windowBackground">@android:color/transparent</item>
-  </style>
+    <style
+        name="ThemeOverlay.MyApp.Material3.PreferenceDialog"
+        parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="android:background">@color/colorSurface</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MyApp.Dialog.Rounded</item>
+    </style>
+    <style name="PreferenceFragment.Material3">
+        <item name="android:divider">@color/transparent</item>
+        <item name="android:alertDialogTheme">@style/ThemeOverlay.MyApp.Material3.PreferenceDialog</item>
+    </style>
+    <style
+        name="WidgetDialogTheme"
+        parent="Theme.Material3.Light.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
 
 </resources>

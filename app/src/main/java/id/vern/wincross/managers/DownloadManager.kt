@@ -1,4 +1,4 @@
-package id.vern.wincross.utils
+package id.vern.wincross.managers
 
 import android.content.Context
 import android.util.Log
