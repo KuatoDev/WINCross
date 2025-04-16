@@ -11,11 +11,10 @@ Ideal for power users and developers, WINCross offers an efficient way to manage
 This application is built using Gradle on a Poco X3 Pro. Images are created with [Photo Editor](https://play.google.com/store/apps/details?id=com.iudesk.android.photo.editor) and converted into [Vector Drawables](https://inloop.github.io/svg2android/). Debugging, LogListener, and compiling are done using [AndroidIDE](https://m.androidide.com), while [Termux](https://github.com/termux) is used for various tasks in building this application.
 
 ## Disclaimer
-We are not responsible for bricked devices, missing recovery partitions, dead microSD cards, runaway pets, nuclear wars, or you getting fired because you flashed UEFI, provisioned modems, or dumped sensors using this app. **Use at your own risk!**
+We are not responsible for bricked devices, missing recovery partitions, dead microSD cards, runaway pets, nuclear wars, or you getting fired because you flashed UEFI, provisioned modems, or dumped sensors using this app. **USE AT YOUR OWN RISK!**
 
 ## Project Status
 Most features work, but some cases may not. Please read the  carefully.
-
 
 Most features are supported; however, certain scenarios or configurations may not be fully compatible. Please ensure you carefully review the [Requirements](#requirements) and [Device Specific Features](#device) sections for detailed compatibility information.
 
@@ -63,27 +62,8 @@ Most features are supported; however, certain scenarios or configurations may no
 - [x] UEFI Update Works
 - [ ] Prebuilt Dual Boot Kernel Patcher is complete, but functionality has not yet been tested and is not implemented in the UI.
 - [x] Backup Partitions Works
-- [ ] Flash UEFI not yet been tested
-- [ ] Restore Backup Partitions not yet been tested
-
-##### OnePlus ??
-- [ ] Mount/Unmount Windows not yet been tested
-- [ ] Prebuilt Dual Boot Kernel Patcher is complete, but not yet tested or integrated into the UI. DEVCFG Flasher support is in progress.
-- [ ] Backup Partitions not yet been tested
-- [ ] Flash UEFI not yet been tested
-- [ ] Restore Backup Partitions not yet been tested
-
-##### LG ?? 
-- [ ] Mount/Unmount Windows not yet been tested
-- [ ] Backup Partitions not yet been tested
-- [ ] Flash UEFI not yet been tested
-- [ ] Restore Backup Partitions not yet been tested
-
-#### Samsung ??
-- [ ] Mount/Unmount not yet been tested
-- [ ] Backup Partitions not yet been tested
-- [ ] Flash UEFI not yet been tested
-- [ ] Restore Backup Partitions not yet been tested
+- [x] Flash UEFI Works
+- [x] Restore Backup Partitions Works
 
 ## Attention
 **PR is allowed and anyone is welcome to contribute to this project**
