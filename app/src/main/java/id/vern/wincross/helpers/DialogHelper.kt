@@ -42,28 +42,25 @@ object DialogHelper {
       Log.d(TAG, "createDialog: Blur background applied.")
     }
 
-    val titleView = createDialogTitle(context, title)
-    val msgView = createDialogMessage(context, message)
-    val buttonView = createDialogButtons(context)
+    // Inflate single dialog layout
+    val inflater = LayoutInflater.from(context)
+    val dialogView = inflater.inflate(R.layout.dialog_layout, null)
+    
+    // Get references to views from the single layout
+    val titleView = dialogView.findViewById<TextView>(R.id.dialogTitle)
+    val messageView = dialogView.findViewById<TextView>(R.id.dialogMessage)
+    val positiveBtn = dialogView.findViewById<MaterialButton>(R.id.positiveButton)
+    val negativeBtn = dialogView.findViewById<MaterialButton>(R.id.negativeButton)
+    
+    // Set text for title and message
+    titleView.text = title
+    messageView.text = message
 
-    val container =
-        LinearLayout(context).apply {
-          orientation = LinearLayout.VERTICAL
-          setPadding(0, 0, 0, 0)
-          addView(titleView)
-          addView(msgView)
-          addView(buttonView)
-        }
-
-    val builder = MaterialAlertDialogBuilder(context).setView(container)
-
+    val builder = MaterialAlertDialogBuilder(context).setView(dialogView)
     val dialog = builder.create()
 
-    val positiveBtn = buttonView.findViewById<MaterialButton>(R.id.positiveButton)
-    val negativeBtn = buttonView.findViewById<MaterialButton>(R.id.negativeButton)
-
     if (onPositive != null) {
-      positiveBtn?.apply {
+      positiveBtn.apply {
         text = positiveButtonText ?: context.getString(R.string.yes)
         setOnClickListener {
           onPositive()
@@ -76,11 +73,11 @@ object DialogHelper {
         visibility = View.VISIBLE
       }
     } else {
-      positiveBtn?.visibility = View.GONE
+      positiveBtn.visibility = View.GONE
     }
 
     if (onNegative != null) {
-      negativeBtn?.apply {
+      negativeBtn.apply {
         text = negativeButtonText ?: context.getString(R.string.cancel)
         setOnClickListener {
           onNegative()
@@ -93,7 +90,7 @@ object DialogHelper {
         visibility = View.VISIBLE
       }
     } else {
-      negativeBtn?.visibility = View.GONE
+      negativeBtn.visibility = View.GONE
     }
 
     dialog.setOnDismissListener {
@@ -107,21 +104,6 @@ object DialogHelper {
 
     dialog.show()
     Log.d(TAG, "createDialog: Dialog shown for '$title'")
-  }
-
-  private fun createDialogTitle(context: Context, title: String): TextView {
-    val inflater = LayoutInflater.from(context)
-    return (inflater.inflate(R.layout.dialog_title, null) as TextView).apply { text = title }
-  }
-
-  private fun createDialogMessage(context: Context, msg: String): TextView {
-    val inflater = LayoutInflater.from(context)
-    return (inflater.inflate(R.layout.dialog_message, null) as TextView).apply { text = msg }
-  }
-
-  private fun createDialogButtons(context: Context): View {
-    val inflater = LayoutInflater.from(context)
-    return inflater.inflate(R.layout.dialog_button, null)
   }
 
   private fun openFileManager(context: Context, rootView: View, folderPath: String) {
