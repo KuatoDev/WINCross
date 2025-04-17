@@ -2,72 +2,76 @@ package id.vern.wincross.managers
 
 import android.content.Context
 import android.util.Log
-import com.topjohnwu.superuser.Shell
-import kotlinx.coroutines.*
-import java.io.*
-import java.util.concurrent.ConcurrentHashMap
 import id.vern.wincross.helpers.UtilityHelper
 import id.vern.wincross.utils.*
+import java.io.*
+import java.util.concurrent.ConcurrentHashMap
+import kotlinx.coroutines.*
 
 object AssetsManager {
   private const val TAG = "AssetsManager"
   private const val BUFFER_SIZE = 8192
-  private val FILES_TO_COPY = listOf(
-    "mount.ntfs",
-    "dbkp8150.cfg", "dbkp.hotdog.bin", "dbkp.cepheus.bin",
-    "dbkp.nabu.bin", "dbkp.pipa.bin", "sdd.conf",
-    "install.bat", "sta.exe", "sdd.exe", "boot_img_auto-flasher_V1.1.exe",
-    "Optimized_Taskbar_Control_V3.0.exe", "usbhostmode.exe", "display.exe",
-    "RemoveEdge.bat",
-    "Switch to Android.lnk", "USB Host Mode.lnk", "RotationShortcut.lnk",
-    "RotationShortcutReverseLandscape.lnk", "ARMSoftware.url",
-    "ARMRepo.url", "TestedSoftware.url", "WorksOnWoa.url"
-  )
+  private val FILES_TO_COPY =
+      listOf(
+          "mount.ntfs",
+          "dbkp8150.cfg",
+          "dbkp.hotdog.bin",
+          "dbkp.cepheus.bin",
+          "dbkp.nabu.bin",
+          "dbkp.pipa.bin",
+          "sdd.conf",
+          "install.bat",
+          "sta.exe",
+          "sdd.exe",
+          "display.exe",
+          "RemoveEdge.bat",
+          "Switch to Android.lnk",
+          "RotationShortcut.lnk",
+          "RotationShortcutReverseLandscape.lnk",
+          "ARMSoftware.url",
+          "ARMRepo.url",
+          "TestedSoftware.url",
+          "WorksOnWoa.url")
 
   private val fileExistenceCache = ConcurrentHashMap<String, Boolean>()
 
-  suspend fun copyAssetsToExecutableDir(context: Context): Int = withContext(Dispatchers.IO) {
-    var successCount = 0
-    fileExistenceCache.clear()
-    Log.d(TAG, "Starting asset copy process for ${FILES_TO_COPY.size} files")
+  suspend fun copyAssetsToExecutableDir(context: Context): Int =
+      withContext(Dispatchers.IO) {
+        var successCount = 0
+        fileExistenceCache.clear()
+        Log.d(TAG, "Starting asset copy process for ${FILES_TO_COPY.size} files")
 
-    FILES_TO_COPY.forEach {
-      fileName ->
-      val outputFile = File(context.filesDir, fileName)
-      if (!UtilityHelper.isFileExists(outputFile.path)) {
-        try {
-          if (copySingleAsset(context, fileName, outputFile)) {
-            successCount++
+        FILES_TO_COPY.forEach { fileName ->
+          val outputFile = File(context.filesDir, fileName)
+          if (!UtilityHelper.isFileExists(outputFile.path)) {
+            try {
+              if (copySingleAsset(context, fileName, outputFile)) {
+                successCount++
+              }
+            } catch (e: Exception) {
+              Log.e(TAG, "Critical error copying $fileName: ${e.message}")
+            }
+          } else {
+            Log.d(TAG, "$fileName already exists. Skipping copy.")
           }
-        } catch (e: Exception) {
-          Log.e(TAG, "Critical error copying $fileName: ${e.message}")
         }
-      } else {
-        Log.d(TAG, "$fileName already exists. Skipping copy.")
-      }
-    }
 
-    Log.d(TAG, "Asset copy process completed. $successCount/${FILES_TO_COPY.size} files copied.")
-    return@withContext successCount
-  }
+        Log.d(
+            TAG, "Asset copy process completed. $successCount/${FILES_TO_COPY.size} files copied.")
+        return@withContext successCount
+      }
 
   private fun doesFileExist(file: File): Boolean {
     val path = file.absolutePath
-    return fileExistenceCache.getOrPut(path) {
-      file.exists()
-    }
+    return fileExistenceCache.getOrPut(path) { file.exists() }
   }
 
   private fun copySingleAsset(context: Context, fileName: String, outputFile: File): Boolean {
     return try {
       Log.d(TAG, "Copying $fileName to app files directory...")
       val assetManager = context.assets
-      assetManager.open(fileName).use {
-        input ->
-        FileOutputStream(outputFile).use {
-          output ->
-          input.copyTo(output)
-        }
+      assetManager.open(fileName).use { input ->
+        FileOutputStream(outputFile).use { output -> input.copyTo(output) }
       }
 
       val permissionResult = setFullPermissions(outputFile.absolutePath)
@@ -85,43 +89,30 @@ object AssetsManager {
     }
   }
 
-
   private fun setFullPermissions(filePath: String): Boolean {
     val shellResult = Utils.executeShellCommand("chmod 777 $filePath")
 
     if (!shellResult.isSuccess) {
       Log.e(TAG, "Shell chmod failed, attempting File API")
       val file = File(filePath)
-      val fileSuccess = file.setExecutable(true, false) &&
-      file.setReadable(true, false) &&
-      file.setWritable(true, false)
+      val fileSuccess =
+          file.setExecutable(true, false) &&
+              file.setReadable(true, false) &&
+              file.setWritable(true, false)
       return fileSuccess
     }
     return true
   }
 
   @Throws(IOException::class)
-  fun copyAssetFile(
-    context: Context,
-    assetFileName: String,
-    destinationDir: String
-  ) {
-    require(assetFileName.isNotBlank()) {
-      "Asset file name cannot be blank"
-    }
+  fun copyAssetFile(context: Context, assetFileName: String, destinationDir: String) {
+    require(assetFileName.isNotBlank()) { "Asset file name cannot be blank" }
 
-    val outFile = File(destinationDir, assetFileName).apply {
-      parentFile?.takeIf {
-        !it.exists()
-      }?.mkdirs()
-    }
+    val outFile =
+        File(destinationDir, assetFileName).apply { parentFile?.takeIf { !it.exists() }?.mkdirs() }
 
-    context.assets.open(assetFileName).use {
-      input ->
-      FileOutputStream(outFile).use {
-        output ->
-        input.copyTo(output, BUFFER_SIZE)
-      }
+    context.assets.open(assetFileName).use { input ->
+      FileOutputStream(outFile).use { output -> input.copyTo(output, BUFFER_SIZE) }
     }
   }
 }

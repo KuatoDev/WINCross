@@ -1,19 +1,17 @@
 package id.vern.wincross.activity
 
-import android.os.Bundle
-import android.util.Log
-import androidx.appcompat.app.*
-import androidx.preference.PreferenceManager
-import id.vern.wincross.databinding.ActivityToolboxBinding
-import id.vern.wincross.helpers.*
 import android.content.*
-import kotlinx.coroutines.*
+import android.os.Bundle
+import android.view.MenuItem
+import androidx.appcompat.app.*
 import androidx.lifecycle.lifecycleScope
 import id.vern.wincross.R
-import id.vern.wincross.operations.*
-import android.view.MenuItem
-import id.vern.wincross.utils.*
+import id.vern.wincross.databinding.ActivityToolboxBinding
+import id.vern.wincross.helpers.*
 import id.vern.wincross.managers.*
+import id.vern.wincross.operations.*
+import id.vern.wincross.utils.*
+import kotlinx.coroutines.*
 
 class ToolboxActivity : AppCompatActivity() {
   private lateinit var binding: ActivityToolboxBinding
@@ -32,9 +30,7 @@ class ToolboxActivity : AppCompatActivity() {
     setupToolbar()
     binding.cvSTA.setOnClickListener {
       DialogHelper.showSTACreator(this, window.decorView.rootView) {
-        lifecycleScope.launch {
-          CreateSTA.RunSTAAsync(this@ToolboxActivity)
-        }
+        lifecycleScope.launch { CreateSTA.RunSTAAsync(this@ToolboxActivity) }
       }
     }
 
@@ -46,10 +42,10 @@ class ToolboxActivity : AppCompatActivity() {
       }
     }
 
-    binding.cvScript.setOnClickListener {
-      DialogHelper.showScriptToolbox(this, window.decorView.rootView) {
+    binding.cvRotationToggle.setOnClickListener {
+      DialogHelper.showRotationToggle(this, window.decorView.rootView) {
         lifecycleScope.launch(Dispatchers.Main) {
-          ScriptToolbox.extractScript(this@ToolboxActivity)
+          RotationToggle.extractScript(this@ToolboxActivity)
         }
       }
     }
@@ -95,6 +91,7 @@ class ToolboxActivity : AppCompatActivity() {
       setNavigationIcon(R.drawable.ic_toolbox)
     }
   }
+
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     if (item.itemId == android.R.id.home) {
       finish()

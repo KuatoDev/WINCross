@@ -78,9 +78,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
   }
 
   private fun openUrl(url: String) {
-    val intent = Intent(Intent.ACTION_VIEW).apply {
-      data = android.net.Uri.parse(url)
-    }
+    val intent = Intent(Intent.ACTION_VIEW).apply { data = android.net.Uri.parse(url) }
     startActivity(intent)
   }
 
@@ -89,11 +87,10 @@ class SettingsFragment : PreferenceFragmentCompat() {
     val themes = arrayOf("System Default", "Dark Mode", "Light Mode")
     val themeValues = arrayOf("system", "dark", "light")
     val currentTheme =
-    sharedPreferences.getString(getString(R.string.key_theme), "system") ?: "system"
+        sharedPreferences.getString(getString(R.string.key_theme), "system") ?: "system"
     val selectedIndex = themeValues.indexOf(currentTheme)
 
-    showDialog(safeContext, "Choose Theme", themes, selectedIndex) {
-      which ->
+    showDialog(safeContext, "Choose Theme", themes, selectedIndex) { which ->
       val selectedTheme = themeValues[which]
       sharedPreferences.edit().putString(getString(R.string.key_theme), selectedTheme).apply()
       applyTheme(selectedTheme)
@@ -106,11 +103,10 @@ class SettingsFragment : PreferenceFragmentCompat() {
     val colors = arrayOf("Default", "Blue", "Red", "Green", "Yellow")
     val colorValues = arrayOf("default", "blue", "red", "green", "yellow")
     val currentColor =
-    sharedPreferences.getString(getString(R.string.key_theme_color), "default") ?: "default"
+        sharedPreferences.getString(getString(R.string.key_theme_color), "default") ?: "default"
     val selectedIndex = colorValues.indexOf(currentColor)
 
-    showDialog(safeContext, "Choose Theme Color", colors, selectedIndex) {
-      which ->
+    showDialog(safeContext, "Choose Theme Color", colors, selectedIndex) { which ->
       val selectedColor = colorValues[which]
       sharedPreferences.edit().putString(getString(R.string.key_theme_color), selectedColor).apply()
       applyThemeColor(selectedColor)
@@ -119,62 +115,64 @@ class SettingsFragment : PreferenceFragmentCompat() {
   }
 
   private fun showDialog(
-    context: Context,
-    title: String,
-    items: Array<String>,
-    selectedIndex: Int,
-    onItemSelected: (Int) -> Unit
+      context: Context,
+      title: String,
+      items: Array<String>,
+      selectedIndex: Int,
+      onItemSelected: (Int) -> Unit
   ) {
     val titleView = createDialogTitle(title)
     showBlur()
     MaterialAlertDialogBuilder(context)
-    .setCustomTitle(titleView)
-    .setSingleChoiceItems(items, selectedIndex) {
-      dialog, which ->
-      onItemSelected(which)
-      removeBlur()
-      dialog.dismiss()
-    }
-    .setOnDismissListener {
-      removeBlur()
-    }
-    .create()
-    .show()
+        .setCustomTitle(titleView)
+        .setSingleChoiceItems(items, selectedIndex) { dialog, which ->
+          onItemSelected(which)
+          removeBlur()
+          dialog.dismiss()
+        }
+        .setOnDismissListener { removeBlur() }
+        .create()
+        .show()
   }
 
   private fun applyTheme(selectedTheme: String) {
-    val mode = when (selectedTheme) {
-      "dark" -> AppCompatDelegate.MODE_NIGHT_YES
-      "light" -> AppCompatDelegate.MODE_NIGHT_NO
-      else -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
-    }
+    val mode =
+        when (selectedTheme) {
+          "dark" -> AppCompatDelegate.MODE_NIGHT_YES
+          "light" -> AppCompatDelegate.MODE_NIGHT_NO
+          else -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+        }
     AppCompatDelegate.setDefaultNightMode(mode)
     restartMainActivity()
   }
 
   private fun applyThemeColor(selectedThemeColor: String) {
-    val themeId = when (selectedThemeColor) {
-      "blue" -> R.style.Theme_MyApp_Blue
-      "red" -> R.style.Theme_MyApp_Red
-      "green" -> R.style.Theme_MyApp_Green
-      "yellow" -> R.style.Theme_MyApp_Yellow
-      else -> R.style.Theme_MyApp_Default
-    }
+    val themeId =
+        when (selectedThemeColor) {
+          "blue" -> R.style.Theme_MyApp_Blue
+          "red" -> R.style.Theme_MyApp_Red
+          "green" -> R.style.Theme_MyApp_Green
+          "yellow" -> R.style.Theme_MyApp_Yellow
+          else -> R.style.Theme_MyApp_Default
+        }
     activity?.setTheme(themeId)
     restartMainActivity()
   }
 
   private fun restartMainActivity() {
-    Handler(Looper.getMainLooper()).postDelayed({
-      activity?.let {
-        safeActivity ->
-        val intent = Intent(safeActivity, MainActivity::class.java).apply {
-          addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-        }
-        startActivity(intent)
-        safeActivity.finish()
-      }
-    }, 100)
+    Handler(Looper.getMainLooper())
+        .postDelayed(
+            {
+              activity?.let { safeActivity ->
+                val intent =
+                    Intent(safeActivity, MainActivity::class.java).apply {
+                      addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    }
+                startActivity(intent)
+                safeActivity.finish()
+              }
+            },
+            100)
   }
 
   private fun getCurrentThemeSummary(): String {
@@ -196,19 +194,19 @@ class SettingsFragment : PreferenceFragmentCompat() {
   }
 
   private fun createDialogTitle(title: String): TextView {
-    val ctx = context ?: return TextView(requireContext()).apply {
-      text = title
-      textSize = 20f
-      setTypeface(null, Typeface.BOLD)
-      gravity = Gravity.CENTER
-      setPadding(0, 20, 0, 20)
-    }
+    val ctx =
+        context
+            ?: return TextView(requireContext()).apply {
+              text = title
+              textSize = 20f
+              setTypeface(null, Typeface.BOLD)
+              gravity = Gravity.CENTER
+              setPadding(0, 20, 0, 20)
+            }
 
     return if (isAdded && layoutResourceExists(R.layout.dialog_title)) {
       val inflater = LayoutInflater.from(ctx)
-      (inflater.inflate(R.layout.dialog_title, null) as TextView).apply {
-        text = title
-      }
+      (inflater.inflate(R.layout.dialog_title, null) as TextView).apply { text = title }
     } else {
       TextView(ctx).apply {
         text = title
@@ -229,15 +227,11 @@ class SettingsFragment : PreferenceFragmentCompat() {
   }
 
   private fun removeBlur() {
-    activity?.window?.decorView?.rootView?.let {
-      UtilityHelper.removeBlurBackground(it)
-    }
+    activity?.window?.decorView?.rootView?.let { UtilityHelper.removeBlurBackground(it) }
   }
 
   private fun showBlur() {
-    activity?.window?.decorView?.rootView?.let {
-      UtilityHelper.showBlurBackground(it)
-    }
+    activity?.window?.decorView?.rootView?.let { UtilityHelper.showBlurBackground(it) }
   }
 
   private fun getAllPreferencesData(): List<String> {
@@ -245,16 +239,17 @@ class SettingsFragment : PreferenceFragmentCompat() {
     val allPrefs = sharedPreferences.all
     if (allPrefs.isEmpty()) return listOf("No data stored")
     for ((key, value) in allPrefs) {
-      val entryString = when (value) {
-        is Boolean -> "$key: ${if (value) "Yes" else "No"}"
-        is Int -> "$key: $value"
-        is Float -> "$key: $value"
-        is Long -> "$key: $value"
-        is String -> "$key: $value"
-        is Set<*> -> "$key: ${value.joinToString(", ")}"
-        null -> "$key: null"
-        else -> "$key: ${value.toString()}"
-      }
+      val entryString =
+          when (value) {
+            is Boolean -> "$key: ${if (value) "Yes" else "No"}"
+            is Int -> "$key: $value"
+            is Float -> "$key: $value"
+            is Long -> "$key: $value"
+            is String -> "$key: $value"
+            is Set<*> -> "$key: ${value.joinToString(", ")}"
+            null -> "$key: null"
+            else -> "$key: ${value.toString()}"
+          }
       allEntries.add(entryString)
     }
 
@@ -266,17 +261,16 @@ class SettingsFragment : PreferenceFragmentCompat() {
     val preferencesData = getAllPreferencesData()
     val titleView = createDialogTitle("Saved Preferences Data")
     showBlur()
-    val listView = ListView(safeContext).apply {
-      adapter = ArrayAdapter(safeContext, android.R.layout.simple_list_item_1, preferencesData)
-    }
+    val listView =
+        ListView(safeContext).apply {
+          adapter = ArrayAdapter(safeContext, android.R.layout.simple_list_item_1, preferencesData)
+        }
 
     MaterialAlertDialogBuilder(safeContext)
-    .setCustomTitle(titleView)
-    .setView(listView)
-    .setOnDismissListener {
-      removeBlur()
-    }
-    .create()
-    .show()
+        .setCustomTitle(titleView)
+        .setView(listView)
+        .setOnDismissListener { removeBlur() }
+        .create()
+        .show()
   }
 }

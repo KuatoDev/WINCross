@@ -4,14 +4,21 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.DialogFragment
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import id.vern.wincross.databinding.DialogBlurBinding
 
-class BlurDialogFragment(private val title: String, private val message: String, private val positiveAction: () -> Unit) : DialogFragment() {
+class BlurDialogFragment(
+    private val title: String,
+    private val message: String,
+    private val positiveAction: () -> Unit
+) : DialogFragment() {
 
   private lateinit var binding: DialogBlurBinding
 
-  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+  override fun onCreateView(
+      inflater: LayoutInflater,
+      container: ViewGroup?,
+      savedInstanceState: Bundle?
+  ): View? {
     binding = DialogBlurBinding.inflate(inflater, container, false)
     return binding.root
   }
@@ -28,8 +35,6 @@ class BlurDialogFragment(private val title: String, private val message: String,
       dismiss()
     }
 
-    binding.btnCancel.setOnClickListener {
-      dismiss()
-    }
+    binding.btnCancel.setOnClickListener { dismiss() }
   }
 }

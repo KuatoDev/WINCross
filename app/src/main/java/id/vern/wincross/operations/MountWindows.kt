@@ -2,9 +2,8 @@ package id.vern.wincross.operations
 
 import android.content.Context
 import android.util.Log
-import com.topjohnwu.superuser.Shell
-import java.io.File
 import id.vern.wincross.utils.*
+import java.io.File
 
 object MountWindows {
   private const val TAG = "MountWindows"
@@ -13,8 +12,9 @@ object MountWindows {
   private const val PREF_MOUNT_TO_MNT = "Windows Mount Path"
 
   fun getWindowsPartitionPath(context: Context): String? {
-    return context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-    .getString(PREF_WINDOWS, null)
+    return context
+        .getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        .getString(PREF_WINDOWS, null)
   }
 
   fun mount(context: Context): Boolean {
@@ -44,16 +44,11 @@ object MountWindows {
     }
 
     // Execute mount command with library path for NTFS driver
-    val mountCommand = "su -mm -c LD_LIBRARY_PATH=$libraryPath $mountNtfsPath $partition $mountPoint"
-    val result = Utils.executeShellCommand(
-      mountCommand,
-      TAG,
-      logSuccess = true,
-      logFailure = true
-    )
+    val mountCommand =
+        "su -mm -c LD_LIBRARY_PATH=$libraryPath $mountNtfsPath $partition $mountPoint"
+    val result = Utils.executeShellCommand(mountCommand, TAG, logSuccess = true, logFailure = true)
 
-    return result.isSuccess.also {
-      success ->
+    return result.isSuccess.also { success ->
       if (success) {
         Log.d(TAG, "Successfully mounted Windows partition at: $mountPoint")
       } else {
@@ -63,8 +58,10 @@ object MountWindows {
   }
 
   suspend fun umount(context: Context): Boolean {
-    val mountPoint = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-    .getString(PREF_MOUNT_TO_MNT, null)
+    val mountPoint =
+        context
+            .getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+            .getString(PREF_MOUNT_TO_MNT, null)
 
     Log.d(TAG, "Attempting to unmount Windows from: $mountPoint")
 

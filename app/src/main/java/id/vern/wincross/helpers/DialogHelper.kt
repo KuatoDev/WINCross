@@ -286,12 +286,12 @@ object DialogHelper {
         onPositive = onConfirm)
   }
 
-  fun showScriptToolbox(context: Context, rootView: View, onConfirm: () -> Unit) {
+  fun showRotationToggle(context: Context, rootView: View, onConfirm: () -> Unit) {
     createDialog(
         context = context,
         rootView = rootView,
-        title = context.getString(R.string.title_script),
-        message = context.getString(R.string.msg_script),
+        title = context.getString(R.string.title_rotation_toggle),
+        message = context.getString(R.string.msg_rotation_toggle),
         onPositive = onConfirm)
   }
 

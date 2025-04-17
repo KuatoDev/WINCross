@@ -1,14 +1,13 @@
 package id.vern.wincross.activity
 
+import android.content.*
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
-import id.vern.wincross.databinding.ActivitySettingsBinding
-import androidx.preference.PreferenceManager
-import android.content.*
-import id.vern.wincross.R
-import id.vern.wincross.fragments.*
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
+import id.vern.wincross.R
+import id.vern.wincross.databinding.ActivitySettingsBinding
+import id.vern.wincross.fragments.*
 import id.vern.wincross.managers.*
 import id.vern.wincross.utils.*
 
@@ -31,9 +30,10 @@ class SettingsActivity : AppCompatActivity() {
     Log.d(TAG, "onCreate: Toolbar title set to 'WIN Cross'")
 
     if (savedInstanceState == null) {
-      supportFragmentManager.beginTransaction()
-      .replace(R.id.fragment_container, SettingsFragment())
-      .commit()
+      supportFragmentManager
+          .beginTransaction()
+          .replace(R.id.fragment_container, SettingsFragment())
+          .commit()
     }
   }
 

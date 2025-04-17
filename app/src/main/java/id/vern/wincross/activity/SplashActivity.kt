@@ -10,9 +10,8 @@ import androidx.lifecycle.lifecycleScope
 import com.topjohnwu.superuser.Shell
 import id.vern.wincross.R
 import id.vern.wincross.helpers.*
-import id.vern.wincross.utils.*
-import java.io.File
 import id.vern.wincross.managers.*
+import id.vern.wincross.utils.*
 import kotlinx.coroutines.*
 
 class SplashActivity : AppCompatActivity() {
@@ -20,6 +19,7 @@ class SplashActivity : AppCompatActivity() {
     private const val REQUEST_CODE = 1001
     private const val TAG = "SplashActivity"
   }
+
   private lateinit var sharedPreferences: SharedPreferences
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +28,7 @@ class SplashActivity : AppCompatActivity() {
     ThemeManager(this).initializeTheme(this)
     setContentView(R.layout.splash_screen)
     Shell.getShell()
-    if (Shell.isAppGrantedRoot()!= true) {
+    if (Shell.isAppGrantedRoot() != true) {
       Log.d(TAG, "Device is not rooted")
       DialogHelper.showPopupNotifications(this, "Give root access to continue...")
       return
@@ -47,7 +47,7 @@ class SplashActivity : AppCompatActivity() {
   private fun requestPermissionsIfNeeded() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
       ActivityCompat.requestPermissions(
-        this, arrayOf(android.Manifest.permission.FOREGROUND_SERVICE_DATA_SYNC), REQUEST_CODE)
+          this, arrayOf(android.Manifest.permission.FOREGROUND_SERVICE_DATA_SYNC), REQUEST_CODE)
     }
   }
 
@@ -56,18 +56,18 @@ class SplashActivity : AppCompatActivity() {
     val prefs = getSharedPreferences("WinCross_preferences", Context.MODE_PRIVATE)
     // Get or set default Windows path
     val mountPath = prefs.getString("Windows Mount Path", null)
-    val windowsPath = when {
-      // If Windows Mount Path has a value, use it
-      !mountPath.isNullOrEmpty() -> mountPath
-      // If null or empty, set default path and save it
-      else -> "${Environment.getExternalStorageDirectory().path}/WINCross/Windows".also {
-        defaultPath ->
-        prefs.edit()
-        .putString("Windows Mount Path", defaultPath)
-        .apply()
-        Log.d(TAG, "Setting default Windows path: $defaultPath")
-      }
-    }
+    val windowsPath =
+        when {
+          // If Windows Mount Path has a value, use it
+          !mountPath.isNullOrEmpty() -> mountPath
+          // If null or empty, set default path and save it
+          else ->
+              "${Environment.getExternalStorageDirectory().path}/WINCross/Windows"
+                  .also { defaultPath ->
+                    prefs.edit().putString("Windows Mount Path", defaultPath).apply()
+                    Log.d(TAG, "Setting default Windows path: $defaultPath")
+                  }
+        }
 
     // Setup backup path
     val backupPath = "${Environment.getExternalStorageDirectory().path}/WINCross/Backup"
@@ -81,15 +81,9 @@ class SplashActivity : AppCompatActivity() {
       UtilityHelper.createFolderIfNotExists(listOf(backupPath, windowsPath))
 
       // Copy assets and check partitions
-      launch {
-        AssetsManager.copyAssetsToExecutableDir(this@SplashActivity)
-      }
-      launch {
-        GetPartitions.checkAndSaveActiveSlot(this@SplashActivity)
-      }
-      launch {
-        GetPartitions.checkAndSaveAllPartitionsIfNeeded(this@SplashActivity)
-      }
+      launch { AssetsManager.copyAssetsToExecutableDir(this@SplashActivity) }
+      launch { GetPartitions.checkAndSaveActiveSlot(this@SplashActivity) }
+      launch { GetPartitions.checkAndSaveAllPartitionsIfNeeded(this@SplashActivity) }
     }
   }
 

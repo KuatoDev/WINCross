@@ -28,14 +28,14 @@ object BlurUtil {
     val r = radius.coerceIn(1f, 25f)
     val outputBitmap = Bitmap.createBitmap(bitmap.width, bitmap.height, Bitmap.Config.ARGB_8888)
 
-    val paint = Paint().apply {
-      isAntiAlias = true
-      maskFilter = android.graphics.BlurMaskFilter(r, android.graphics.BlurMaskFilter.Blur.NORMAL)
-    }
+    val paint =
+        Paint().apply {
+          isAntiAlias = true
+          maskFilter =
+              android.graphics.BlurMaskFilter(r, android.graphics.BlurMaskFilter.Blur.NORMAL)
+        }
 
-    outputBitmap.applyCanvas {
-      drawBitmap(bitmap, 0f, 0f, paint)
-    }
+    outputBitmap.applyCanvas { drawBitmap(bitmap, 0f, 0f, paint) }
 
     return outputBitmap
   }

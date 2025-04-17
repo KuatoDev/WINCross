@@ -1,7 +1,6 @@
 package id.vern.wincross.activity
 
 import android.content.*
-import android.net.Uri
 import android.os.*
 import android.util.Log
 import android.view.*
@@ -9,14 +8,14 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import id.vern.wincross.BuildConfig
 import id.vern.wincross.R
 import id.vern.wincross.databinding.ActivityMainBinding
 import id.vern.wincross.handlers.*
 import id.vern.wincross.helpers.*
-import id.vern.wincross.utils.*
 import id.vern.wincross.managers.*
+import id.vern.wincross.utils.*
 import kotlinx.coroutines.*
-import id.vern.wincross.BuildConfig
 
 class MainActivity : AppCompatActivity() {
   lateinit var binding: ActivityMainBinding
@@ -35,10 +34,7 @@ class MainActivity : AppCompatActivity() {
   var isBackupExists = false
   private var isUefiDialogShowing = false
 
-
-  private val switchHandler by lazy {
-    SwitchHandler(this, sharedPreferences)
-  }
+  private val switchHandler by lazy { SwitchHandler(this, sharedPreferences) }
 
   companion object {
     private const val TAG = "MainActivity"
@@ -56,36 +52,38 @@ class MainActivity : AppCompatActivity() {
     val currentVersion = BuildConfig.VERSION_NAME
     val updater = AppUpdaterManager(this)
 
-    updater.checkForUpdates(currentVersion, object : AppUpdaterManager.UpdateCallback {
-      override fun onUpdateAvailable(versionName: String, downloadUrl: String, releaseNotes: String) {
-        DialogHelper.createDialog(
-          context = this@MainActivity,
-          rootView = window.decorView.rootView,
-          title = getString(R.string.update_available),
-          message = getString(R.string.new_version_info, versionName, releaseNotes),
-          positiveButtonText = getString(R.string.download),
-          negativeButtonText = getString(R.string.cancel),
-          onPositive = {
-            updater.downloadUpdate(downloadUrl)
+    updater.checkForUpdates(
+        currentVersion,
+        object : AppUpdaterManager.UpdateCallback {
+          override fun onUpdateAvailable(
+              versionName: String,
+              downloadUrl: String,
+              releaseNotes: String
+          ) {
+            DialogHelper.createDialog(
+                context = this@MainActivity,
+                rootView = window.decorView.rootView,
+                title = getString(R.string.update_available),
+                message = getString(R.string.new_version_info, versionName, releaseNotes),
+                positiveButtonText = getString(R.string.download),
+                negativeButtonText = getString(R.string.cancel),
+                onPositive = { updater.downloadUpdate(downloadUrl) })
           }
-        )
-      }
 
-      override fun onNoUpdateAvailable() {
-        Log.d(TAG, getString(R.string.already_latest_version))
-      }
+          override fun onNoUpdateAvailable() {
+            Log.d(TAG, getString(R.string.already_latest_version))
+          }
 
-      override fun onError(error: String) {
-        DialogHelper.createDialog(
-          context = this@MainActivity,
-          rootView = window.decorView.rootView,
-          title = getString(R.string.update_check_failed),
-          message = error,
-          positiveButtonText = getString(R.string.yes),
-          negativeButtonText = null
-        )
-      }
-    })
+          override fun onError(error: String) {
+            DialogHelper.createDialog(
+                context = this@MainActivity,
+                rootView = window.decorView.rootView,
+                title = getString(R.string.update_check_failed),
+                message = error,
+                positiveButtonText = getString(R.string.yes),
+                negativeButtonText = null)
+          }
+        })
   }
 
   private fun initializeViews() {
@@ -102,12 +100,10 @@ class MainActivity : AppCompatActivity() {
     uiStateManager = UIStateManager(this, binding, sharedPreferences)
     permissionManager = PermissionManager(this)
 
-    filePickerLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) {
-      uri ->
-      uri?.let {
-        UEFIHelper.handleSelectedFile(it)
-      }
-    }
+    filePickerLauncher =
+        registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+          uri?.let { UEFIHelper.handleSelectedFile(it) }
+        }
 
     UEFIHelper.initialize(this, filePickerLauncher)
   }
@@ -136,18 +132,10 @@ class MainActivity : AppCompatActivity() {
       tvSelectUefi.isSelected = true
       tvRestore.isSelected = true
 
-      btnBackup.setOnClickListener {
-        buttonManager.handleBackup()
-      }
-      btnRestore.setOnClickListener {
-        buttonManager.handleRestore()
-      }
-      btnSelectUEFI.setOnClickListener {
-        buttonManager.handleSelectUEFI()
-      }
-      btnSwitchToWindows.setOnClickListener {
-        buttonManager.handleSwitchToWindows()
-      }
+      btnBackup.setOnClickListener { buttonManager.handleBackup() }
+      btnRestore.setOnClickListener { buttonManager.handleRestore() }
+      btnSelectUEFI.setOnClickListener { buttonManager.handleSelectUEFI() }
+      btnSwitchToWindows.setOnClickListener { buttonManager.handleSwitchToWindows() }
       btnToolbox.setOnClickListener {
         startActivity(Intent(this@MainActivity, ToolboxActivity::class.java))
       }
@@ -158,59 +146,44 @@ class MainActivity : AppCompatActivity() {
     with(binding.mainpreferences) {
       msForceBackupToWin.apply {
         isChecked = sharedPreferences.getBoolean("force_backup_to_win", false)
-        setOnCheckedChangeListener {
-          _, isChecked ->
-          switchHandler.handleBackupToWin(isChecked)
-        }
+        setOnCheckedChangeListener { _, isChecked -> switchHandler.handleBackupToWin(isChecked) }
       }
 
       msBackupBootIfEmpty.apply {
         isChecked = sharedPreferences.getBoolean("backup_boot_if_empty", false)
-        setOnCheckedChangeListener {
-          _, isChecked ->
+        setOnCheckedChangeListener { _, isChecked ->
           switchHandler.handleBackupBootIfEmpty(isChecked)
         }
       }
 
       msAutomaticMountWindows.apply {
         isChecked = sharedPreferences.getBoolean("automatic_mount_windows", false)
-        setOnCheckedChangeListener {
-          _, isChecked ->
+        setOnCheckedChangeListener { _, isChecked ->
           switchHandler.handleAutomaticMountWindows(isChecked)
         }
       }
 
       msMountToMnt.apply {
         isChecked = sharedPreferences.getString("Windows Mount Path", null) == "/mnt/Windows"
-        setOnCheckedChangeListener {
-          _, isChecked ->
-          switchHandler.handleMountToMnt(isChecked)
-        }
+        setOnCheckedChangeListener { _, isChecked -> switchHandler.handleMountToMnt(isChecked) }
       }
 
       msFlashLogoWithUefi.apply {
         isChecked = sharedPreferences.getBoolean("flash_logo_with_uefi", false)
         visibility = if (shouldShowFlashLogo()) View.VISIBLE else View.GONE
-        setOnCheckedChangeListener {
-          _, isChecked ->
+        setOnCheckedChangeListener { _, isChecked ->
           switchHandler.handleFlashLogoWithUefi(isChecked)
         }
       }
 
       msAlwaysProvisionModem.apply {
         isChecked = sharedPreferences.getBoolean("always_provision_modem", false)
-        setOnCheckedChangeListener {
-          _, isChecked ->
-          switchHandler.handleProvisionModem(isChecked)
-        }
+        setOnCheckedChangeListener { _, isChecked -> switchHandler.handleProvisionModem(isChecked) }
       }
 
       msUpdateUefi.apply {
         isChecked = sharedPreferences.getBoolean("uefi_auto_update", false)
-        setOnCheckedChangeListener {
-          _, isChecked ->
-          switchHandler.handleUEFIAutoUpdate(isChecked)
-        }
+        setOnCheckedChangeListener { _, isChecked -> switchHandler.handleUEFIAutoUpdate(isChecked) }
       }
     }
   }
@@ -227,32 +200,30 @@ class MainActivity : AppCompatActivity() {
     }
   }
 
-  private suspend fun checkFilesAndPermissions() = withContext(Dispatchers.IO) {
-    updateFileSystemState(true)
-    withContext(Dispatchers.Main) {
-      permissionManager.checkAndRequestAll()
-    }
-  }
+  private suspend fun checkFilesAndPermissions() =
+      withContext(Dispatchers.IO) {
+        updateFileSystemState(true)
+        withContext(Dispatchers.Main) { permissionManager.checkAndRequestAll() }
+      }
 
   private suspend fun updateFileSystemState(showDialog: Boolean) {
     val selectedUefiPath = sharedPreferences.getString("UEFI", null)
-    isUefiAvailable = if (selectedUefiPath.isNullOrEmpty()) {
-      UtilityHelper.isUefiFileAvailable(this@MainActivity)
-    } else {
-      UtilityHelper.isFileExists(selectedUefiPath)
-    }
+    isUefiAvailable =
+        if (selectedUefiPath.isNullOrEmpty()) {
+          UtilityHelper.isUefiFileAvailable(this@MainActivity)
+        } else {
+          UtilityHelper.isFileExists(selectedUefiPath)
+        }
 
     if (!isUefiAvailable && showDialog) {
-      withContext(Dispatchers.Main) {
-        showUefiDialog()
-      }
+      withContext(Dispatchers.Main) { showUefiDialog() }
     }
 
     isWindowsInstalled = UtilityHelper.isWindowsInstalled(this@MainActivity)
     isWindowsMounted = UtilityHelper.isWindowsMounted(this@MainActivity)
-    isBackupExists = UtilityHelper.isBackupExists(
-      "${Environment.getExternalStorageDirectory().path}/WINCross/Backup/logo.img"
-    )
+    isBackupExists =
+        UtilityHelper.isBackupExists(
+            "${Environment.getExternalStorageDirectory().path}/WINCross/Backup/logo.img")
   }
 
   public fun updateUiBasedOnState() {
@@ -267,9 +238,8 @@ class MainActivity : AppCompatActivity() {
     }
   }
 
-  private suspend fun refreshFileSystemState() = withContext(Dispatchers.IO) {
-    updateFileSystemState(true)
-  }
+  private suspend fun refreshFileSystemState() =
+      withContext(Dispatchers.IO) { updateFileSystemState(true) }
 
   override fun onCreateOptionsMenu(menu: Menu?): Boolean {
     menuInflater.inflate(R.menu.menu_toolbar, menu)
@@ -281,7 +251,8 @@ class MainActivity : AppCompatActivity() {
       R.id.action_settings -> {
         startActivity(Intent(this, SettingsActivity::class.java))
         true
-      } else -> super.onOptionsItemSelected(item)
+      }
+      else -> super.onOptionsItemSelected(item)
     }
   }
 
@@ -291,21 +262,18 @@ class MainActivity : AppCompatActivity() {
 
     try {
       DialogHelper.createDialog(
-        context = this,
-        rootView = window.decorView.rootView,
-        title = getString(R.string.select_uefi),
-        message = getString(R.string.select_uefi_message),
-        positiveButtonText = getString(R.string.select_uefi),
-        negativeButtonText = getString(R.string.cancel),
-        onPositive = {
-          UEFIHelper.initialize(this)
-          UEFIHelper.selectUEFIFile()
-          isUefiDialogShowing = false
-        },
-        onDismiss = {
-          isUefiDialogShowing = false
-        }
-      )
+          context = this,
+          rootView = window.decorView.rootView,
+          title = getString(R.string.select_uefi),
+          message = getString(R.string.select_uefi_message),
+          positiveButtonText = getString(R.string.select_uefi),
+          negativeButtonText = getString(R.string.cancel),
+          onPositive = {
+            UEFIHelper.initialize(this)
+            UEFIHelper.selectUEFIFile()
+            isUefiDialogShowing = false
+          },
+          onDismiss = { isUefiDialogShowing = false })
     } catch (e: Exception) {
       Log.e(TAG, getString(R.string.error_showing_dialog, e.message))
       isUefiDialogShowing = false
@@ -313,9 +281,9 @@ class MainActivity : AppCompatActivity() {
   }
 
   override fun onRequestPermissionsResult(
-    requestCode: Int,
-    permissions: Array<out String>,
-    grantResults: IntArray
+      requestCode: Int,
+      permissions: Array<out String>,
+      grantResults: IntArray
   ) {
     super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     permissionManager.handlePermissionResult(requestCode, permissions, grantResults)

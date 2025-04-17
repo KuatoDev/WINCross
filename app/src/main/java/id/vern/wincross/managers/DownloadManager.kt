@@ -2,22 +2,22 @@ package id.vern.wincross.managers
 
 import android.content.Context
 import android.util.Log
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import java.io.*
 import java.net.HttpURLConnection
 import java.net.URL
 import kotlin.math.roundToInt
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 object DownloadManager {
   private const val BUFFER_SIZE = 8192
 
   suspend fun downloadFile(
-    context: Context,
-    url: String,
-    destinationPath: String,
-    fileName: String,
-    progressCallback: suspend (Int) -> Unit
+      context: Context,
+      url: String,
+      destinationPath: String,
+      fileName: String,
+      progressCallback: suspend (Int) -> Unit
   ): Boolean {
     return withContext(Dispatchers.IO) {
       try {
@@ -44,16 +44,15 @@ object DownloadManager {
         var lastProgressUpdate = 0
 
         try {
-          while (inputStream.read(buffer).also {
-            bytesRead = it
-          } != -1) {
+          while (inputStream.read(buffer).also { bytesRead = it } != -1) {
             outputStream.write(buffer, 0, bytesRead)
             totalRead += bytesRead
-            val progress = if (fileLength > 0) {
-              (totalRead * 100 / fileLength.toFloat()).roundToInt()
-            } else {
-              -1
-            }
+            val progress =
+                if (fileLength > 0) {
+                  (totalRead * 100 / fileLength.toFloat()).roundToInt()
+                } else {
+                  -1
+                }
             if (progress >= lastProgressUpdate + 5 || progress == 100) {
               lastProgressUpdate = progress
               progressCallback(progress)

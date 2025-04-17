@@ -239,7 +239,7 @@
                          android:layout_width="match_parent"
                          android:gravity="center"
                          android:textColor="?android:attr/textColorPrimary"
-                         android:text="@string/title_script"
+                         android:text="@string/title_rotation_toggle"
                          android:textStyle="bold" />
 
                     <com.google.android.material.card.MaterialCardView
@@ -256,7 +256,7 @@
                          android:minHeight="96dp"
                          style="@style/Widget.Material3.CardView.Filled"
                          app:cardCornerRadius="@dimen/cardCornerRadius"
-                         android:id="@+id/cvScript">
+                         android:id="@+id/cvRotationToggle">
 
                         <TextView
                              android:layout_height="match_parent"
@@ -264,9 +264,9 @@
                              android:drawablePadding="8dp"
                              android:padding="8dp"
                              android:layout_marginHorizontal="4dp"
-                             android:drawableStart="@drawable/ic_toolbox"
+                             android:drawableStart="@drawable/ic_rotation"
                              android:layout_gravity="center_vertical"
-                             android:text="@string/desc_script_toolbox" />
+                             android:text="@string/desc_rotation_toggle" />
 
                     </com.google.android.material.card.MaterialCardView>
 

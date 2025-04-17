@@ -2,16 +2,13 @@ package id.vern.wincross.helpers
 
 import android.content.Context
 import android.graphics.*
-import android.net.Uri
-import android.util.Log
-import android.widget.Toast
-import androidx.browser.customtabs.CustomTabsIntent
-import com.topjohnwu.superuser.Shell
-import id.vern.wincross.R
 import android.os.Environment
+import android.util.Log
+import android.view.View
+import android.widget.Toast
+import com.topjohnwu.superuser.Shell
 import id.vern.wincross.utils.*
 import java.io.File
-import android.view.View
 
 object UtilityHelper {
 
@@ -70,14 +67,12 @@ object UtilityHelper {
   }
 
   fun showBlurBackground(rootView: View) =
-  rootView.setRenderEffect(RenderEffect.createBlurEffect(10f, 10f, Shader.TileMode.MIRROR))
+      rootView.setRenderEffect(RenderEffect.createBlurEffect(10f, 10f, Shader.TileMode.MIRROR))
 
   fun removeBlurBackground(rootView: View) = rootView.setRenderEffect(null)
 
   fun createFolderIfNotExists(folderPaths: List<String>) {
-    folderPaths.forEach {
-      path -> checkAndCreateFolder(path)
-    }
+    folderPaths.forEach { path -> checkAndCreateFolder(path) }
   }
 
   fun isDeviceRooted(): Boolean {

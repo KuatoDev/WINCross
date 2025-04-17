@@ -9,9 +9,9 @@
     <string name="already_latest_version">Already a latest version</string>
 
     <string name="title_usb_hostmode">USB Host Mode</string>
-    <string name="desc_download_usb_hostmode">A tool that allows you to easily enable or disable USB host mode on your WOA device.</string>
+    <string name="desc_download_usb_hostmode">A tool that enables quick toggling between USB host mode and device mode on Windows on ARM (WOA) devices. This utility provides a simple interface to switch USB functionality without navigating through complex system settings.</string>
     <string name="title_optimized_taskbar">Optimized Taskbar Control</string>
-    <string name="desc_download_optimized_taskbar">A tool that allows you to easily enable or disable Tablet Optimized Taskbar on Windows 11 devices.</string>
+    <string name="desc_download_optimized_taskbar">A utility tool that provides quick and easy toggling of the Tablet Optimized Taskbar feature on Windows 11 devices. This tool simplifies switching between standard and tablet-optimized taskbar layouts without navigating through complex system settings.</string>
     <string name="title_boot_autoflasher">Boot IMG Autoflasher</string>
     <string name="desc_download_boot_autoflasher">Use it to easily set up Android boot.img auto-flashing with a simple, user-friendly interface. supports flashing on Windows boot or when battery is below 15%, and requires StA installed to flash Android boot.img.</string>
 
@@ -58,13 +58,12 @@
     <string name="title_information">Information</string>
     <string name="title_help_mount">About Windows Mounting</string>
     <string name="title_open_file_manager">Open in File Manager</string>
-    <string name="title_script">Insert Scripts</string>
+    <string name="title_script">Insert Rotation Toggle</string>
     <string name="title_restore">Restore Partition Backup</string>
     <string name="app_configuration">App Configurations</string>
     <string name="contributors_title">Contributors</string>
     <string name="restore_title">Restore Backup Partitions</string>
     <string name="restore_title_header">Select partition to restore:</string>
-    <string name="restore_backup_title">!!! WARNING !!!</string>
 
     <!-- ==================== MAIN ACTIONS ==================== -->
     <string name="switch_to_windows">Switch to Windows</string>
@@ -91,13 +90,12 @@
     <string name="desc_atlas_revi_os">Download and add essential resources for AtlasOS and ReviOS, including playbooks and AME Wizard, to Desktop. These optimized Windows distributions help improve performance and remove unnecessary bloat, making your system faster and more efficient.</string>
 
     <!-- Script Toolbox -->
-    <string name="title_script_toolbox">Script Toolbox</string>
-    <string name="desc_script_toolbox">The Script Toolbox provides a collection of automation scripts and system tweaks to optimize Windows performance. These scripts help automate repetitive tasks, enhance system stability, and improve overall efficiency.</string>
+    <string name="title_rotation_toggle">Rotation Toggle</string>
+    <string name="desc_rotation_toggle">The "Insert Rotation Toggle" is a utility feature designed to add a convenient rotation lock toggle button to Windows devices with rotation capabilities. This functionality allows users to quickly enable or disable screen rotation without navigating through multiple system settings menus.</string>
 
     <!-- Frameworks -->
     <string name="title_download_frameworks">Download Frameworks</string>
     <string name="desc_download_frameworks">Easily download and install essential frameworks for Windows. These frameworks include necessary dependencies and libraries required for running various applications, improving compatibility, and ensuring smoother software execution.</string>
-
     <string name="mount_windows_for_toolbox">Toolbox Closed. Mount Windows to use Toolbox</string>
 
     <!-- ==================== CONTRIBUTORS ==================== -->
@@ -131,12 +129,12 @@
     <!-- ==================== WINDOWS STATUS MESSAGES ==================== -->
     <!-- Mount Status Messages -->
     <string name="mount_status">Windows %1$s %2$s</string>
-    <string name="action_mount">mount</string>
-    <string name="action_unmount">unmount</string>
-    <string name="status_success">successful</string>
-    <string name="status_failed">failed</string>
-    <string name="status_not_installed">not installed</string>
-    <string name="status_installed">installed</string>
+    <string name="action_mount">Mount</string>
+    <string name="action_unmount">Unmount</string>
+    <string name="status_success">Successful</string>
+    <string name="status_failed">Failed!</string>
+    <string name="status_not_installed">Not installed</string>
+    <string name="status_installed">Installed</string>
 
     <!-- ==================== THEME SETTINGS ==================== -->
     <string name="title_choose_theme_color">Choose Theme Color</string>
@@ -183,18 +181,18 @@
 
     <!-- ==================== DIALOG MESSAGES ==================== -->
     <string name="msg_confirmation">Do you want to %s?</string> <!-- Use with various actions -->
-    <string name="msg_backup_kernel">back up important partitions</string>
+    <string name="msg_backup_kernel">Back up important partitions</string>
     <string name="msg_flash_uefi">Switch to Windows now?</string>
-    <string name="msg_mount_windows">mount the Windows partition</string>
-    <string name="msg_umount_windows">unmount the Windows partition</string>
-    <string name="msg_open_file_manager">open the mounted Windows partition in the File Manager</string>
-    <string name="msg_open_backup">open the backup partition in the File Manager</string>
+    <string name="msg_mount_windows">Mount the Windows partition</string>
+    <string name="msg_umount_windows">Unmount the Windows partition</string>
+    <string name="msg_open_file_manager">Open the mounted Windows partition in the File Manager</string>
+    <string name="msg_open_backup">Open the backup partition in the File Manager</string>
     <string name="reboot_message">Flashing completed. Would you like to reboot to Windows?</string>
     <string name="reboot_message_warning">Do you want to reboot to Windows now?</string>
-    <string name="msg_create_sta">create Switch to Android now</string>
-    <string name="msg_arm_software">insert browser shortcuts for ARM software to Desktop/ARMSoftware</string>
-    <string name="msg_script">insert USB Host Mode and Rotation Toggle to Windows</string>
-    <string name="msg_download_frameworks">download useful frameworks</string>
+    <string name="msg_create_sta">Rreate Switch to Android now</string>
+    <string name="msg_arm_software">Insert browser shortcuts for ARM software to Desktop/ARMSoftware</string>
+    <string name="msg_rotation_toggle">Insert Rotation Toggle to Windows</string>
+    <string name="msg_download_frameworks">Download useful frameworks</string>
 
     <!-- ==================== HELP MESSAGES ==================== -->
     <string name="help_message">%s</string> <!-- Use with various help messages -->
@@ -206,7 +204,7 @@
     <!-- ==================== OPERATION STATUS MESSAGES ==================== -->
     <!-- General Status -->
     <string name="operation_status">%1$s %2$s</string> <!-- Use with operation name and status -->
-    <string name="status_partial">partially completed</string>
+    <string name="status_partial">Partially completed</string>
 
     <!-- Operation Types -->
     <string name="operation_backup">Backup</string>
@@ -222,9 +220,9 @@
     <string name="error_not_rooted">device is not rooted</string>
     <string name="error_uefi">UEFI error</string>
     <string name="error_logo">Logo error</string>
-    <string name="error_corrupted_files">corrupted files</string>
-    <string name="error_partition_not_found">partition not found</string>
-    <string name="error_boot_failed">boot process failed</string>
+    <string name="error_corrupted_files">Corrupted files</string>
+    <string name="error_partition_not_found">Partition not found</string>
+    <string name="error_boot_failed">Poot process failed</string>
     <string name="error_modem_provision_failed">Modem provision failed</string>
 
     <!-- ==================== FLASH OPERATIONS ==================== -->
@@ -251,8 +249,8 @@
 
     <!-- Settings Status -->
     <string name="toast_status">%1$s is %2$s</string> <!-- Use with feature name and status -->
-    <string name="status_enabled">enabled</string>
-    <string name="status_disabled">disabled</string>
+    <string name="status_enabled">Enabled</string>
+    <string name="status_disabled">Disabled</string>
 
     <!-- Feature Names -->
     <string name="feature_backup_to_win">Kernel backup on every reboot to Windows</string>
@@ -284,15 +282,15 @@
     <string name="error_device_not_rooted">The device is not rooted.</string>
     <!-- ==================== FLASH OPERATIONS ==================== -->
     <!-- Flash Operation Reasons -->
-    <string name="reason_not_rooted">device not rooted</string>
-    <string name="reason_missing_files">required files are missing</string>
-    <string name="reason_partition_not_found">partition not found</string>
-    <string name="reason_boot_failed">boot process failed</string>
+    <string name="reason_not_rooted">Device not rooted</string>
+    <string name="reason_missing_files">Required files are missing</string>
+    <string name="reason_partition_not_found">Partition not found</string>
+    <string name="reason_boot_failed">Boot process failed</string>
     <!-- ==================== MODEM MESSAGES ==================== -->
     <!-- Modem Operation Status -->
-    <string name="modem_provision_success">provisioning completed successfully</string>
-    <string name="modem_provision_partial">provisioning partially completed</string>
-    <string name="modem_provision_failed">provisioning failed</string>
+    <string name="modem_provision_success">Provisioning completed successfully</string>
+    <string name="modem_provision_partial">Provisioning partially completed</string>
+    <string name="modem_provision_failed">Provisioning failed</string>
 
     <!-- Modem Operation Details -->
     <string name="modem_provision_status">Modem %s</string>
