@@ -1,15 +1,12 @@
 package id.vern.wincross.managers
 
-import android.content.Context
-import android.content.Intent
+import android.content.*
 import androidx.lifecycle.lifecycleScope
 import id.vern.wincross.activity.*
 import id.vern.wincross.helpers.*
 import id.vern.wincross.operations.*
 import id.vern.wincross.utils.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 class ButtonClickManager(private val activity: MainActivity) {
   private val lifecycleScope = activity.lifecycleScope

@@ -1,161 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="wrap_content"
-    android:layout_width="match_parent"
-    android:padding="14dp"
-    android:orientation="horizontal">
+     xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     android:layout_height="wrap_content"
+     android:layout_width="match_parent"
+     android:padding="14dp"
+     android:orientation="horizontal">
 
     <ImageView
-        android:layout_height="200dp"
-        android:layout_width="wrap_content"
-        android:animateLayoutChanges="true"
-        android:scaleType="fitXY"
-        android:layout_marginEnd="4dp"
-        android:stateListAnimator="@anim/state_list_anim"
-        android:id="@+id/deviceimage" />
+         android:layout_height="200dp"
+         android:layout_width="wrap_content"
+         android:animateLayoutChanges="true"
+         android:scaleType="fitXY"
+         android:layout_marginEnd="4dp"
+         android:stateListAnimator="@anim/state_list_anim"
+         android:id="@+id/deviceimage" />
 
     <com.google.android.material.card.MaterialCardView
-        android:layout_height="match_parent"
-        android:layout_width="wrap_content"
-        android:animateLayoutChanges="true"
-        app:cardMaxElevation="2dp"
-        android:adjustViewBounds="true"
-        android:clickable="true"
-        app:cardBackgroundColor="?attr/colorPrimary"
-        style="@style/Widget.Material3.CardView.Filled"
-        app:cardCornerRadius="@dimen/cardCornerRadius"
-        android:focusable="true"
-        android:foreground="?android:attr/selectableItemBackground"
-        android:id="@+id/cv_info">
+         android:layout_height="match_parent"
+         android:layout_width="wrap_content"
+         android:animateLayoutChanges="true"
+         app:cardMaxElevation="2dp"
+         android:adjustViewBounds="true"
+         android:clickable="true"
+         app:cardBackgroundColor="?attr/colorPrimary"
+         style="@style/Widget.Material3.CardView.Filled"
+         app:cardCornerRadius="@dimen/cardCornerRadius"
+         android:focusable="true"
+         android:foreground="?android:attr/selectableItemBackground"
+         android:id="@+id/cv_info">
 
         <RelativeLayout
-            android:layout_height="match_parent"
-            android:layout_width="wrap_content">
+             android:layout_height="match_parent"
+             android:layout_width="wrap_content">
 
             <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:ellipsize="marquee"
-                android:marqueeRepeatLimit="marquee_forever"
-                android:singleLine="true"
-                android:textColor="?android:textColorPrimary"
-                android:scrollHorizontally="true"
-                android:focusable="true"
-                android:gravity="center"
-                android:autoSizePresetSizes="@array/auto_size_text_sizes"
-                android:layout_marginHorizontal="8dp"
-                android:focusableInTouchMode="true"
-                android:autoSizeTextType="uniform"
-                android:layout_alignParentTop="true"
-                android:id="@+id/woa_title"
-                android:text="@string/woa"
-                android:textStyle="bold" />
+                 android:layout_height="wrap_content"
+                 android:layout_width="match_parent"
+                 android:ellipsize="marquee"
+                 android:marqueeRepeatLimit="marquee_forever"
+                 android:singleLine="true"
+                 android:textColor="?attr/colorSurface"
+                 android:scrollHorizontally="true"
+                 android:focusable="true"
+                 android:gravity="center"
+                 android:autoSizePresetSizes="@array/auto_size_text_sizes"
+                 android:paddingVertical="2dp"
+                 android:layout_marginHorizontal="8dp"
+                 android:focusableInTouchMode="true"
+                 android:autoSizeTextType="uniform"
+                 android:layout_alignParentTop="true"
+                 android:id="@+id/woa_title"
+                 android:text="@string/woa"
+                 android:textStyle="bold" />
 
             <com.google.android.material.card.MaterialCardView
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                android:adjustViewBounds="true"
-                android:layout_below="@id/woa_title"
-                app:cardElevation="4dp"
-                app:cardBackgroundColor="@color/colorSurface"
-                style="@style/Widget.Material3.CardView.Filled"
-                app:cardCornerRadius="@dimen/cardCornerRadius"
-                android:foreground="?android:attr/selectableItemBackground">
+                 android:layout_height="match_parent"
+                 android:layout_width="match_parent"
+                 android:adjustViewBounds="true"
+                 android:layout_below="@id/woa_title"
+                 app:cardElevation="4dp"
+                 app:cardBackgroundColor="@color/colorSurface"
+                 style="@style/Widget.Material3.CardView.Filled"
+                 app:cardCornerRadius="@dimen/cardCornerRadius"
+                 android:foreground="?android:attr/selectableItemBackground">
 
                 <LinearLayout
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:layout_marginVertical="2dp"
-                    android:padding="@dimen/parentMargin"
-                    android:orientation="horizontal">
+                     android:layout_height="wrap_content"
+                     android:layout_width="match_parent"
+                     android:layout_marginVertical="2dp"
+                     android:padding="@dimen/parentMargin"
+                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:layout_weight="1">
+                         android:layout_height="wrap_content"
+                         android:layout_width="match_parent"
+                         android:orientation="vertical"
+                         android:layout_weight="1">
 
                         <TextView
-                            android:layout_height="wrap_content"
-                            android:layout_width="match_parent"
-                            android:autoSizePresetSizes="@array/auto_size_text_sizes"
-                            android:autoSizeTextType="uniform"
-                            android:layout_marginStart="2dp"
-                            android:id="@+id/tv_device"
-                            android:text="@string/device_info" />
+                             android:layout_height="wrap_content"
+                             android:layout_width="match_parent"
+                             android:autoSizePresetSizes="@array/auto_size_text_sizes"
+                             android:autoSizeTextType="uniform"
+                             android:layout_marginStart="2dp"
+                             android:id="@+id/tv_device"
+                             android:text="@string/device_info" />
 
                         <TextView
-                            android:layout_height="wrap_content"
-                            android:layout_width="match_parent"
-                            android:autoSizePresetSizes="@array/auto_size_text_sizes"
-                            android:autoSizeTextType="uniform"
-                            android:layout_marginStart="2dp"
-                            android:id="@+id/tvActiveSlot"
-                            android:text="@string/info_active_slot" />
+                             android:layout_height="wrap_content"
+                             android:layout_width="match_parent"
+                             android:autoSizePresetSizes="@array/auto_size_text_sizes"
+                             android:autoSizeTextType="uniform"
+                             android:layout_marginStart="2dp"
+                             android:id="@+id/tvActiveSlot"
+                             android:text="@string/info_active_slot" />
 
                         <TextView
-                            android:layout_height="wrap_content"
-                            android:layout_width="match_parent"
-                            android:autoSizePresetSizes="@array/auto_size_text_sizes"
-                            android:autoSizeTextType="uniform"
-                            android:layout_marginStart="2dp"
-                            android:id="@+id/tv_windows_installed"
-                            android:text="@string/info_windows" />
+                             android:layout_height="wrap_content"
+                             android:layout_width="match_parent"
+                             android:autoSizePresetSizes="@array/auto_size_text_sizes"
+                             android:autoSizeTextType="uniform"
+                             android:layout_marginStart="2dp"
+                             android:id="@+id/tv_windows_installed"
+                             android:text="@string/info_windows" />
 
                         <TextView
-                            android:layout_height="wrap_content"
-                            android:layout_width="match_parent"
-                            android:autoSizePresetSizes="@array/auto_size_text_sizes"
-                            android:autoSizeTextType="uniform"
-                            android:layout_marginStart="2dp"
-                            android:id="@+id/tv_panel"
-                            android:text="@string/info_panel_type" />
+                             android:layout_height="wrap_content"
+                             android:layout_width="match_parent"
+                             android:autoSizePresetSizes="@array/auto_size_text_sizes"
+                             android:autoSizeTextType="uniform"
+                             android:layout_marginStart="2dp"
+                             android:id="@+id/tv_panel"
+                             android:text="@string/info_panel_type" />
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:layout_weight="1">
+                         android:layout_height="wrap_content"
+                         android:layout_width="match_parent"
+                         android:orientation="vertical"
+                         android:layout_weight="1">
 
                         <TextView
-                            android:layout_height="wrap_content"
-                            android:layout_width="match_parent"
-                            android:autoSizePresetSizes="@array/auto_size_text_sizes"
-                            android:autoSizeTextType="uniform"
-                            android:layout_marginStart="2dp"
-                            android:id="@+id/tvTotalRam"
-                            android:text="@string/info_total_ram" />
+                             android:layout_height="wrap_content"
+                             android:layout_width="match_parent"
+                             android:autoSizePresetSizes="@array/auto_size_text_sizes"
+                             android:autoSizeTextType="uniform"
+                             android:layout_marginStart="2dp"
+                             android:id="@+id/tvTotalRam"
+                             android:text="@string/info_total_ram" />
 
                         <TextView
-                            android:layout_height="wrap_content"
-                            android:layout_width="match_parent"
-                            android:autoSizePresetSizes="@array/auto_size_text_sizes"
-                            android:autoSizeTextType="uniform"
-                            android:layout_marginStart="2dp"
-                            android:id="@+id/tvTotalStorage"
-                            android:text="@string/info_total_storage" />
+                             android:layout_height="wrap_content"
+                             android:layout_width="match_parent"
+                             android:autoSizePresetSizes="@array/auto_size_text_sizes"
+                             android:autoSizeTextType="uniform"
+                             android:layout_marginStart="2dp"
+                             android:id="@+id/tvTotalStorage"
+                             android:text="@string/info_total_storage" />
 
                         <TextView
-                            android:layout_height="wrap_content"
-                            android:layout_width="match_parent"
-                            android:autoSizePresetSizes="@array/auto_size_text_sizes"
-                            android:autoSizeTextType="uniform"
-                            android:layout_marginStart="2dp"
-                            android:id="@+id/tvBatteryCapacity"
-                            android:text="@string/info_battery_capacity" />
+                             android:layout_height="wrap_content"
+                             android:layout_width="match_parent"
+                             android:autoSizePresetSizes="@array/auto_size_text_sizes"
+                             android:autoSizeTextType="uniform"
+                             android:layout_marginStart="2dp"
+                             android:id="@+id/tvBatteryCapacity"
+                             android:text="@string/info_battery_capacity" />
 
                         <TextView
-                            android:layout_height="wrap_content"
-                            android:layout_width="match_parent"
-                            android:autoSizePresetSizes="@array/auto_size_text_sizes"
-                            android:autoSizeTextType="uniform"
-                            android:layout_marginStart="2dp"
-                            android:id="@+id/tvKernelPowerProfile"
-                            android:text="@string/info_power_profile" />
+                             android:layout_height="wrap_content"
+                             android:layout_width="match_parent"
+                             android:autoSizePresetSizes="@array/auto_size_text_sizes"
+                             android:autoSizeTextType="uniform"
+                             android:layout_marginStart="2dp"
+                             android:id="@+id/tvKernelPowerProfile"
+                             android:text="@string/info_power_profile" />
 
                     </LinearLayout>
 
@@ -166,36 +167,36 @@
         </RelativeLayout>
 
         <LinearLayout
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:gravity="center"
-            android:padding="2dp"
-            android:orientation="horizontal"
-            android:layout_gravity="bottom">
+             android:layout_height="wrap_content"
+             android:layout_width="match_parent"
+             android:gravity="center"
+             android:padding="2dp"
+             android:orientation="horizontal"
+             android:layout_gravity="bottom">
 
             <com.google.android.material.button.MaterialButton
-                android:layout_height="32dp"
-                android:layout_width="0dp"
-                android:layout_marginEnd="2dp"
-                android:padding="0dp"
-                android:textSize="12sp"
-                android:textColor="?android:textColorPrimary"
-                android:layout_marginStart="2dp"
-                android:layout_weight="1"
-                android:id="@+id/btn_guide"
-                android:text="@string/guide" />
+                 android:layout_height="32dp"
+                 android:layout_width="0dp"
+                 android:layout_marginEnd="2dp"
+                 android:padding="0dp"
+                 android:textSize="12sp"
+                 android:textColor="?attr/colorSurface"
+                 android:layout_marginStart="2dp"
+                 android:layout_weight="1"
+                 android:id="@+id/btn_guide"
+                 android:text="@string/guide" />
 
             <com.google.android.material.button.MaterialButton
-                android:layout_height="32dp"
-                android:layout_width="0dp"
-                android:layout_marginEnd="2dp"
-                android:padding="0dp"
-                android:textSize="12sp"
-                android:textColor="?android:textColorPrimary"
-                android:layout_marginStart="2dp"
-                android:layout_weight="1"
-                android:id="@+id/btn_group"
-                android:text="@string/group" />
+                 android:layout_height="32dp"
+                 android:layout_width="0dp"
+                 android:layout_marginEnd="2dp"
+                 android:padding="0dp"
+                 android:textSize="12sp"
+                 android:textColor="?attr/colorSurface"
+                 android:layout_marginStart="2dp"
+                 android:layout_weight="1"
+                 android:id="@+id/btn_group"
+                 android:text="@string/group" />
 
         </LinearLayout>
 

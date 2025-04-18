@@ -1,511 +1,511 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:layout_height="match_parent"
-  android:layout_width="match_parent"
-  android:orientation="vertical"
-  android:layout_marginTop="8dp"
-  android:paddingHorizontal="10dp">
+     xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_height="match_parent"
+     android:layout_width="match_parent"
+     android:orientation="vertical"
+     android:layout_marginTop="8dp"
+     android:paddingHorizontal="10dp">
 
-  <LinearLayout
-    android:layout_height="wrap_content"
-    android:layout_width="match_parent"
-    android:orientation="horizontal">
+    <LinearLayout
+         android:layout_height="wrap_content"
+         android:layout_width="match_parent"
+         android:orientation="horizontal">
 
-    <com.google.android.material.card.MaterialCardView
-      android:layout_height="140dp"
-      android:layout_width="match_parent"
-      android:animateLayoutChanges="true"
-      app:cardMaxElevation="0dp"
-      android:adjustViewBounds="true"
-      android:clickable="true"
-      android:elevation="@dimen/cardElevation"
-      android:stateListAnimator="@anim/state_list_anim"
-      app:cardBackgroundColor="?attr/colorSurface"
-      android:foreground="?android:attr/selectableItemBackground"
-      android:gravity="center"
-      android:minHeight="96dp"
-      android:layout_margin="4dp"
-      style="@style/Widget.Material3.CardView.Filled"
-      app:cardCornerRadius="@dimen/cardCornerRadius"
-      android:layout_weight="1"
-      android:id="@+id/btnBackup">
+        <com.google.android.material.card.MaterialCardView
+             android:layout_height="140dp"
+             android:layout_width="match_parent"
+             android:animateLayoutChanges="true"
+             app:cardMaxElevation="0dp"
+             android:adjustViewBounds="true"
+             android:clickable="true"
+             android:elevation="@dimen/cardElevation"
+             android:stateListAnimator="@anim/state_list_anim"
+             app:cardBackgroundColor="?attr/colorSurface"
+             android:foreground="?android:attr/selectableItemBackground"
+             android:gravity="center"
+             android:minHeight="96dp"
+             android:layout_margin="4dp"
+             style="@style/Widget.Material3.CardView.Filled"
+             app:cardCornerRadius="@dimen/cardCornerRadius"
+             android:layout_weight="1"
+             android:id="@+id/btnBackup">
 
-      <RelativeLayout
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        android:gravity="center"
-        android:layout_margin="@dimen/fab_margin"
-        android:layout_gravity="center">
+            <RelativeLayout
+                 android:layout_height="match_parent"
+                 android:layout_width="match_parent"
+                 android:gravity="center"
+                 android:layout_margin="@dimen/fab_margin"
+                 android:layout_gravity="center">
 
-        <TextView
-          android:layout_height="wrap_content"
-          android:layout_width="match_parent"
-          android:ellipsize="marquee"
-          android:marqueeRepeatLimit="marquee_forever"
-          android:singleLine="true"
-          android:textColor="?android:textColorPrimary"
-          android:scrollHorizontally="true"
-          android:focusable="true"
-          android:gravity="center|top"
-          android:textAlignment="center"
-          android:autoSizePresetSizes="@array/auto_size_text_sizes"
-          android:layout_marginHorizontal="2dp"
-          android:focusableInTouchMode="true"
-          android:text="BACKUP PARTITIONS"
-          android:id="@+id/tv_backup_title"
-          android:textStyle="bold" />
+                <TextView
+                     android:layout_height="wrap_content"
+                     android:layout_width="match_parent"
+                     android:ellipsize="marquee"
+                     android:marqueeRepeatLimit="marquee_forever"
+                     android:singleLine="true"
+                     android:textColor="?android:textColorPrimary"
+                     android:scrollHorizontally="true"
+                     android:focusable="true"
+                     android:gravity="center|top"
+                     android:textAlignment="center"
+                     android:autoSizePresetSizes="@array/auto_size_text_sizes"
+                     android:layout_marginHorizontal="2dp"
+                     android:focusableInTouchMode="true"
+                     android:text="BACKUP PARTITIONS"
+                     android:id="@+id/tv_backup_title"
+                     android:textStyle="bold" />
 
-        <View
-          android:layout_height="1dp"
-          android:layout_width="match_parent"
-          android:layout_below="@id/tv_backup_title"
-          android:background="?attr/colorPrimary" />
+                <View
+                     android:layout_height="1dp"
+                     android:layout_width="match_parent"
+                     android:layout_below="@id/tv_backup_title"
+                     android:background="?attr/colorPrimary" />
 
-        <ImageView
-          android:layout_height="48dp"
-          android:layout_width="48dp"
-          android:layout_centerInParent="true"
-          android:scaleType="fitXY"
-          android:src="@drawable/ic_disk"
-          android:layout_margin="8dp" />
+                <ImageView
+                     android:layout_height="48dp"
+                     android:layout_width="48dp"
+                     android:layout_centerInParent="true"
+                     android:scaleType="fitXY"
+                     android:src="@drawable/ic_disk"
+                     android:layout_margin="8dp" />
 
-        <TextView
-          android:layout_height="match_parent"
-          android:layout_width="match_parent"
-          android:ellipsize="marquee"
-          android:marqueeRepeatLimit="marquee_forever"
-          android:singleLine="true"
-          android:textColor="?android:textColorPrimary"
-          android:scrollHorizontally="true"
-          android:focusable="true"
-          android:gravity="center|bottom"
-          android:textAlignment="center"
-          android:autoSizePresetSizes="@array/auto_size_text_sizes"
-          android:layout_marginHorizontal="2dp"
-          android:focusableInTouchMode="true"
-          android:id="@+id/tv_backup"
-          android:text="@string/title_backup" />
+                <TextView
+                     android:layout_height="match_parent"
+                     android:layout_width="match_parent"
+                     android:ellipsize="marquee"
+                     android:marqueeRepeatLimit="marquee_forever"
+                     android:singleLine="true"
+                     android:textColor="?android:textColorPrimary"
+                     android:scrollHorizontally="true"
+                     android:focusable="true"
+                     android:gravity="center|bottom"
+                     android:textAlignment="center"
+                     android:autoSizePresetSizes="@array/auto_size_text_sizes"
+                     android:layout_marginHorizontal="2dp"
+                     android:focusableInTouchMode="true"
+                     android:id="@+id/tv_backup"
+                     android:text="@string/title_backup" />
 
-      </RelativeLayout>
+            </RelativeLayout>
 
-    </com.google.android.material.card.MaterialCardView>
+        </com.google.android.material.card.MaterialCardView>
 
-    <com.google.android.material.card.MaterialCardView
-      android:layout_height="140dp"
-      android:layout_width="match_parent"
-      android:animateLayoutChanges="true"
-      app:cardMaxElevation="0dp"
-      android:adjustViewBounds="true"
-      android:clickable="true"
-      android:elevation="@dimen/cardElevation"
-      android:stateListAnimator="@anim/state_list_anim"
-      app:cardBackgroundColor="?attr/colorSurface"
-      android:foreground="?android:attr/selectableItemBackground"
-      android:gravity="center"
-      android:minHeight="96dp"
-      android:layout_margin="4dp"
-      style="@style/Widget.Material3.CardView.Filled"
-      app:cardCornerRadius="@dimen/cardCornerRadius"
-      android:layout_weight="1"
-      android:id="@+id/btnSwitchToWindows">
+        <com.google.android.material.card.MaterialCardView
+             android:layout_height="140dp"
+             android:layout_width="match_parent"
+             android:animateLayoutChanges="true"
+             app:cardMaxElevation="0dp"
+             android:adjustViewBounds="true"
+             android:clickable="true"
+             android:elevation="@dimen/cardElevation"
+             android:stateListAnimator="@anim/state_list_anim"
+             app:cardBackgroundColor="?attr/colorSurface"
+             android:foreground="?android:attr/selectableItemBackground"
+             android:gravity="center"
+             android:minHeight="96dp"
+             android:layout_margin="4dp"
+             style="@style/Widget.Material3.CardView.Filled"
+             app:cardCornerRadius="@dimen/cardCornerRadius"
+             android:layout_weight="1"
+             android:id="@+id/btnSwitchToWindows">
 
-      <RelativeLayout
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        android:gravity="center"
-        android:layout_margin="@dimen/fab_margin"
-        android:layout_gravity="center">
+            <RelativeLayout
+                 android:layout_height="match_parent"
+                 android:layout_width="match_parent"
+                 android:gravity="center"
+                 android:layout_margin="@dimen/fab_margin"
+                 android:layout_gravity="center">
 
-        <TextView
-          android:layout_height="wrap_content"
-          android:layout_width="match_parent"
-          android:ellipsize="marquee"
-          android:marqueeRepeatLimit="marquee_forever"
-          android:singleLine="true"
-          android:textColor="?android:textColorPrimary"
-          android:scrollHorizontally="true"
-          android:focusable="true"
-          android:gravity="center|top"
-          android:textAlignment="center"
-          android:autoSizePresetSizes="@array/auto_size_text_sizes"
-          android:layout_marginHorizontal="2dp"
-          android:focusableInTouchMode="true"
-          android:text="SWITCH TO WINDOWS"
-          android:id="@+id/tv_switch_title"
-          android:textStyle="bold" />
+                <TextView
+                     android:layout_height="wrap_content"
+                     android:layout_width="match_parent"
+                     android:ellipsize="marquee"
+                     android:marqueeRepeatLimit="marquee_forever"
+                     android:singleLine="true"
+                     android:textColor="?android:textColorPrimary"
+                     android:scrollHorizontally="true"
+                     android:focusable="true"
+                     android:gravity="center|top"
+                     android:textAlignment="center"
+                     android:autoSizePresetSizes="@array/auto_size_text_sizes"
+                     android:layout_marginHorizontal="2dp"
+                     android:focusableInTouchMode="true"
+                     android:text="SWITCH TO WINDOWS"
+                     android:id="@+id/tv_switch_title"
+                     android:textStyle="bold" />
 
-        <View
-          android:layout_height="1dp"
-          android:layout_width="match_parent"
-          android:layout_below="@id/tv_switch_title"
-          android:background="?attr/colorPrimary" />
+                <View
+                     android:layout_height="1dp"
+                     android:layout_width="match_parent"
+                     android:layout_below="@id/tv_switch_title"
+                     android:background="?attr/colorPrimary" />
 
-        <ImageView
-          android:layout_height="38dp"
-          android:layout_width="38dp"
-          android:layout_centerInParent="true"
-          android:scaleType="fitXY"
-          android:src="@drawable/ic_windows"
-          android:layout_margin="8dp" />
+                <ImageView
+                     android:layout_height="38dp"
+                     android:layout_width="38dp"
+                     android:layout_centerInParent="true"
+                     android:scaleType="fitXY"
+                     android:src="@drawable/ic_windows"
+                     android:layout_margin="8dp" />
 
-        <TextView
-          android:layout_height="match_parent"
-          android:layout_width="match_parent"
-          android:ellipsize="marquee"
-          android:marqueeRepeatLimit="marquee_forever"
-          android:singleLine="true"
-          android:textColor="?android:attr/textColorPrimary"
-          android:scrollHorizontally="true"
-          android:focusable="true"
-          android:gravity="center|bottom"
-          android:textAlignment="center"
-          android:autoSizePresetSizes="@array/auto_size_text_sizes"
-          android:layout_marginHorizontal="2dp"
-          android:focusableInTouchMode="true"
-          android:id="@+id/tv_switch_to_windows"
-          android:text="@string/boot_to_windows" />
+                <TextView
+                     android:layout_height="match_parent"
+                     android:layout_width="match_parent"
+                     android:ellipsize="marquee"
+                     android:marqueeRepeatLimit="marquee_forever"
+                     android:singleLine="true"
+                     android:textColor="?android:attr/textColorPrimary"
+                     android:scrollHorizontally="true"
+                     android:focusable="true"
+                     android:gravity="center|bottom"
+                     android:textAlignment="center"
+                     android:autoSizePresetSizes="@array/auto_size_text_sizes"
+                     android:layout_marginHorizontal="2dp"
+                     android:focusableInTouchMode="true"
+                     android:id="@+id/tv_switch_to_windows"
+                     android:text="@string/boot_to_windows" />
 
-      </RelativeLayout>
+            </RelativeLayout>
 
-    </com.google.android.material.card.MaterialCardView>
+        </com.google.android.material.card.MaterialCardView>
 
-  </LinearLayout>
+    </LinearLayout>
 
-  <LinearLayout
-    android:layout_height="wrap_content"
-    android:layout_width="match_parent"
-    android:orientation="horizontal">
+    <LinearLayout
+         android:layout_height="wrap_content"
+         android:layout_width="match_parent"
+         android:orientation="horizontal">
 
-    <com.google.android.material.card.MaterialCardView
-      android:layout_height="140dp"
-      android:layout_width="match_parent"
-      android:animateLayoutChanges="true"
-      app:cardMaxElevation="0dp"
-      android:adjustViewBounds="true"
-      android:clickable="true"
-      android:elevation="@dimen/cardElevation"
-      android:stateListAnimator="@anim/state_list_anim"
-      app:cardBackgroundColor="?attr/colorSurface"
-      android:foreground="?android:attr/selectableItemBackground"
-      android:gravity="center"
-      android:minHeight="96dp"
-      android:layout_margin="4dp"
-      style="@style/Widget.Material3.CardView.Filled"
-      app:cardCornerRadius="@dimen/cardCornerRadius"
-      android:layout_weight="1"
-      android:id="@+id/btnRestore">
+        <com.google.android.material.card.MaterialCardView
+             android:layout_height="140dp"
+             android:layout_width="match_parent"
+             android:animateLayoutChanges="true"
+             app:cardMaxElevation="0dp"
+             android:adjustViewBounds="true"
+             android:clickable="true"
+             android:elevation="@dimen/cardElevation"
+             android:stateListAnimator="@anim/state_list_anim"
+             app:cardBackgroundColor="?attr/colorSurface"
+             android:foreground="?android:attr/selectableItemBackground"
+             android:gravity="center"
+             android:minHeight="96dp"
+             android:layout_margin="4dp"
+             style="@style/Widget.Material3.CardView.Filled"
+             app:cardCornerRadius="@dimen/cardCornerRadius"
+             android:layout_weight="1"
+             android:id="@+id/btnRestore">
 
-      <RelativeLayout
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        android:gravity="center"
-        android:layout_margin="@dimen/fab_margin"
-        android:layout_gravity="center">
+            <RelativeLayout
+                 android:layout_height="match_parent"
+                 android:layout_width="match_parent"
+                 android:gravity="center"
+                 android:layout_margin="@dimen/fab_margin"
+                 android:layout_gravity="center">
 
-        <TextView
-          android:layout_height="wrap_content"
-          android:layout_width="match_parent"
-          android:ellipsize="marquee"
-          android:marqueeRepeatLimit="marquee_forever"
-          android:singleLine="true"
-          android:textColor="?android:textColorPrimary"
-          android:scrollHorizontally="true"
-          android:focusable="true"
-          android:gravity="center|top"
-          android:textAlignment="center"
-          android:autoSizePresetSizes="@array/auto_size_text_sizes"
-          android:layout_marginHorizontal="2dp"
-          android:focusableInTouchMode="true"
-          android:text="RESTORE PARTITIONS"
-          android:id="@+id/tv_restore_title"
-          android:textStyle="bold" />
+                <TextView
+                     android:layout_height="wrap_content"
+                     android:layout_width="match_parent"
+                     android:ellipsize="marquee"
+                     android:marqueeRepeatLimit="marquee_forever"
+                     android:singleLine="true"
+                     android:textColor="?android:textColorPrimary"
+                     android:scrollHorizontally="true"
+                     android:focusable="true"
+                     android:gravity="center|top"
+                     android:textAlignment="center"
+                     android:autoSizePresetSizes="@array/auto_size_text_sizes"
+                     android:layout_marginHorizontal="2dp"
+                     android:focusableInTouchMode="true"
+                     android:text="RESTORE PARTITIONS"
+                     android:id="@+id/tv_restore_title"
+                     android:textStyle="bold" />
 
-        <View
-          android:layout_height="1dp"
-          android:layout_width="match_parent"
-          android:layout_below="@id/tv_restore_title"
-          android:background="?attr/colorPrimary" />
+                <View
+                     android:layout_height="1dp"
+                     android:layout_width="match_parent"
+                     android:layout_below="@id/tv_restore_title"
+                     android:background="?attr/colorPrimary" />
 
-        <ImageView
-          android:layout_height="48dp"
-          android:layout_width="48dp"
-          android:layout_centerInParent="true"
-          android:scaleType="fitXY"
-          android:src="@drawable/ic_restore"
-          android:layout_margin="8dp"
-          android:tint="@color/windows_blue" />
+                <ImageView
+                     android:layout_height="48dp"
+                     android:layout_width="48dp"
+                     android:layout_centerInParent="true"
+                     android:scaleType="fitXY"
+                     android:src="@drawable/ic_restore"
+                     android:layout_margin="8dp"
+                     android:tint="@color/windows_blue" />
 
-        <TextView
-          android:layout_height="match_parent"
-          android:layout_width="match_parent"
-          android:ellipsize="marquee"
-          android:marqueeRepeatLimit="marquee_forever"
-          android:singleLine="true"
-          android:textColor="?android:textColorPrimary"
-          android:scrollHorizontally="true"
-          android:focusable="true"
-          android:gravity="center|bottom"
-          android:textAlignment="center"
-          android:autoSizePresetSizes="@array/auto_size_text_sizes"
-          android:layout_marginHorizontal="2dp"
-          android:focusableInTouchMode="true"
-          android:id="@+id/tv_restore"
-          android:text="@string/title_restore" />
+                <TextView
+                     android:layout_height="match_parent"
+                     android:layout_width="match_parent"
+                     android:ellipsize="marquee"
+                     android:marqueeRepeatLimit="marquee_forever"
+                     android:singleLine="true"
+                     android:textColor="?android:textColorPrimary"
+                     android:scrollHorizontally="true"
+                     android:focusable="true"
+                     android:gravity="center|bottom"
+                     android:textAlignment="center"
+                     android:autoSizePresetSizes="@array/auto_size_text_sizes"
+                     android:layout_marginHorizontal="2dp"
+                     android:focusableInTouchMode="true"
+                     android:id="@+id/tv_restore"
+                     android:text="@string/title_restore" />
 
-      </RelativeLayout>
+            </RelativeLayout>
 
-    </com.google.android.material.card.MaterialCardView>
+        </com.google.android.material.card.MaterialCardView>
 
-    <com.google.android.material.card.MaterialCardView
-      android:layout_height="140dp"
-      android:layout_width="match_parent"
-      android:animateLayoutChanges="true"
-      app:cardMaxElevation="0dp"
-      android:adjustViewBounds="true"
-      android:clickable="true"
-      android:elevation="@dimen/cardElevation"
-      android:stateListAnimator="@anim/state_list_anim"
-      app:cardBackgroundColor="?attr/colorSurface"
-      android:foreground="?android:attr/selectableItemBackground"
-      android:gravity="center"
-      android:minHeight="96dp"
-      android:layout_margin="4dp"
-      style="@style/Widget.Material3.CardView.Filled"
-      app:cardCornerRadius="@dimen/cardCornerRadius"
-      android:layout_weight="1"
-      android:id="@+id/btnSelectUEFI">
+        <com.google.android.material.card.MaterialCardView
+             android:layout_height="140dp"
+             android:layout_width="match_parent"
+             android:animateLayoutChanges="true"
+             app:cardMaxElevation="0dp"
+             android:adjustViewBounds="true"
+             android:clickable="true"
+             android:elevation="@dimen/cardElevation"
+             android:stateListAnimator="@anim/state_list_anim"
+             app:cardBackgroundColor="?attr/colorSurface"
+             android:foreground="?android:attr/selectableItemBackground"
+             android:gravity="center"
+             android:minHeight="96dp"
+             android:layout_margin="4dp"
+             style="@style/Widget.Material3.CardView.Filled"
+             app:cardCornerRadius="@dimen/cardCornerRadius"
+             android:layout_weight="1"
+             android:id="@+id/btnSelectUEFI">
 
-      <RelativeLayout
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        android:gravity="center"
-        android:layout_margin="@dimen/fab_margin"
-        android:layout_gravity="center">
+            <RelativeLayout
+                 android:layout_height="match_parent"
+                 android:layout_width="match_parent"
+                 android:gravity="center"
+                 android:layout_margin="@dimen/fab_margin"
+                 android:layout_gravity="center">
 
-        <TextView
-          android:layout_height="wrap_content"
-          android:layout_width="match_parent"
-          android:ellipsize="marquee"
-          android:marqueeRepeatLimit="marquee_forever"
-          android:singleLine="true"
-          android:textColor="?android:textColorPrimary"
-          android:scrollHorizontally="true"
-          android:focusable="true"
-          android:gravity="center|top"
-          android:textAlignment="center"
-          android:autoSizePresetSizes="@array/auto_size_text_sizes"
-          android:layout_marginHorizontal="2dp"
-          android:focusableInTouchMode="true"
-          android:text="SELECT UEFI"
-          android:id="@+id/tv_select_uefi_title"
-          android:textStyle="bold" />
+                <TextView
+                     android:layout_height="wrap_content"
+                     android:layout_width="match_parent"
+                     android:ellipsize="marquee"
+                     android:marqueeRepeatLimit="marquee_forever"
+                     android:singleLine="true"
+                     android:textColor="?android:textColorPrimary"
+                     android:scrollHorizontally="true"
+                     android:focusable="true"
+                     android:gravity="center|top"
+                     android:textAlignment="center"
+                     android:autoSizePresetSizes="@array/auto_size_text_sizes"
+                     android:layout_marginHorizontal="2dp"
+                     android:focusableInTouchMode="true"
+                     android:text="SELECT UEFI"
+                     android:id="@+id/tv_select_uefi_title"
+                     android:textStyle="bold" />
 
-        <View
-          android:layout_height="1dp"
-          android:layout_width="match_parent"
-          android:layout_below="@id/tv_select_uefi_title"
-          android:background="?attr/colorPrimary" />
+                <View
+                     android:layout_height="1dp"
+                     android:layout_width="match_parent"
+                     android:layout_below="@id/tv_select_uefi_title"
+                     android:background="?attr/colorPrimary" />
 
-        <ImageView
-          android:layout_height="38dp"
-          android:layout_width="38dp"
-          android:layout_centerInParent="true"
-          android:scaleType="fitXY"
-          android:src="@drawable/ic_uefi"
-          android:layout_margin="8dp"
-          android:tint="@color/red" />
+                <ImageView
+                     android:layout_height="38dp"
+                     android:layout_width="38dp"
+                     android:layout_centerInParent="true"
+                     android:scaleType="fitXY"
+                     android:src="@drawable/ic_uefi"
+                     android:layout_margin="8dp"
+                     android:tint="@color/red" />
 
-        <TextView
-          android:layout_height="match_parent"
-          android:layout_width="match_parent"
-          android:ellipsize="marquee"
-          android:marqueeRepeatLimit="marquee_forever"
-          android:singleLine="true"
-          android:textColor="?android:attr/textColorPrimary"
-          android:scrollHorizontally="true"
-          android:focusable="true"
-          android:gravity="center|bottom"
-          android:textAlignment="center"
-          android:autoSizePresetSizes="@array/auto_size_text_sizes"
-          android:layout_marginHorizontal="2dp"
-          android:focusableInTouchMode="true"
-          android:id="@+id/tv_select_uefi"
-          android:text="@string/select_uefi" />
+                <TextView
+                     android:layout_height="match_parent"
+                     android:layout_width="match_parent"
+                     android:ellipsize="marquee"
+                     android:marqueeRepeatLimit="marquee_forever"
+                     android:singleLine="true"
+                     android:textColor="?android:attr/textColorPrimary"
+                     android:scrollHorizontally="true"
+                     android:focusable="true"
+                     android:gravity="center|bottom"
+                     android:textAlignment="center"
+                     android:autoSizePresetSizes="@array/auto_size_text_sizes"
+                     android:layout_marginHorizontal="2dp"
+                     android:focusableInTouchMode="true"
+                     android:id="@+id/tv_select_uefi"
+                     android:text="@string/select_uefi" />
 
-      </RelativeLayout>
+            </RelativeLayout>
 
-    </com.google.android.material.card.MaterialCardView>
+        </com.google.android.material.card.MaterialCardView>
 
-  </LinearLayout>
+    </LinearLayout>
 
-  <LinearLayout
-    android:layout_height="wrap_content"
-    android:layout_width="match_parent"
-    android:orientation="horizontal">
+    <LinearLayout
+         android:layout_height="wrap_content"
+         android:layout_width="match_parent"
+         android:orientation="horizontal">
 
-    <com.google.android.material.card.MaterialCardView
-      android:layout_height="140dp"
-      android:layout_width="match_parent"
-      android:animateLayoutChanges="true"
-      app:cardMaxElevation="0dp"
-      android:adjustViewBounds="true"
-      android:clickable="true"
-      android:elevation="@dimen/cardElevation"
-      android:stateListAnimator="@anim/state_list_anim"
-      app:cardBackgroundColor="?attr/colorSurface"
-      android:foreground="?android:attr/selectableItemBackground"
-      android:gravity="center"
-      android:minHeight="96dp"
-      android:layout_margin="4dp"
-      style="@style/Widget.Material3.CardView.Filled"
-      app:cardCornerRadius="@dimen/cardCornerRadius"
-      android:layout_weight="1"
-      android:id="@+id/btnMountWindows">
+        <com.google.android.material.card.MaterialCardView
+             android:layout_height="140dp"
+             android:layout_width="match_parent"
+             android:animateLayoutChanges="true"
+             app:cardMaxElevation="0dp"
+             android:adjustViewBounds="true"
+             android:clickable="true"
+             android:elevation="@dimen/cardElevation"
+             android:stateListAnimator="@anim/state_list_anim"
+             app:cardBackgroundColor="?attr/colorSurface"
+             android:foreground="?android:attr/selectableItemBackground"
+             android:gravity="center"
+             android:minHeight="96dp"
+             android:layout_margin="4dp"
+             style="@style/Widget.Material3.CardView.Filled"
+             app:cardCornerRadius="@dimen/cardCornerRadius"
+             android:layout_weight="1"
+             android:id="@+id/btnMountWindows">
 
-      <RelativeLayout
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        android:gravity="center"
-        android:layout_margin="@dimen/fab_margin"
-        android:layout_gravity="center">
+            <RelativeLayout
+                 android:layout_height="match_parent"
+                 android:layout_width="match_parent"
+                 android:gravity="center"
+                 android:layout_margin="@dimen/fab_margin"
+                 android:layout_gravity="center">
 
-        <TextView
-          android:layout_height="wrap_content"
-          android:layout_width="match_parent"
-          android:ellipsize="marquee"
-          android:marqueeRepeatLimit="marquee_forever"
-          android:singleLine="true"
-          android:textColor="?android:textColorPrimary"
-          android:scrollHorizontally="true"
-          android:focusable="true"
-          android:gravity="center|top"
-          android:textAlignment="center"
-          android:autoSizePresetSizes="@array/auto_size_text_sizes"
-          android:layout_marginHorizontal="2dp"
-          android:focusableInTouchMode="true"
-          android:text="MOUNT WINDOWS"
-          android:id="@+id/tv_mount_title"
-          android:textStyle="bold" />
+                <TextView
+                     android:layout_height="wrap_content"
+                     android:layout_width="match_parent"
+                     android:ellipsize="marquee"
+                     android:marqueeRepeatLimit="marquee_forever"
+                     android:singleLine="true"
+                     android:textColor="?android:textColorPrimary"
+                     android:scrollHorizontally="true"
+                     android:focusable="true"
+                     android:gravity="center|top"
+                     android:textAlignment="center"
+                     android:autoSizePresetSizes="@array/auto_size_text_sizes"
+                     android:layout_marginHorizontal="2dp"
+                     android:focusableInTouchMode="true"
+                     android:text="MOUNT WINDOWS"
+                     android:id="@+id/tv_mount_title"
+                     android:textStyle="bold" />
 
-        <View
-          android:layout_height="1dp"
-          android:layout_width="match_parent"
-          android:layout_below="@id/tv_mount_title"
-          android:background="?attr/colorPrimary" />
+                <View
+                     android:layout_height="1dp"
+                     android:layout_width="match_parent"
+                     android:layout_below="@id/tv_mount_title"
+                     android:background="?attr/colorPrimary" />
 
-        <ImageView
-          android:layout_height="48dp"
-          android:layout_width="48dp"
-          android:layout_centerInParent="true"
-          android:scaleType="fitXY"
-          android:tint="@color/yellow"
-          android:src="@drawable/ic_folder"
-          android:layout_margin="8dp" />
+                <ImageView
+                     android:layout_height="48dp"
+                     android:layout_width="48dp"
+                     android:layout_centerInParent="true"
+                     android:scaleType="fitXY"
+                     android:src="@drawable/ic_folder"
+                     android:layout_margin="8dp"
+                     android:tint="@color/yellow" />
 
-        <TextView
-          android:layout_height="match_parent"
-          android:layout_width="match_parent"
-          android:ellipsize="marquee"
-          android:marqueeRepeatLimit="marquee_forever"
-          android:singleLine="true"
-          android:textColor="?android:attr/textColorPrimary"
-          android:scrollHorizontally="true"
-          android:focusable="true"
-          android:gravity="center|bottom"
-          android:textAlignment="center"
-          android:autoSizePresetSizes="@array/auto_size_text_sizes"
-          android:layout_marginHorizontal="2dp"
-          android:focusableInTouchMode="true"
-          android:text="@string/mount_windows"
-          android:id="@+id/tv_mount_windows" />
+                <TextView
+                     android:layout_height="match_parent"
+                     android:layout_width="match_parent"
+                     android:ellipsize="marquee"
+                     android:marqueeRepeatLimit="marquee_forever"
+                     android:singleLine="true"
+                     android:textColor="?android:attr/textColorPrimary"
+                     android:scrollHorizontally="true"
+                     android:focusable="true"
+                     android:gravity="center|bottom"
+                     android:textAlignment="center"
+                     android:autoSizePresetSizes="@array/auto_size_text_sizes"
+                     android:layout_marginHorizontal="2dp"
+                     android:focusableInTouchMode="true"
+                     android:text="@string/mount_windows"
+                     android:id="@+id/tv_mount_windows" />
 
-      </RelativeLayout>
+            </RelativeLayout>
 
-    </com.google.android.material.card.MaterialCardView>
+        </com.google.android.material.card.MaterialCardView>
 
-    <com.google.android.material.card.MaterialCardView
-      android:layout_height="140dp"
-      android:layout_width="match_parent"
-      android:animateLayoutChanges="true"
-      app:cardMaxElevation="0dp"
-      android:adjustViewBounds="true"
-      android:clickable="true"
-      android:elevation="@dimen/cardElevation"
-      android:stateListAnimator="@anim/state_list_anim"
-      app:cardBackgroundColor="?attr/colorSurface"
-      android:foreground="?android:attr/selectableItemBackground"
-      android:gravity="center"
-      android:minHeight="96dp"
-      android:layout_margin="4dp"
-      style="@style/Widget.Material3.CardView.Filled"
-      app:cardCornerRadius="@dimen/cardCornerRadius"
-      android:layout_weight="1"
-      android:id="@+id/btn_toolbox">
+        <com.google.android.material.card.MaterialCardView
+             android:layout_height="140dp"
+             android:layout_width="match_parent"
+             android:animateLayoutChanges="true"
+             app:cardMaxElevation="0dp"
+             android:adjustViewBounds="true"
+             android:clickable="true"
+             android:elevation="@dimen/cardElevation"
+             android:stateListAnimator="@anim/state_list_anim"
+             app:cardBackgroundColor="?attr/colorSurface"
+             android:foreground="?android:attr/selectableItemBackground"
+             android:gravity="center"
+             android:minHeight="96dp"
+             android:layout_margin="4dp"
+             style="@style/Widget.Material3.CardView.Filled"
+             app:cardCornerRadius="@dimen/cardCornerRadius"
+             android:layout_weight="1"
+             android:id="@+id/btn_toolbox">
 
-      <RelativeLayout
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        android:gravity="center"
-        android:layout_margin="@dimen/fab_margin"
-        android:layout_gravity="center">
+            <RelativeLayout
+                 android:layout_height="match_parent"
+                 android:layout_width="match_parent"
+                 android:gravity="center"
+                 android:layout_margin="@dimen/fab_margin"
+                 android:layout_gravity="center">
 
-        <TextView
-          android:layout_height="wrap_content"
-          android:layout_width="match_parent"
-          android:ellipsize="marquee"
-          android:marqueeRepeatLimit="marquee_forever"
-          android:singleLine="true"
-          android:textColor="?android:textColorPrimary"
-          android:scrollHorizontally="true"
-          android:focusable="true"
-          android:gravity="center|top"
-          android:textAlignment="center"
-          android:autoSizePresetSizes="@array/auto_size_text_sizes"
-          android:layout_marginHorizontal="2dp"
-          android:focusableInTouchMode="true"
-          android:text="TOOLBOX"
-          android:id="@+id/tv_toolbox_title"
-          android:textStyle="bold" />
+                <TextView
+                     android:layout_height="wrap_content"
+                     android:layout_width="match_parent"
+                     android:ellipsize="marquee"
+                     android:marqueeRepeatLimit="marquee_forever"
+                     android:singleLine="true"
+                     android:textColor="?android:textColorPrimary"
+                     android:scrollHorizontally="true"
+                     android:focusable="true"
+                     android:gravity="center|top"
+                     android:textAlignment="center"
+                     android:autoSizePresetSizes="@array/auto_size_text_sizes"
+                     android:layout_marginHorizontal="2dp"
+                     android:focusableInTouchMode="true"
+                     android:text="TOOLBOX"
+                     android:id="@+id/tv_toolbox_title"
+                     android:textStyle="bold" />
 
-        <View
-          android:layout_height="1dp"
-          android:layout_width="match_parent"
-          android:layout_below="@id/tv_toolbox_title"
-          android:background="?attr/colorPrimary" />
+                <View
+                     android:layout_height="1dp"
+                     android:layout_width="match_parent"
+                     android:layout_below="@id/tv_toolbox_title"
+                     android:background="?attr/colorPrimary" />
 
-        <ImageView
-          android:layout_height="48dp"
-          android:layout_width="48dp"
-          android:layout_centerInParent="true"
-          android:scaleType="fitXY"
-          android:tint="@color/md_theme_light_inverseSurface"
-          android:src="@drawable/ic_toolbox"
-          android:layout_margin="8dp" />
+                <ImageView
+                     android:layout_height="48dp"
+                     android:layout_width="48dp"
+                     android:layout_centerInParent="true"
+                     android:scaleType="fitXY"
+                     android:src="@drawable/ic_toolbox"
+                     android:layout_margin="8dp"
+                     android:tint="@color/md_theme_light_inverseSurface" />
 
-        <TextView
-          android:layout_height="match_parent"
-          android:layout_width="match_parent"
-          android:ellipsize="marquee"
-          android:marqueeRepeatLimit="marquee_forever"
-          android:singleLine="true"
-          android:textColor="?android:attr/textColorPrimary"
-          android:scrollHorizontally="true"
-          android:focusable="true"
-          android:gravity="center|bottom"
-          android:textAlignment="center"
-          android:autoSizePresetSizes="@array/auto_size_text_sizes"
-          android:layout_marginHorizontal="2dp"
-          android:focusableInTouchMode="true"
-          android:id="@+id/tv_toolbox"
-          android:text="@string/toolbox_title" />
+                <TextView
+                     android:layout_height="match_parent"
+                     android:layout_width="match_parent"
+                     android:ellipsize="marquee"
+                     android:marqueeRepeatLimit="marquee_forever"
+                     android:singleLine="true"
+                     android:textColor="?android:attr/textColorPrimary"
+                     android:scrollHorizontally="true"
+                     android:focusable="true"
+                     android:gravity="center|bottom"
+                     android:textAlignment="center"
+                     android:autoSizePresetSizes="@array/auto_size_text_sizes"
+                     android:layout_marginHorizontal="2dp"
+                     android:focusableInTouchMode="true"
+                     android:id="@+id/tv_toolbox"
+                     android:text="@string/toolbox_title" />
 
-      </RelativeLayout>
+            </RelativeLayout>
 
-    </com.google.android.material.card.MaterialCardView>
+        </com.google.android.material.card.MaterialCardView>
 
-  </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

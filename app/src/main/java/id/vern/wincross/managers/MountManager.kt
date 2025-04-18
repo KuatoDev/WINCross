@@ -1,17 +1,12 @@
 package id.vern.wincross.managers
 
-import android.content.Context
-import android.content.Intent
+import android.content.*
 import androidx.lifecycle.lifecycleScope
 import id.vern.wincross.R
-import id.vern.wincross.activity.MainActivity
-import id.vern.wincross.activity.ToolboxActivity
-import id.vern.wincross.helpers.DialogHelper
-import id.vern.wincross.helpers.UtilityHelper
-import id.vern.wincross.operations.MountWindows
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import id.vern.wincross.activity.*
+import id.vern.wincross.helpers.*
+import id.vern.wincross.operations.*
+import kotlinx.coroutines.*
 
 class MountManager(private val activity: MainActivity) {
   private val rootView = activity.window.decorView.rootView

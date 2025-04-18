@@ -27,9 +27,6 @@ class SwitchHandler(
           "uefi_auto_update" to
               SwitchConfig(
                   key = "uefi_auto_update", featureNameId = R.string.feature_backup_boot_if_empty),
-          "flash_logo_with_uefi" to
-              SwitchConfig(
-                  key = "flash_logo_with_uefi", featureNameId = R.string.feature_flash_logo),
           "automatic_mount_windows" to
               SwitchConfig(
                   key = "automatic_mount_windows",
@@ -59,23 +56,11 @@ class SwitchHandler(
       sharedPreferences.edit().putBoolean(config.key, isChecked).apply()
     }
     Log.d(TAG, "handleSwitch: ${config.key} updated to $isChecked")
-
-    config.featureNameId?.let { featureId ->
-      val message =
-          context.getString(
-              R.string.toast_status,
-              context.getString(featureId),
-              context.getString(
-                  if (isChecked) R.string.status_enabled else R.string.status_disabled))
-      UtilityHelper.showToast(context, message)
-    }
   }
 
   fun handleBackupToWin(isChecked: Boolean) = handleSwitch("force_backup_to_win", isChecked)
 
   fun handleBackupBootIfEmpty(isChecked: Boolean) = handleSwitch("backup_boot_if_empty", isChecked)
-
-  fun handleFlashLogoWithUefi(isChecked: Boolean) = handleSwitch("flash_logo_with_uefi", isChecked)
 
   fun handleAutomaticMountWindows(isChecked: Boolean) =
       handleSwitch("automatic_mount_windows", isChecked)

@@ -168,14 +168,6 @@ class MainActivity : AppCompatActivity() {
         setOnCheckedChangeListener { _, isChecked -> switchHandler.handleMountToMnt(isChecked) }
       }
 
-      msFlashLogoWithUefi.apply {
-        isChecked = sharedPreferences.getBoolean("flash_logo_with_uefi", false)
-        visibility = if (shouldShowFlashLogo()) View.VISIBLE else View.GONE
-        setOnCheckedChangeListener { _, isChecked ->
-          switchHandler.handleFlashLogoWithUefi(isChecked)
-        }
-      }
-
       msAlwaysProvisionModem.apply {
         isChecked = sharedPreferences.getBoolean("always_provision_modem", false)
         setOnCheckedChangeListener { _, isChecked -> switchHandler.handleProvisionModem(isChecked) }

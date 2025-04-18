@@ -2,18 +2,16 @@ package id.vern.wincross.managers
 
 import android.Manifest
 import android.app.AlarmManager
-import android.content.Context
-import android.content.Intent
+import android.content.*
 import android.content.pm.PackageManager
 import android.net.Uri
-import android.os.Build
-import android.os.Environment
+import android.os.*
 import android.provider.Settings
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import id.vern.wincross.activity.MainActivity
+import id.vern.wincross.activity.*
 
 class PermissionManager(private val activity: MainActivity) {
   companion object {

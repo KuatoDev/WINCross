@@ -370,9 +370,7 @@
                          android:layout_width="match_parent"
                          android:gravity="center"
                          android:paddingVertical="4dp"
-                         
-                         
-                        android:textColor="?attr/colorSurface"
+                         android:textColor="?attr/colorSurface"
                          android:text="@string/title_usb_hostmode"
                          android:textStyle="bold" />
 
@@ -535,7 +533,7 @@
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
-          
+
             <com.google.android.material.card.MaterialCardView
                  android:layout_height="wrap_content"
                  android:layout_width="match_parent"
@@ -599,6 +597,7 @@
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
+
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

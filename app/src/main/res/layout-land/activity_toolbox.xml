@@ -55,7 +55,8 @@
                              android:layout_height="wrap_content"
                              android:layout_width="match_parent"
                              android:gravity="center"
-                             android:textColor="?android:attr/textColorPrimary"
+                             android:paddingVertical="4dp"
+                             android:textColor="?attr/colorSurface"
                              android:text="@string/title_create_sta"
                              android:textStyle="bold" />
 
@@ -118,7 +119,8 @@
                              android:layout_height="wrap_content"
                              android:layout_width="match_parent"
                              android:gravity="center"
-                             android:textColor="?android:attr/textColorPrimary"
+                             android:paddingVertical="4dp"
+                             android:textColor="?attr/colorSurface"
                              android:text="@string/title_hide_modem"
                              android:textStyle="bold" />
 
@@ -181,7 +183,8 @@
                              android:layout_height="wrap_content"
                              android:layout_width="match_parent"
                              android:gravity="center"
-                             android:textColor="?android:attr/textColorPrimary"
+                             android:paddingVertical="4dp"
+                             android:textColor="?attr/colorSurface"
                              android:text="@string/title_arm_software"
                              android:textStyle="bold" />
 
@@ -244,7 +247,8 @@
                              android:layout_height="wrap_content"
                              android:layout_width="match_parent"
                              android:gravity="center"
-                             android:textColor="?android:attr/textColorPrimary"
+                             android:paddingVertical="4dp"
+                             android:textColor="?attr/colorSurface"
                              android:text="@string/title_boot_autoflasher"
                              android:textStyle="bold" />
 
@@ -307,7 +311,8 @@
                              android:layout_height="wrap_content"
                              android:layout_width="match_parent"
                              android:gravity="center"
-                             android:textColor="?android:attr/textColorPrimary"
+                             android:paddingVertical="4dp"
+                             android:textColor="?attr/colorSurface"
                              android:text="@string/title_atlas_revi_os"
                              android:textStyle="bold" />
 
@@ -378,7 +383,8 @@
                              android:layout_height="wrap_content"
                              android:layout_width="match_parent"
                              android:gravity="center"
-                             android:textColor="?android:attr/textColorPrimary"
+                             android:paddingVertical="4dp"
+                             android:textColor="?attr/colorSurface"
                              android:text="@string/title_rotation_toggle"
                              android:textStyle="bold" />
 
@@ -441,7 +447,8 @@
                              android:layout_height="wrap_content"
                              android:layout_width="match_parent"
                              android:gravity="center"
-                             android:textColor="?android:attr/textColorPrimary"
+                             android:paddingVertical="4dp"
+                             android:textColor="?attr/colorSurface"
                              android:text="@string/title_download_frameworks"
                              android:textStyle="bold" />
 
@@ -504,7 +511,8 @@
                              android:layout_height="wrap_content"
                              android:layout_width="match_parent"
                              android:gravity="center"
-                             android:textColor="?android:attr/textColorPrimary"
+                             android:paddingVertical="4dp"
+                             android:textColor="?attr/colorSurface"
                              android:text="@string/title_usb_hostmode"
                              android:textStyle="bold" />
 
@@ -567,7 +575,8 @@
                              android:layout_height="wrap_content"
                              android:layout_width="match_parent"
                              android:gravity="center"
-                             android:textColor="?android:attr/textColorPrimary"
+                             android:paddingVertical="4dp"
+                             android:textColor="?attr/colorSurface"
                              android:text="@string/title_optimized_taskbar"
                              android:textStyle="bold" />
 

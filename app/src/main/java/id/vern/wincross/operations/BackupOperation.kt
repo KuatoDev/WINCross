@@ -3,7 +3,8 @@ package id.vern.wincross.operations
 import android.content.Context
 import android.os.*
 import android.util.Log
-import id.vern.wincross.helpers.UtilityHelper
+import androidx.core.app.NotificationCompat
+import id.vern.wincross.helpers.*
 import id.vern.wincross.utils.*
 import java.io.File
 import java.util.concurrent.atomic.AtomicInteger
@@ -12,6 +13,7 @@ import kotlinx.coroutines.*
 object BackupOperation {
   private val backupPath = "${Environment.getExternalStorageDirectory().path}/WINCross/Backup"
   private const val PREFERENCES_NAME = "WinCross_preferences"
+  private const val BACKUP_NOTIFICATION_ID = 1001
 
   private val backupScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
   private val mainHandler = Handler(Looper.getMainLooper())
@@ -64,6 +66,7 @@ object BackupOperation {
   }
 
   private var backupProgressListener: BackupProgressListener? = null
+  private var notificationBuilder: NotificationCompat.Builder? = null
 
   fun setBackupProgressListener(listener: BackupProgressListener?) {
     backupProgressListener = listener
@@ -76,8 +79,21 @@ object BackupOperation {
   ): Boolean {
     return withContext(Dispatchers.IO) {
       Log.d("BackupOperation", "Starting backup: $partitionPath -> $destinationPath")
+      
+      val partitionName = destinationPath.substringAfterLast("/")
+      
+      mainHandler.post {
+        notificationBuilder?.let { builder ->
+          NotificationHelper.updateDownloadProgress(
+              context,
+              BACKUP_NOTIFICATION_ID,
+              builder,
+              "Backing up: $partitionName",
+              0
+          )
+        }
+      }
 
-      // Periksa keberadaan partisi
       val partitionCheckResult =
           Utils.executeShellCommand(
               "su -mm -c test -e $partitionPath && echo exists || echo not found",
@@ -89,8 +105,16 @@ object BackupOperation {
       if (!partitionExists) {
         Log.e("BackupOperation", "ERROR: Partition not found: $partitionPath")
         mainHandler.post {
-          UtilityHelper.showToast(
-              context, "Partition not found: ${destinationPath.substringAfterLast("/")}")
+          // Remove toast, only update notification
+          notificationBuilder?.let { builder ->
+            NotificationHelper.updateDownloadProgress(
+                context,
+                BACKUP_NOTIFICATION_ID,
+                builder,
+                "Failed: Partition not found - $partitionName",
+                0
+            )
+          }
         }
         return@withContext false
       }
@@ -105,12 +129,22 @@ object BackupOperation {
 
       val message =
           if (success) {
-            "Backup completed: ${destinationPath.substringAfterLast("/")}"
+            "Backup completed: $partitionName"
           } else {
-            "Backup failed: ${destinationPath.substringAfterLast("/")}"
+            "Backup failed: $partitionName"
           }
 
-      mainHandler.post { UtilityHelper.showToast(context, message) }
+      mainHandler.post { 
+        notificationBuilder?.let { builder ->
+          NotificationHelper.updateDownloadProgress(
+              context,
+              BACKUP_NOTIFICATION_ID,
+              builder,
+              message,
+              if (success) 100 else 0
+          )
+        }
+      }
       Log.d("BackupOperation", message)
 
       success
@@ -119,6 +153,18 @@ object BackupOperation {
 
   fun backupAll(context: Context) {
     backupScope.launch {
+      // Create notification channel if needed
+      NotificationHelper.createNotificationChannel(context)
+      
+      // Create notification
+      notificationBuilder = NotificationHelper.createDownloadNotification(context).apply {
+        setContentTitle("Backup in Progress")
+        setContentText("Preparing backup...")
+      }
+      
+      val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as android.app.NotificationManager
+      notificationManager.notify(BACKUP_NOTIFICATION_ID, notificationBuilder?.build())
+
       val prefs = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE)
       val activeSlot = prefs.getString("Active Slot", null)
 
@@ -161,7 +207,17 @@ object BackupOperation {
                     getModem2stPartitionPath(context)?.let { it to "$backupPath/modemst2.img" },
                     getSplashPartitionPath(context)?.let { it to "$backupPath/splash.img" })
             else -> {
-              mainHandler.post { UtilityHelper.showToast(context, "Invalid active slot detected.") }
+              mainHandler.post { 
+                UtilityHelper.showToast(context, "Invalid active slot detected.")
+
+                notificationBuilder?.let {
+                  NotificationHelper.showCompletionNotification(
+                      context, 
+                      BACKUP_NOTIFICATION_ID, 
+                      false
+                  )
+                }
+              }
               Log.e("BackupOperation", "Invalid active slot")
               emptyList()
             }
@@ -170,6 +226,14 @@ object BackupOperation {
       if (partitions.isEmpty()) {
         mainHandler.post {
           UtilityHelper.showToast(context, "No partition paths set in preferences.")
+          
+          notificationBuilder?.let {
+            NotificationHelper.showCompletionNotification(
+                context, 
+                BACKUP_NOTIFICATION_ID, 
+                false
+            )
+          }
         }
         Log.e("BackupOperation", "No partition paths available for backup.")
         return@launch
@@ -180,15 +244,37 @@ object BackupOperation {
       mainHandler.post {
         UtilityHelper.showToast(context, "Starting backup of ${partitions.size} partitions...")
         backupProgressListener?.onBackupStarted(partitions.size)
+        
+        notificationBuilder?.let { builder ->
+          NotificationHelper.updateDownloadProgress(
+              context,
+              BACKUP_NOTIFICATION_ID,
+              builder,
+              "Preparing to backup ${partitions.size} partitions",
+              0
+          )
+        }
       }
 
       val successCount = AtomicInteger(0)
 
       partitions.forEachIndexed { index, (partition, dest) ->
         val partitionName = dest.substringAfterLast("/")
+        val progress = ((index.toFloat() / partitions.size) * 100).toInt()
+        
         mainHandler.post {
           backupProgressListener?.onPartitionBackupStarted(
               partitionName, index + 1, partitions.size)
+          
+          notificationBuilder?.let { builder ->
+            NotificationHelper.updateDownloadProgress(
+                context,
+                BACKUP_NOTIFICATION_ID,
+                builder,
+                "Backing up: $partitionName (${index + 1}/${partitions.size})",
+                progress
+            )
+          }
         }
 
         val success = backupPartition(context, partition, dest)
@@ -202,11 +288,18 @@ object BackupOperation {
         }
       }
 
+      val allSuccessful = successCount.get() == partitions.size
+      
       mainHandler.post {
-        UtilityHelper.showToast(
-            context,
-            "Backup process completed: ${successCount.get()}/${partitions.size} successful")
+        val message = "Backup process completed: ${successCount.get()}/${partitions.size} successful"
+        UtilityHelper.showToast(context, message)
         backupProgressListener?.onAllBackupsCompleted()
+        
+        NotificationHelper.showCompletionNotification(
+            context, 
+            BACKUP_NOTIFICATION_ID, 
+            allSuccessful
+        )
       }
 
       Log.d(
@@ -217,6 +310,16 @@ object BackupOperation {
 
   suspend fun backupBootToWindows(context: Context): Boolean {
     try {
+      NotificationHelper.createNotificationChannel(context)
+      
+      notificationBuilder = NotificationHelper.createDownloadNotification(context).apply {
+        setContentTitle("Boot Backup in Progress")
+        setContentText("Preparing boot backup...")
+      }
+      
+      val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as android.app.NotificationManager
+      notificationManager.notify(BACKUP_NOTIFICATION_ID, notificationBuilder?.build())
+      
       val prefs = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE)
       val bootPath =
           when (prefs.getString("Active Slot", null)) {
@@ -229,6 +332,12 @@ object BackupOperation {
       if (bootPath == null) {
         mainHandler.post {
           UtilityHelper.showToast(context, "Boot partition path not found for active slot")
+          
+          NotificationHelper.showCompletionNotification(
+              context, 
+              BACKUP_NOTIFICATION_ID, 
+              false
+          )
         }
         return false
       }
@@ -238,7 +347,15 @@ object BackupOperation {
           else "${Environment.getExternalStorageDirectory().path}/WINCross/Windows"
 
       if (!UtilityHelper.isWindowsMounted(context) && !MountWindows.mount(context)) {
-        mainHandler.post { UtilityHelper.showToast(context, "Failed to mount Windows.") }
+        mainHandler.post { 
+          UtilityHelper.showToast(context, "Failed to mount Windows.")
+          
+          NotificationHelper.showCompletionNotification(
+              context, 
+              BACKUP_NOTIFICATION_ID, 
+              false
+          )
+        }
         return false
       }
 
@@ -246,6 +363,16 @@ object BackupOperation {
         UtilityHelper.showToast(context, "Starting backup of boot partition to Windows...")
         backupProgressListener?.onBackupStarted(1)
         backupProgressListener?.onPartitionBackupStarted("boot.img", 1, 1)
+        
+        notificationBuilder?.let { builder ->
+          NotificationHelper.updateDownloadProgress(
+              context,
+              BACKUP_NOTIFICATION_ID,
+              builder,
+              "Backing up boot partition to Windows",
+              0
+          )
+        }
       }
 
       val success = backupPartition(context, bootPath, "$kernelInWindows/boot.img")
@@ -253,12 +380,27 @@ object BackupOperation {
       mainHandler.post {
         backupProgressListener?.onPartitionBackupCompleted("boot.img", success)
         backupProgressListener?.onAllBackupsCompleted()
+        
+        NotificationHelper.showCompletionNotification(
+            context, 
+            BACKUP_NOTIFICATION_ID, 
+            success
+        )
       }
 
       Log.d("BackupOperation", "Backup completed for boot partition: $bootPath")
       return success
     } catch (e: Exception) {
       Log.e("BackupOperation", "Backup failed: ${e.message}")
+      
+      mainHandler.post {
+        NotificationHelper.showCompletionNotification(
+            context, 
+            BACKUP_NOTIFICATION_ID, 
+            false
+        )
+      }
+      
       return false
     }
   }

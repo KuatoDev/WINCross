@@ -27,84 +27,83 @@ object DialogHelper {
   private const val TAG = "DialogHelper"
   private const val DIALOG_DELAY_SHORT = 200L
   private const val DIALOG_DELAY_MEDIUM = 500L
+  
+fun createDialog(
+    context: Context,
+    rootView: View?,
+    title: String,
+    message: String,
+    positiveButtonText: String? = context.getString(R.string.yes),
+    negativeButtonText: String? = context.getString(R.string.cancel),
+    onPositive: (() -> Unit)? = null,
+    onNegative: (() -> Unit)? = null,
+    onDismiss: () -> Unit = {}
+) {
+  Log.d(TAG, "createDialog: Displaying dialog with title '$title'")
 
-  fun createDialog(
-      context: Context,
-      rootView: View?,
-      title: String,
-      message: String,
-      positiveButtonText: String? = context.getString(R.string.yes),
-      negativeButtonText: String? = context.getString(R.string.cancel),
-      onPositive: (() -> Unit)? = null,
-      onNegative: (() -> Unit)? = null,
-      onDismiss: () -> Unit = {}
-  ) {
-    Log.d(TAG, "createDialog: Displaying dialog with title '$title'")
+  rootView?.let {
+    UtilityHelper.showBlurBackground(it)
+    Log.d(TAG, "createDialog: Blur background applied.")
+  }
 
-    rootView?.let {
-      UtilityHelper.showBlurBackground(it)
-      Log.d(TAG, "createDialog: Blur background applied.")
-    }
+  val inflater = LayoutInflater.from(context)
+  val dialogView = inflater.inflate(R.layout.dialog_layout, null)
+  val titleView = dialogView.findViewById<TextView>(R.id.dialogTitle)
+  val messageView = dialogView.findViewById<TextView>(R.id.dialogMessage)
+  val positiveBtn = dialogView.findViewById<MaterialButton>(R.id.positiveButton)
+  val negativeBtn = dialogView.findViewById<MaterialButton>(R.id.negativeButton)
+  
+  titleView.text = title
+  messageView.text = message
 
-    val inflater = LayoutInflater.from(context)
-    val dialogView = inflater.inflate(R.layout.dialog_layout, null)
-    val titleView = dialogView.findViewById<TextView>(R.id.dialogTitle)
-    val messageView = dialogView.findViewById<TextView>(R.id.dialogMessage)
-    val positiveBtn = dialogView.findViewById<MaterialButton>(R.id.positiveButton)
-    val negativeBtn = dialogView.findViewById<MaterialButton>(R.id.negativeButton)
-    
-    titleView.text = title
-    messageView.text = message
+  val builder = MaterialAlertDialogBuilder(context).setView(dialogView)
+  val dialog = builder.create()
 
-    val builder = MaterialAlertDialogBuilder(context).setView(dialogView)
-    val dialog = builder.create()
-
-    if (onPositive != null) {
-      positiveBtn.apply {
-        text = positiveButtonText ?: context.getString(R.string.yes)
-        setOnClickListener {
-          onPositive()
-          rootView?.let {
-            UtilityHelper.removeBlurBackground(it)
-            Log.d(TAG, "createDialog: Blur background removed (Positive).")
-          }
-          dialog.dismiss()
+  if (onPositive != null) {
+    positiveBtn.apply {
+      text = positiveButtonText ?: context.getString(R.string.yes)
+      setOnClickListener {
+        onPositive()
+        rootView?.let {
+          UtilityHelper.removeBlurBackground(it)
+          Log.d(TAG, "createDialog: Blur background removed (Positive).")
         }
-        visibility = View.VISIBLE
+        dialog.dismiss()
       }
-    } else {
-      positiveBtn.visibility = View.GONE
+      visibility = View.VISIBLE
     }
+  } else {
+    positiveBtn.visibility = View.GONE
+  }
 
-    if (onNegative != null) {
-      negativeBtn.apply {
-        text = negativeButtonText ?: context.getString(R.string.cancel)
-        setOnClickListener {
-          onNegative()
-          rootView?.let {
-            UtilityHelper.removeBlurBackground(it)
-            Log.d(TAG, "createDialog: Blur background removed (Negative).")
-          }
-          dialog.dismiss()
-        }
-        visibility = View.VISIBLE
-      }
-    } else {
-      negativeBtn.visibility = View.GONE
-    }
-
-    dialog.setOnDismissListener {
-      Log.d(TAG, "createDialog: Dialog dismissed for '$title'")
+  negativeBtn.apply {
+    text = negativeButtonText ?: context.getString(R.string.cancel)
+    setOnClickListener {
+      onNegative?.invoke()
       rootView?.let {
         UtilityHelper.removeBlurBackground(it)
-        Log.d(TAG, "createDialog: Blur background removed.")
+        Log.d(TAG, "createDialog: Blur background removed (Negative).")
       }
-      onDismiss()
+      dialog.dismiss()
     }
-
-    dialog.show()
-    Log.d(TAG, "createDialog: Dialog shown for '$title'")
+    visibility = View.VISIBLE
   }
+
+  dialog.setOnDismissListener {
+    Log.d(TAG, "createDialog: Dialog dismissed for '$title'")
+    rootView?.let {
+      UtilityHelper.removeBlurBackground(it)
+      Log.d(TAG, "createDialog: Blur background removed.")
+    }
+    onDismiss()
+  }
+
+  dialog.setCancelable(true)
+  
+  dialog.show()
+  Log.d(TAG, "createDialog: Dialog shown for '$title'")
+}
+
 
   private fun openFileManager(context: Context, rootView: View, folderPath: String) {
     val folder = File(folderPath)
@@ -173,7 +172,7 @@ object DialogHelper {
     } catch (e: Exception) {
         Log.e(TAG, "openFileManager: Failed to open file manager: ${e.message}")
         rootView.let { UtilityHelper.removeBlurBackground(it) }
-        UtilityHelper.showToast(context, "Gagal membuka file manager.")
+        UtilityHelper.showToast(context, "Failed to pick file manager.")
     }
 }
 

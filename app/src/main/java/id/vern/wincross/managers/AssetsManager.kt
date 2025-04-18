@@ -2,7 +2,7 @@ package id.vern.wincross.managers
 
 import android.content.Context
 import android.util.Log
-import id.vern.wincross.helpers.UtilityHelper
+import id.vern.wincross.helpers.*
 import id.vern.wincross.utils.*
 import java.io.*
 import java.util.concurrent.ConcurrentHashMap

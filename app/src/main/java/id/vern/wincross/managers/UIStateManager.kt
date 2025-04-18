@@ -3,10 +3,10 @@ package id.vern.wincross.managers
 import android.content.SharedPreferences
 import android.graphics.Color
 import id.vern.wincross.R
-import id.vern.wincross.activity.MainActivity
+import id.vern.wincross.activity.*
 import id.vern.wincross.databinding.ActivityMainBinding
-import id.vern.wincross.helpers.UEFIHelper
-import id.vern.wincross.utils.DeviceModels
+import id.vern.wincross.helpers.*
+import id.vern.wincross.utils.*
 import java.text.SimpleDateFormat
 import java.util.*
 

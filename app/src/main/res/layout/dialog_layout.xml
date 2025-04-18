@@ -70,11 +70,11 @@
                          android:layout_height="42dp"
                          android:layout_width="wrap_content"
                          android:layout_marginEnd="2dp"
-                         app:backgroundTint="@color/transparent"
-                         app:cornerRadius="24dp"
-                         android:textStyle="bold"
+                         app:cornerRadius="12dp"
                          android:textColor="?android:textColorPrimary"
                          android:paddingHorizontal="8dp"
+                         android:textStyle="bold"
+                         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                          android:id="@+id/negativeButton"
                          android:text="@string/no" />
 
@@ -82,12 +82,12 @@
                          android:layout_height="42dp"
                          android:layout_width="wrap_content"
                          android:layout_marginEnd="4dp"
-                         app:backgroundTint="@color/transparent"
-                         app:cornerRadius="24dp"
-                         android:textStyle="bold"
+                         app:cornerRadius="12dp"
+                         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                          android:textColor="?android:textColorPrimary"
                          android:layout_marginStart="2dp"
                          android:paddingHorizontal="8dp"
+                         android:textStyle="bold"
                          android:id="@+id/positiveButton"
                          android:text="@string/yes" />
 

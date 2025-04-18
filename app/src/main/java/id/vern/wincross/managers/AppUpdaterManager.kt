@@ -1,17 +1,11 @@
 package id.vern.wincross.managers
 
-import android.content.Context
-import android.content.Intent
+import android.content.*
 import android.net.Uri
 import android.util.Log
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import java.net.HttpURLConnection
-import java.net.URL
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import java.io.*
+import java.net.*
+import kotlinx.coroutines.*
 import org.json.JSONObject
 
 class AppUpdaterManager(private val context: Context) {
