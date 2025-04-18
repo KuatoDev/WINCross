@@ -84,16 +84,12 @@ object UsbHostmodeDownloader {
       withContext(Dispatchers.Main) {
         NotificationHelper.showCompletionNotification(
             context = context, notificationId = NOTIFICATION_ID, success = success)
-
         if (success) {
-          UtilityHelper.showToast(
-              context, context.getString(R.string.download_successful, desktopPath))
           DialogHelper.showPopupNotifications(
-              context, "USB Host Mode Control downloaded successfully")
+              context, context.getString(R.string.download_successful, desktopPath))
           Log.d(TAG, "USB Host Mode Control download completed successfully")
         } else {
-          UtilityHelper.showToast(context, context.getString(R.string.download_failed))
-          DialogHelper.showPopupNotifications(context, "Failed to download USB Host Mode Control")
+          DialogHelper.showPopupNotifications(context, context.getString(R.string.download_failed))
           Log.e(TAG, "Failed to download USB Host Mode Control")
         }
       }

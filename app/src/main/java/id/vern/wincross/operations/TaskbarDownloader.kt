@@ -85,15 +85,11 @@ object TaskbarDownloader {
       withContext(Dispatchers.Main) {
         NotificationHelper.showCompletionNotification(
             context = context, notificationId = NOTIFICATION_ID, success = success)
-
         if (success) {
-          UtilityHelper.showToast(
-              context, context.getString(R.string.download_successful, deaktopPath))
-          DialogHelper.showPopupNotifications(context, "Taskbar Control downloaded successfully")
+          DialogHelper.showPopupNotifications(context, context.getString(R.string.download_successful, deaktopPath))
           Log.d(TAG, "Taskbar Control download completed successfully")
         } else {
-          UtilityHelper.showToast(context, context.getString(R.string.download_failed))
-          DialogHelper.showPopupNotifications(context, "Failed to download Taskbar Control")
+          DialogHelper.showPopupNotifications(context, context.getString(R.string.download_failed))
           Log.e(TAG, "Failed to download Taskbar Control")
         }
       }

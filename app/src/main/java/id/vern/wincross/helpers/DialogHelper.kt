@@ -18,6 +18,10 @@ import id.vern.wincross.R
 import id.vern.wincross.operations.*
 import id.vern.wincross.utils.*
 import java.io.File
+import android.os.storage.StorageManager
+import android.provider.DocumentsContract
+import androidx.core.content.FileProvider
+import android.content.pm.ResolveInfo
 
 object DialogHelper {
   private const val TAG = "DialogHelper"
@@ -104,36 +108,74 @@ object DialogHelper {
 
   private fun openFileManager(context: Context, rootView: View, folderPath: String) {
     val folder = File(folderPath)
+    val browserIntents = ArrayList<Intent>()
+    
     try {
-      val intent =
-          Intent(Intent.ACTION_VIEW).apply {
-            setDataAndType(Uri.fromFile(folder), "resource/folder")
-            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            addCategory(Intent.CATEGORY_DEFAULT)
-          }
-
-      context.startActivity(intent)
-      rootView.let { UtilityHelper.removeBlurBackground(it) }
-      Log.d(TAG, "openFileManager: File manager opened for $folder")
-    } catch (e: Exception) {
-      Log.e(TAG, "openFileManager: Failed to open primary intent: ${e.message}")
-      try {
-        val uri = FileProvider.getUriForFile(context, "${context.packageName}.fileprovider", folder)
-        val fallbackIntent =
-            Intent(Intent.ACTION_VIEW).apply {
-              setDataAndType(uri, "resource/folder")
-              addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        val uri = FileProvider.getUriForFile(
+            context,
+            "${context.packageName}.fileprovider",
+            folder
+        )
+        
+        val mimeTypes = arrayOf(
+            "resource/folder", 
+            "application/x-directory", 
+            "inode/directory", 
+            "vnd.android.document/directory"
+        )
+        
+        for (mimeType in mimeTypes) {
+            val intent = Intent(Intent.ACTION_VIEW).apply {
+                setDataAndType(uri, mimeType)
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
             }
-        context.startActivity(fallbackIntent)
+            browserIntents.add(intent)
+        }
+        
+        val getContentIntent = Intent(Intent.ACTION_GET_CONTENT).apply {
+            addCategory(Intent.CATEGORY_OPENABLE)
+            type = "*/*"
+            putExtra(Intent.EXTRA_INITIAL_INTENTS, arrayOf(Uri.fromFile(folder)))
+            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        }
+        browserIntents.add(getContentIntent)
+        
+        val chooserIntent = Intent.createChooser(
+            browserIntents.removeAt(0),
+            "Select File Manager"
+        ).apply {
+            putExtra(Intent.EXTRA_INITIAL_INTENTS, browserIntents.toTypedArray())
+        }
+        val packageManager = context.packageManager
+        val allResolveInfos = ArrayList<ResolveInfo>()
+        
+        for (intent in browserIntents) {
+            val resolveInfos = packageManager.queryIntentActivities(
+                intent,
+                PackageManager.ResolveInfoFlags.of(PackageManager.MATCH_ALL.toLong())
+            )
+            allResolveInfos.addAll(resolveInfos)
+        }
+        
+        for (resolveInfo in allResolveInfos) {
+            val packageName = resolveInfo.activityInfo.packageName
+            context.grantUriPermission(
+                packageName,
+                uri,
+                Intent.FLAG_GRANT_READ_URI_PERMISSION
+            )
+        }
+        
+        context.startActivity(chooserIntent)
         rootView.let { UtilityHelper.removeBlurBackground(it) }
-        Log.d(TAG, "openFileManager: Opened using FileProvider for $folder")
-      } catch (e2: Exception) {
-        Log.e(TAG, "openFileManager: All attempts failed: ${e2.message}")
+        Log.d(TAG, "openFileManager: Extended file manager chooser displayed for $folder")
+        
+    } catch (e: Exception) {
+        Log.e(TAG, "openFileManager: Failed to open file manager: ${e.message}")
         rootView.let { UtilityHelper.removeBlurBackground(it) }
-        UtilityHelper.showToast(context, "Failed to open file manager.")
-      }
+        UtilityHelper.showToast(context, "Gagal membuka file manager.")
     }
-  }
+}
 
   private fun showOpenFileManagerDialog(
       context: Context,

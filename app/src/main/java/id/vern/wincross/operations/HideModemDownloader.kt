@@ -87,13 +87,10 @@ object HideModemDownloader {
             context = context, notificationId = NOTIFICATION_ID, success = success)
 
         if (success) {
-          UtilityHelper.showToast(
-              context, context.getString(R.string.download_successful, deaktopPath))
-          DialogHelper.showPopupNotifications(context, "Hide Modem downloaded successfully")
+          DialogHelper.showPopupNotifications(context, context.getString(R.string.download_successful, deaktopPath))
           Log.d(TAG, "Hide Modem download completed successfully")
         } else {
-          UtilityHelper.showToast(context, context.getString(R.string.download_failed))
-          DialogHelper.showPopupNotifications(context, "Failed to download Hide Modem")
+          DialogHelper.showPopupNotifications(context, context.getString(R.string.download_failed))
           Log.e(TAG, "Failed to download Hide Modem")
         }
       }

@@ -8,7 +8,7 @@
      android:orientation="horizontal">
 
     <ImageView
-         android:layout_height="214dp"
+         android:layout_height="220dp"
          android:layout_width="wrap_content"
          android:animateLayoutChanges="true"
          android:scaleType="fitXY"
@@ -40,9 +40,10 @@
                  android:ellipsize="marquee"
                  android:marqueeRepeatLimit="marquee_forever"
                  android:singleLine="true"
-                 android:textColor="?android:textColorPrimary"
                  android:scrollHorizontally="true"
                  android:focusable="true"
+                 android:paddingVertical="2dp"
+                 android:textColor="?attr/colorSurface"
                  android:gravity="center"
                  android:autoSizePresetSizes="@array/auto_size_text_sizes"
                  android:layout_marginHorizontal="8dp"
@@ -164,7 +165,7 @@
                  app:backgroundTint="?attr/colorPrimary"
                  android:padding="0dp"
                  android:textSize="12sp"
-                 android:textColor="?android:textColorPrimary"
+                 android:textColor="?attr/colorSurface"
                  android:layout_marginStart="2dp"
                  android:layout_weight="1"
                  android:id="@+id/btn_guide"
@@ -177,7 +178,7 @@
                  app:backgroundTint="?attr/colorPrimary"
                  android:padding="0dp"
                  android:textSize="12sp"
-                 android:textColor="?android:textColorPrimary"
+                 android:textColor="?attr/colorSurface"
                  android:layout_marginStart="2dp"
                  android:layout_weight="1"
                  android:id="@+id/btn_group"

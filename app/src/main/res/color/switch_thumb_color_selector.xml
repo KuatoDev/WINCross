@@ -4,6 +4,7 @@
         android:state_checked="true"
         android:color="?attr/colorTertiary" />
     <item
-        android:color="?attr/colorTertiary"
-        android:alpha="0.3" />
+        android:state_checked="false"
+        android:color="?attr/colorOnSurface"
+        android:alpha="0.5" />
 </selector>

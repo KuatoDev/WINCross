@@ -150,7 +150,6 @@
         parent="Widget.Material3.CompoundButton.MaterialSwitch">
         <item name="thumbTint">@color/switch_thumb_color_selector</item>
         <item name="trackTint">@color/switch_track_color_selector</item>
-        <item name="trackDecorationTint">@color/md_theme_light_onPrimary</item>
         <item name="android:background">@null</item>
     </style>
 

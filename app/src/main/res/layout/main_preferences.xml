@@ -36,7 +36,8 @@
                  android:layout_height="wrap_content"
                  android:layout_width="match_parent"
                  android:gravity="center"
-                 android:textColor="?android:attr/textColorPrimary"
+                 android:paddingVertical="4dp"
+                 android:textColor="?attr/colorSurface"
                  android:text="@string/app_configuration"
                  android:textStyle="bold" />
 
@@ -121,7 +122,8 @@
                  android:layout_height="wrap_content"
                  android:layout_width="match_parent"
                  android:gravity="center"
-                 android:textColor="?android:attr/textColorPrimary"
+                 android:paddingVertical="4dp"
+                 android:textColor="?attr/colorSurface"
                  android:text="@string/title_configurations"
                  android:textStyle="bold" />
 

@@ -87,7 +87,7 @@
     <string name="desc_arm_software">This option adds browser shortcuts to Desktop/ARMSoftware, providing quick access to a curated collection of ARM-compatible software. These tools are specifically designed to enhance performance and functionality when running Windows on ARM-based devices.</string>
 
     <!-- Atlas/Revi OS -->
-    <string name="title_atlas_revi_os">Atlas OS / Revi OS</string>
+    <string name="title_atlas_revi_os">Download Atlas OS / Revi OS Playbook</string>
     <string name="desc_atlas_revi_os">Download and add essential resources for AtlasOS and ReviOS, including playbooks and AME Wizard, to Desktop. These optimized Windows distributions help improve performance and remove unnecessary bloat, making your system faster and more efficient.</string>
 
     <!-- Modem Hide -->

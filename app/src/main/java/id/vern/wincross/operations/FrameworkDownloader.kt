@@ -121,13 +121,10 @@ object FrameworkDownloader {
             context = context, notificationId = SINGLE_NOTIFICATION_ID, success = allSuccessful)
 
         if (allSuccessful) {
-          UtilityHelper.showToast(
-              context, context.getString(R.string.download_successful, frameworkPath))
           DialogHelper.showPopupNotifications(
-              context, "All framework components downloaded successfully")
+              context, context.getString(R.string.download_successful, frameworkPath))
         } else {
           val failedCount = results.count { !it }
-          UtilityHelper.showToast(context, context.getString(R.string.download_failed))
           DialogHelper.showPopupNotifications(
               context, "$failedCount framework components failed to download")
         }

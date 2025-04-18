@@ -87,13 +87,10 @@ object QuickRotationDownloader {
             context = context, notificationId = NOTIFICATION_ID, success = success)
 
         if (success) {
-          UtilityHelper.showToast(
-              context, context.getString(R.string.download_successful, desktopPath))
-          DialogHelper.showPopupNotifications(context, "Quick Rotation downloaded successfully")
+          DialogHelper.showPopupNotifications(context, context.getString(R.string.download_successful, desktopPath))
           Log.d(TAG, "QuickRotation download completed successfully")
         } else {
-          UtilityHelper.showToast(context, context.getString(R.string.download_failed))
-          DialogHelper.showPopupNotifications(context, "Failed to download QuickRotation")
+          DialogHelper.showPopupNotifications(context, context.getString(R.string.download_failed))
           Log.e(TAG, "Failed to download QuickRotation")
         }
       }
