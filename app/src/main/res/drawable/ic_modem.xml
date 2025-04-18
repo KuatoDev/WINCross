@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:height="42dp" android:width="42dp" android:viewportWidth="1600.0" android:viewportHeight="1600.0">
+    <path android:fillColor="#FF455963" android:pathData="M1399.5 1008.5c-7 32.5-27 51.7-60 57.5-102 0.5-204 0.7-306 0.5 0.3 77.8 0 155.5-1 233v-233h-733c-13.3 0.2-26.7 0-40-0.5-33-5.8-53-24.9-60-57.5-0.2-10.1 0.7-20.1 2.5-30 33.1-240.9 65.8-481.9 98-723 6.5-30.5 25-49 55.5-55.5 296-0.7 592-0.7 888 0 30.5 6.5 49 25 55.5 55.5 32.2 241.1 64.9 482.1 98 723 1.8 9.9 2.7 19.9 2.5 30z" android:strokeAlpha="0.996" android:fillAlpha="0.996"/>
+    <path android:fillColor="#FF768F9A" android:pathData="M199.5 1008.5c7 32.6 27 51.7 60 57.5 13.3 0.5 26.7 0.7 40 0.5v233h733c1-77.5 1.3-155.2 1-233 102 0.2 204 0 306-0.5 33-5.8 53-25 60-57.5 0.2 111.7 0 223.3-0.5 335-6.5 30.5-25 49-55.5 55.5-362.7 0.7-725.3 0.7-1088 0-30.5-6.5-49-25-55.5-55.5-0.5-111.7-0.7-223.3-0.5-335z"/>
+    <path android:fillColor="#FF253237" android:pathData="M299.5 1066.5h733v233h-66v-134c-22.5-0.3-44.8 0-67 1v133h-66v-134h-68v134h-66v-133c-22.2-1-44.5-1.3-67-1v134h-66v-134c-22.5-0.3-44.8 0-67 1v133h-66v-134h-68v134h-66v-233z"/>
+    <path android:fillColor="#FF6E6A36" android:pathData="M433.5 1299.5h-1v-133h-66v133h-1v-134h68v134zm400 0h-1v-133h-66v133h-1v-134h68v134z"/>
+    <path android:fillColor="#FFFCD834" android:pathData="M432.5 1299.5h-66v-133h66v133zm67-133h66v133h-66v-133z"/>
+    <path android:fillColor="#FFA09036" android:pathData="M499.5 1166.5c22.2-1 44.5-1.3 67-1v134h-1v-133h-66zm200 0h-66v133h-1v-134c22.5-0.3 44.8 0 67 1z"/>
+    <path android:fillColor="#FFFCD834" android:pathData="M699.5 1166.5v133h-66v-133h66zm133 133h-66v-133h66v133zm67-133h66v133h-66v-133z"/>
+    <path android:fillColor="#FFA09036" android:pathData="M899.5 1166.5c22.2-1 44.5-1.3 67-1v134h-1v-133h-66z"/>
+    <path android:fillColor="#FF64DC18" android:pathData="M1220.5 1166.5c39.3-3.1 65.2 13.9 77.5 51 5.3 35.9-8.2 61.7-40.5 77.5-31.4 10.4-57.6 2.9-78.5-22.5-13.1-19.5-16.1-40.5-9-63 9.7-22.9 26.5-37.2 50.5-43z"/>
+</vector>
