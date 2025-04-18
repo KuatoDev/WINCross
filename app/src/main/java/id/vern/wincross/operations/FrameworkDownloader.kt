@@ -8,6 +8,8 @@ import id.vern.wincross.helpers.*
 import id.vern.wincross.managers.AssetsManager
 import id.vern.wincross.managers.DownloadManager
 import java.io.*
+import id.vern.wincross.parsers.*
+import id.vern.wincross.utils.*
 import kotlin.math.roundToInt
 import kotlinx.coroutines.*
 
@@ -42,9 +44,8 @@ object FrameworkDownloader {
   fun downloadFrameworks(context: Context) {
     Log.d(TAG, "Starting downloadFrameworks")
 
-    val prefs = context.getSharedPreferences("WinCross_preferences", Context.MODE_PRIVATE)
-    val windowsPath = prefs.getString("Windows Mount Path", "")
-    val frameworkPath = "$windowsPath/Users/Public/Desktop/Frameworks"
+    val userpath = Utils.resolveDesktopPath(context)
+    val frameworkPath = "$userpath/Frameworks"
 
     val directory = File(frameworkPath)
     if (!directory.exists()) {

@@ -45,10 +45,11 @@ class ToolboxActivity : AppCompatActivity() {
     binding.cvRotationToggle.setOnClickListener {
       DialogHelper.showRotationToggle(this, window.decorView.rootView) {
         lifecycleScope.launch(Dispatchers.Main) {
-          RotationToggle.extractScript(this@ToolboxActivity)
+          QuickRotationDownloader.downloadQuickRotation(this@ToolboxActivity)
         }
       }
     }
+    
     binding.cvDownloadFramework.setOnClickListener {
       DialogHelper.showDownloadFrameworks(this, window.decorView.rootView) {
         lifecycleScope.launch(Dispatchers.Main) {
@@ -56,6 +57,7 @@ class ToolboxActivity : AppCompatActivity() {
         }
       }
     }
+    
     binding.cvReviAtlas.setOnClickListener {
       DialogHelper.showReviAtlas(this, window.decorView.rootView)
     }
@@ -68,13 +70,22 @@ class ToolboxActivity : AppCompatActivity() {
       }
     }
 
-    binding.cvDownloadTaskbarControl?.setOnClickListener {
+    binding.cvDownloadModemHide.setOnClickListener {
+      DialogHelper.showModemHide(this, window.decorView.rootView) {
+        lifecycleScope.launch(Dispatchers.Main) {
+          HideModemDownloader.downloadHideModem(this@ToolboxActivity)
+        }
+      }
+    }
+
+    binding.cvDownloadTaskbarControl!!.setOnClickListener {
       DialogHelper.showTaskbarControl(this, window.decorView.rootView) {
         lifecycleScope.launch(Dispatchers.Main) {
           TaskbarDownloader.downloadTaskbarControl(this@ToolboxActivity)
         }
       }
     }
+    
     binding.cvDownloadBootAutoflasher.setOnClickListener {
       DialogHelper.showBootAutoflasher(this, window.decorView.rootView) {
         lifecycleScope.launch(Dispatchers.Main) {

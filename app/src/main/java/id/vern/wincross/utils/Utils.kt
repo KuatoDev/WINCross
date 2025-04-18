@@ -5,13 +5,13 @@ import android.content.Context
 import android.os.*
 import android.util.Log
 import com.topjohnwu.superuser.Shell
+import java.io.File
 
 object Utils {
 
   private var cachedPanelType: String? = null
 
   fun getPanelType(): String {
-    // Return cached result if available
     cachedPanelType?.let {
       return it
     }
@@ -19,7 +19,6 @@ object Utils {
     val result = executeShellCommand("su -mm -c cat /proc/cmdline")
     val cmdline = result.out.joinToString(" ")
 
-    // Determine panel type with more efficient pattern matching
     val panelType =
         when {
           // Huaxing panels
@@ -62,7 +61,6 @@ object Utils {
         }
 
     Log.d("Utils", "Panel type detected: $panelType")
-    // Cache result for future calls
     cachedPanelType = panelType
     return panelType
   }
@@ -172,4 +170,24 @@ object Utils {
       0.0
     }
   }
+  
+  fun resolveDesktopPath(context: Context): String {
+    val prefs = context.getSharedPreferences("WinCross_preferences", Context.MODE_PRIVATE)
+    val windowsPath = prefs.getString("Windows Mount Path", null)
+
+    if (windowsPath.isNullOrEmpty()) {
+        throw IllegalStateException("Windows Mount Path not set in preference")
+    }
+
+    val usersPath = File("$windowsPath/Users")
+    val user = usersPath.listFiles()
+        ?.firstOrNull { 
+            it.isDirectory &&
+            it.name != "Public" &&
+            it.name != "Default" &&
+            it.name != "Default User" &&
+            File(it, "Desktop").exists()
+        }?.name ?: "Public"
+    return "$windowsPath/Users/$user/Desktop"
+    }
 }

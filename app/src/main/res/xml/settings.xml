@@ -4,10 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.preference.Preference
-        android:key="key_credits"
-        android:layout="@layout/preference_credits" />
-
+    <id.vern.wincross.fragments.CreditsPreference
+    android:key="key_credits"
+    android:title="Credits" />
+    
     <PreferenceCategory
         android:layout="@layout/preference_layout_top"
         android:title="@string/key_theme">

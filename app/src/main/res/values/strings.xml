@@ -17,6 +17,7 @@
 
     <!-- ==================== APP INFORMATION ==================== -->
     <string name="app_name">WIN Cross</string>
+    <string name="version_format">Package Name : %1$s\nVersion Number : %2$s</string>
     <string name="tagline">Cross-Platform Windows Control</string>
     <string name="toolbar_title">@string/app_name</string>
     <string name="woa">Windows on ARM Devices</string>
@@ -89,9 +90,13 @@
     <string name="title_atlas_revi_os">Atlas OS / Revi OS</string>
     <string name="desc_atlas_revi_os">Download and add essential resources for AtlasOS and ReviOS, including playbooks and AME Wizard, to Desktop. These optimized Windows distributions help improve performance and remove unnecessary bloat, making your system faster and more efficient.</string>
 
+    <!-- Modem Hide -->
+    <string name="title_hide_modem">Hide Modem Partition Tools</string>
+    <string name="desc_hide_modem">Simple tool that helps you safely hide the modem partition by unassigning its drive letter, preventing apps from accidentally modifying it on your WOA device!</string>
+
     <!-- Script Toolbox -->
     <string name="title_rotation_toggle">Rotation Toggle</string>
-    <string name="desc_rotation_toggle">The "Insert Rotation Toggle" is a utility feature designed to add a convenient rotation lock toggle button to Windows devices with rotation capabilities. This functionality allows users to quickly enable or disable screen rotation without navigating through multiple system settings menus.</string>
+    <string name="desc_rotation_toggle">Utility feature designed to add a convenient rotation lock toggle button to Windows devices with rotation capabilities. This functionality allows users to quickly enable or disable screen rotation without navigating through multiple system settings menus.</string>
 
     <!-- Frameworks -->
     <string name="title_download_frameworks">Download Frameworks</string>
@@ -191,7 +196,7 @@
     <string name="reboot_message_warning">Do you want to reboot to Windows now?</string>
     <string name="msg_create_sta">Rreate Switch to Android now</string>
     <string name="msg_arm_software">Insert browser shortcuts for ARM software to Desktop/ARMSoftware</string>
-    <string name="msg_rotation_toggle">Insert Rotation Toggle to Windows</string>
+    <string name="msg_rotation_toggle">Download Rotation Toggle to Windows</string>
     <string name="msg_download_frameworks">Download useful frameworks</string>
 
     <!-- ==================== HELP MESSAGES ==================== -->
@@ -322,4 +327,25 @@
     <string name="log_windows_status">Windows status</string>
     <string name="log_backup">Backup status</string>
     <string name="log_mount">Mount operation</string>
+
+    <string name="usb_host_mode_title">USB Host Mode</string>
+    <string name="usb_host_mode_message">Download USB Host Mode for your Windows?</string>
+
+    <string name="optimized_taskbar_control_title">Optimized Taskbar Control</string>
+    <string name="optimized_taskbar_control_message">Download Optimized Taskbar Control for your Windows?</string>
+
+    <string name="boot_autoflasher_title">Boot Autoflasher</string>
+    <string name="boot_autoflasher_message">Download Boot Autoflasher for your Windows?</string>
+
+    <string name="modem_hide_title">Modem Hide</string>
+    <string name="modem_hide_message">Download Modem Hide for your Windows?</string>
+
+    <string name="download_playbook_title">Download Playbook</string>
+    <string name="download_playbook_message">Choose OS Playbook to download:</string>
+    <string name="atlas_os_playbook">Atlas OS Playbook</string>
+    <string name="revi_os_playbook">Revi OS Playbook</string>
+
+    <string name="toast_downloading_atlas">Downloading Atlas OS Playbook...</string>
+    <string name="toast_downloading_revi">Downloading Revi OS Playbook...</string>
+
 </resources>

@@ -7,16 +7,15 @@ import id.vern.wincross.helpers.*
 import id.vern.wincross.managers.*
 import java.io.File
 import kotlinx.coroutines.*
+import id.vern.wincross.parsers.*
+import id.vern.wincross.utils.*
 
-object ReviAtlas {
+object ReviAtlasDownloader {
   private const val DOWNLOAD_NOTIFICATION_ID = 1001
 
   fun downloadReviAtlas(context: Context, fileName: String, osType: String) {
     Log.d("ReviAtlas", "Starting downloadReviAtlas for $fileName ($osType)")
-    val prefs = context.getSharedPreferences("WinCross_preferences", Context.MODE_PRIVATE)
-    val windowsPath = prefs.getString("Windows Mount Path", null)
-
-    val desktopPath = "$windowsPath/Users/Public/Desktop"
+    val desktopPath = Utils.resolveDesktopPath(context)
     val playbookUrl =
         "https://github.com/n00b69/modified-playbooks/releases/download/$osType/$fileName"
     val ameWizardUrl = "https://download.ameliorated.io/AME%20Wizard%20Beta.zip"

@@ -15,8 +15,8 @@ import androidx.preference.*
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import id.vern.wincross.R
-import id.vern.wincross.operations.ReviAtlas
-import id.vern.wincross.utils.Utils
+import id.vern.wincross.operations.*
+import id.vern.wincross.utils.*
 import java.io.File
 
 object DialogHelper {
@@ -42,17 +42,13 @@ object DialogHelper {
       Log.d(TAG, "createDialog: Blur background applied.")
     }
 
-    // Inflate single dialog layout
     val inflater = LayoutInflater.from(context)
     val dialogView = inflater.inflate(R.layout.dialog_layout, null)
-    
-    // Get references to views from the single layout
     val titleView = dialogView.findViewById<TextView>(R.id.dialogTitle)
     val messageView = dialogView.findViewById<TextView>(R.id.dialogMessage)
     val positiveBtn = dialogView.findViewById<MaterialButton>(R.id.positiveButton)
     val negativeBtn = dialogView.findViewById<MaterialButton>(R.id.negativeButton)
     
-    // Set text for title and message
     titleView.text = title
     messageView.text = message
 
@@ -198,13 +194,7 @@ object DialogHelper {
         onPositive = {
           onConfirm()
           val prefs = context.getSharedPreferences("WinCross_preferences", Context.MODE_PRIVATE)
-
-          val mountPoint =
-              when (prefs.getString("Windows Mount Path", null)) {
-                "/mnt/Windows" -> "/mnt/Windows"
-                else -> "${Environment.getExternalStorageDirectory().path}/WINCross/Windows"
-              }
-
+          val mountPoint =prefs.getString("Windows Mount Path", null)!!
           showOpenFileManagerDialog(
               context = context,
               rootView = rootView,
@@ -240,34 +230,7 @@ object DialogHelper {
         message = context.getString(R.string.msg_arm_software),
         onPositive = onConfirm)
   }
-
-  fun showUsbHostmode(context: Context, rootView: View, onConfirm: () -> Unit) {
-    createDialog(
-        context = context,
-        rootView = rootView,
-        title = "USB Host Mode",
-        message = "Download USB Host Mode for your Windows?",
-        onPositive = onConfirm)
-  }
-
-  fun showTaskbarControl(context: Context, rootView: View, onConfirm: () -> Unit) {
-    createDialog(
-        context = context,
-        rootView = rootView,
-        title = "Optimized Taskbar Control",
-        message = "Download Optimized Taskbar Control for your Windows?",
-        onPositive = onConfirm)
-  }
-
-  fun showBootAutoflasher(context: Context, rootView: View, onConfirm: () -> Unit) {
-    createDialog(
-        context = context,
-        rootView = rootView,
-        title = "Boot Autoflasher",
-        message = "Download Boot Autoflasher for your Windows?",
-        onPositive = onConfirm)
-  }
-
+  
   fun showRotationToggle(context: Context, rootView: View, onConfirm: () -> Unit) {
     createDialog(
         context = context,
@@ -285,25 +248,65 @@ object DialogHelper {
         message = context.getString(R.string.msg_download_frameworks),
         onPositive = onConfirm)
   }
-
-  fun showReviAtlas(context: Context, rootView: View) {
+  
+fun showUsbHostmode(context: Context, rootView: View, onConfirm: () -> Unit) {
     createDialog(
         context = context,
         rootView = rootView,
-        title = "Download Playbook",
-        message = "Choose OS to download:",
-        positiveButtonText = "Atlas OS",
-        negativeButtonText = "Revi OS",
+        title = context.getString(R.string.usb_host_mode_title),
+        message = context.getString(R.string.usb_host_mode_message),
+        onPositive = onConfirm
+    )
+}
+
+fun showTaskbarControl(context: Context, rootView: View, onConfirm: () -> Unit) {
+    createDialog(
+        context = context,
+        rootView = rootView,
+        title = context.getString(R.string.optimized_taskbar_control_title),
+        message = context.getString(R.string.optimized_taskbar_control_message),
+        onPositive = onConfirm
+    )
+}
+
+fun showBootAutoflasher(context: Context, rootView: View, onConfirm: () -> Unit) {
+    createDialog(
+        context = context,
+        rootView = rootView,
+        title = context.getString(R.string.boot_autoflasher_title),
+        message = context.getString(R.string.boot_autoflasher_message),
+        onPositive = onConfirm
+    )
+}
+
+fun showModemHide(context: Context, rootView: View, onConfirm: () -> Unit) {
+    createDialog(
+        context = context,
+        rootView = rootView,
+        title = context.getString(R.string.modem_hide_title),
+        message = context.getString(R.string.modem_hide_message),
+        onPositive = onConfirm
+    )
+}
+
+fun showReviAtlas(context: Context, rootView: View) {
+    createDialog(
+        context = context,
+        rootView = rootView,
+        title = context.getString(R.string.download_playbook_title),
+        message = context.getString(R.string.download_playbook_message),
+        positiveButtonText = context.getString(R.string.atlas_os_playbook),
+        negativeButtonText = context.getString(R.string.revi_os_playbook),
         onPositive = {
-          UtilityHelper.showToast(context, "Downloading Atlas OS Playbook...")
-          ReviAtlas.downloadReviAtlas(context, "AtlasPlaybook.apbx", "AtlasOS")
+            UtilityHelper.showToast(context, context.getString(R.string.toast_downloading_atlas))
+            ReviAtlasDownloader.downloadReviAtlas(context, "AtlasPlaybook.apbx", "AtlasOS")
         },
         onNegative = {
-          UtilityHelper.showToast(context, "Downloading Revi OS Playbook...")
-          ReviAtlas.downloadReviAtlas(context, "ReviPlaybook.apbx", "ReviOS")
-        })
-  }
-
+            UtilityHelper.showToast(context, context.getString(R.string.toast_downloading_revi))
+            ReviAtlasDownloader.downloadReviAtlas(context, "ReviPlaybook.apbx", "ReviOS")
+        }
+    )
+}
   fun showConfirmationDialog(
       context: Context,
       title: String,
